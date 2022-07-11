@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>763</width>
+    <width>765</width>
     <height>500</height>
    </rect>
   </property>
@@ -50,14 +50,17 @@
    <widget class="QLabel" name="backGround">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>0</y>
-      <width>751</width>
-      <height>451</height>
+      <x>-4</x>
+      <y>-8</y>
+      <width>771</width>
+      <height>481</height>
      </rect>
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
    <zorder>backGround</zorder>
@@ -68,7 +71,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>763</width>
+     <width>765</width>
      <height>21</height>
     </rect>
    </property>
