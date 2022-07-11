@@ -58,6 +58,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\aby_6\Documents\Programming\QT\StarWarsApp\PayStarWars\CharacterSelectScreen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -86,15 +91,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="PayStarWars.qrc" />
-    <QtUic Include="CharacterSelectScreen.ui" />
+    <QtUic Include="..\CharacterSelectScreen\CharacterSelectScreen.ui" />
     <QtUic Include="PayStarWars.ui" />
     <QtMoc Include="PayStarWars.h" />
-    <ClCompile Include="CharacterSelectScreen.cpp" />
+    <ClCompile Include="..\CharacterSelectScreen\CharacterSelectScreen.cpp" />
     <ClCompile Include="PayStarWars.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="CharacterSelectScreen.h" />
+    <QtMoc Include="..\CharacterSelectScreen\CharacterSelectScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
