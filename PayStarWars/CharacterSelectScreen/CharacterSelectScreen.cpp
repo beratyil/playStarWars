@@ -12,10 +12,11 @@ CharacterSelection::CharacterSelection(QWidget* parent)
 }
 
 CharacterSelection::~CharacterSelection()
-{}
+{
+    QCoreApplication::exit();
+}
 
 void CharacterSelection::returnMainMenuSlot()
 {
     emit returnMainMenuSignal();
-    QCoreApplication::exit();
 }

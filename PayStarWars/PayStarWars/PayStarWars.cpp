@@ -1,5 +1,4 @@
 #include "PayStarWars.h"
-#include "CharacterSelectScreen.h"
 
 PayStarWars::PayStarWars(QWidget *parent)
     : QMainWindow(parent)
@@ -22,6 +21,7 @@ PayStarWars::PayStarWars(QWidget *parent)
     QPixmap pixmapLogo("..\\Resources\\Menu\\StarWars.png");
     ui.backGround->setPixmap(pixmapLogo);
 
+    mCharacterSelectScreen = nullptr;
 }
 
 PayStarWars::~PayStarWars()
@@ -29,19 +29,31 @@ PayStarWars::~PayStarWars()
 
 void PayStarWars::openNewGame()
 {
+    /* Create object for Character Select Screen */
     CharacterSelection* newCharacterSelectScreen = nullptr;
+
+    mCharacterSelectScreen = newCharacterSelectScreen;
     
+    /* Hide Main Menu */
     hide();
 
+    /* Show Character Select Screen */
     newCharacterSelectScreen = new CharacterSelection();
     newCharacterSelectScreen->show();
 
+    /* Create Return Path From Character Select Screen to Main Menu */
     connect(newCharacterSelectScreen, &CharacterSelection::returnMainMenuSignal, this, &PayStarWars::openMainMenuAgain);
+
+    /* @note: Destroy the dynamically created object */
+    newCharacterSelectScreen = nullptr;
+    delete newCharacterSelectScreen;
 }
 
 void PayStarWars::openMainMenuAgain()
 {
     this->setVisible(true);
+
+    delete mCharacterSelectScreen;
 }
 
 void PayStarWars::exit()

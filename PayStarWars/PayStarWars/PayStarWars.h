@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_PayStarWars.h"
+#include "CharacterSelectScreen.h"
 
 class PayStarWars : public QMainWindow
 {
@@ -21,4 +22,5 @@ public slots:
 
 private:
     Ui::PayStarWarsClass ui;
+    CharacterSelection* mCharacterSelectScreen;
 };
