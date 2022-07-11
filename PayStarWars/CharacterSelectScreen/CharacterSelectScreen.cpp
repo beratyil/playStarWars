@@ -5,7 +5,7 @@ CharacterSelection::CharacterSelection(QWidget* parent)
 {
     ui.setupUi(this);
     
-    connect(ui.returnMainMenu, SIGNAL(clicked()), this, SLOT(returnMainMenu()));
+    connect(ui.returnMainMenu, SIGNAL(clicked()), this, SLOT(returnMainMenuSlot()));
 
     QPixmap pixmapBackGround("..\\Resources\\CharacterSelectionScreen\\backGround.jpeg");
     ui.backGround->setPixmap(pixmapBackGround);
@@ -14,7 +14,8 @@ CharacterSelection::CharacterSelection(QWidget* parent)
 CharacterSelection::~CharacterSelection()
 {}
 
-void CharacterSelection::returnMainMenu()
+void CharacterSelection::returnMainMenuSlot()
 {
-
+    emit returnMainMenuSignal();
+    QCoreApplication::exit();
 }

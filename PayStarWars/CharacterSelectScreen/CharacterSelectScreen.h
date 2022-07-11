@@ -13,9 +13,10 @@ public:
 
 signals:
     void clicked();
+    void returnMainMenuSignal();
 
 public slots:
-    void returnMainMenu();
+    void returnMainMenuSlot();
 
 private:
     Ui::CharacterSelection ui;

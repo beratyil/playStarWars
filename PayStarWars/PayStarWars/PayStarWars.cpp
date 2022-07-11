@@ -35,6 +35,13 @@ void PayStarWars::openNewGame()
 
     newCharacterSelectScreen = new CharacterSelection();
     newCharacterSelectScreen->show();
+
+    connect(newCharacterSelectScreen, &CharacterSelection::returnMainMenuSignal, this, &PayStarWars::openMainMenuAgain);
+}
+
+void PayStarWars::openMainMenuAgain()
+{
+    this->setVisible(true);
 }
 
 void PayStarWars::exit()
