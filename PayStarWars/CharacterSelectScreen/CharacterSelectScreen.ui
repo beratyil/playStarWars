@@ -24,9 +24,9 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="blaster">
+     <widget class="QPushButton" name="paratrooper">
       <property name="text">
-       <string>Blaster</string>
+       <string>Paratrooper</string>
       </property>
      </widget>
     </item>
@@ -43,9 +43,9 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
-     <widget class="QPushButton" name="longBlaster">
+     <widget class="QPushButton" name="heavyGunner">
       <property name="text">
-       <string>Long Blaster</string>
+       <string>Heavy Gunner</string>
       </property>
      </widget>
     </item>
@@ -62,9 +62,9 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3">
     <item>
-     <widget class="QPushButton" name="heavyGun">
+     <widget class="QPushButton" name="sharpShooter">
       <property name="text">
-       <string>Heavy Gun</string>
+       <string>Sharp Shooter</string>
       </property>
      </widget>
     </item>
@@ -81,9 +81,9 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_4">
     <item>
-     <widget class="QPushButton" name="sniper">
+     <widget class="QPushButton" name="commander">
       <property name="text">
-       <string>Sniper</string>
+       <string>Commander</string>
       </property>
      </widget>
     </item>
