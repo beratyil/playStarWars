@@ -24,6 +24,15 @@
     <Filter Include="Widgets">
       <UniqueIdentifier>{b3ae667d-d4b6-47b9-98c4-13d317ee5d0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\CharacterInformation">
+      <UniqueIdentifier>{694bab1c-eb43-426b-9ad3-097e5a29fa2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CharacterInformation">
+      <UniqueIdentifier>{80cd442e-860d-4900-bc1b-5ca7e776def9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CharacterInformation\Clone">
+      <UniqueIdentifier>{1068e1f2-4b2c-4894-a6c1-c05e424ae247}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="PayStarWars.qrc">
@@ -46,9 +55,15 @@
     <ClCompile Include="..\CharacterSelectScreen\CharacterSelectScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\CharacterSelectScreen\Characters\Clone\CloneParatrooper.cpp">
+      <Filter>CharacterInformation\Clone</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="..\CharacterSelectScreen\CharacterSelectScreen.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="..\CharacterSelectScreen\Characters\CharacterSelectionCloneSoldierSelection.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -56,5 +71,13 @@
     <QtMoc Include="..\CharacterSelectScreen\CharacterSelectScreen.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneParatrooper.h">
+      <Filter>CharacterInformation\Clone</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
