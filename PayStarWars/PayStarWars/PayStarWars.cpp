@@ -55,7 +55,7 @@ void PayStarWars::openMainMenuAgain()
 
     mCharacterSelectScreen->exit();
 
-    //delete mCharacterSelectScreen;
+    delete mCharacterSelectScreen;
 }
 
 void PayStarWars::exit()

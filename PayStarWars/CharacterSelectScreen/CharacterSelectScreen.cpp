@@ -13,7 +13,6 @@ CharacterSelection::CharacterSelection(QWidget* parent)
 
 CharacterSelection::~CharacterSelection()
 {
-    QCoreApplication::exit();
 }
 
 void CharacterSelection::exit()
