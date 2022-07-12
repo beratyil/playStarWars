@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
+#include <qpainter.h>
 #include "ui_CharacterSelectScreen.h"
 
 class CharacterSelection : public QMainWindow
