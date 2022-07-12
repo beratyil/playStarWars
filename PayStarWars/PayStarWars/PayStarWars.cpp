@@ -31,8 +31,6 @@ void PayStarWars::openNewGame()
 {
     /* Create object for Character Select Screen */
     CharacterSelection* newCharacterSelectScreen = nullptr;
-
-    mCharacterSelectScreen = newCharacterSelectScreen;
     
     /* Hide Main Menu */
     hide();
@@ -41,9 +39,11 @@ void PayStarWars::openNewGame()
     newCharacterSelectScreen = new CharacterSelection();
     newCharacterSelectScreen->show();
 
-    /* Create Return Path From Character Select Screen to Main Menu */
-    connect(newCharacterSelectScreen, &CharacterSelection::returnMainMenuSignal, this, &PayStarWars::openMainMenuAgain);
+    mCharacterSelectScreen = newCharacterSelectScreen;
 
+    /* Create Return Path From Character Select Screen to Main Menu */
+    connect(mCharacterSelectScreen, &CharacterSelection::returnMainMenuSignal, this, &PayStarWars::openMainMenuAgain);
+    
     /* @note: Destroy the dynamically created object */
     newCharacterSelectScreen = nullptr;
     delete newCharacterSelectScreen;
@@ -53,7 +53,9 @@ void PayStarWars::openMainMenuAgain()
 {
     this->setVisible(true);
 
-    delete mCharacterSelectScreen;
+    mCharacterSelectScreen->exit();
+
+    //delete mCharacterSelectScreen;
 }
 
 void PayStarWars::exit()

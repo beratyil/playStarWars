@@ -11,6 +11,8 @@ public:
     CharacterSelection(QWidget* parent = nullptr);
     ~CharacterSelection();
 
+    void exit();
+
 signals:
     void clicked();
     void returnMainMenuSignal();

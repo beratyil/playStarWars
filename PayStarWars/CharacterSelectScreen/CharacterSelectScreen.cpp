@@ -16,6 +16,11 @@ CharacterSelection::~CharacterSelection()
     QCoreApplication::exit();
 }
 
+void CharacterSelection::exit()
+{
+    this->close();
+}
+
 void CharacterSelection::returnMainMenuSlot()
 {
     emit returnMainMenuSignal();
