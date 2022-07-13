@@ -18,7 +18,7 @@ signals:
 public slots:
     void exit();
     void openNewGame();
-    void openMainMenuAgain();
+    void returnMainMenu();
 
 private:
     Ui::PayStarWarsClass ui;
