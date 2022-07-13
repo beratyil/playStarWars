@@ -3,7 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include "..\\..\\Utilities.h"
 
-class CloneParatrooper : public QMainWindow, public ICharacterInformationScreen
+class CloneParatrooper : public ICharacterInformationScreen
 {
     Q_OBJECT
 

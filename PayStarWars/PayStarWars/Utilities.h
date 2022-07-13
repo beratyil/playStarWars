@@ -3,7 +3,7 @@
 #include "ui_CharacterSelectionCloneSoldierSelection.h"
 
 
-class ICharacterInformationScreen
+class ICharacterInformationScreen : public QMainWindow
 {
 
 public:

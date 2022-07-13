@@ -1,7 +1,6 @@
 #include "CloneParatrooper.h"
 
 CloneParatrooper::CloneParatrooper(QWidget* parent)
-    : QMainWindow(parent)
 {
     ui.setupUi(this);
  
