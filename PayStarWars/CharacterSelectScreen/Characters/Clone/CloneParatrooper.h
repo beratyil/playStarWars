@@ -17,6 +17,6 @@ public slots:
 
 private:
     void setCharImage(QString imageDir);
-    void setDescription(QString description);
+    void setDescription();
     void setAttributes(QStringList attributes);
 };

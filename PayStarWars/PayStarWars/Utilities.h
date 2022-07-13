@@ -12,7 +12,7 @@ public:
 
 protected:
     virtual void setCharImage(QString imageDir) = 0;
-    virtual void setDescription(QString description) = 0;
+    virtual void setDescription() = 0;
     virtual void setAttributes(QStringList attributes) = 0;
 
 protected:
