@@ -3,6 +3,8 @@
 #include <QtWidgets/QMainWindow>
 #include <qpainter.h>
 #include "ui_CharacterSelectScreen.h"
+#include "..\\..\\PayStarWars\PayStarWars\Utilities.h"
+#include "Characters/Clone/CloneParatrooper.h"
 
 class CharacterSelection : public QMainWindow
 {
@@ -20,6 +22,7 @@ signals:
 
 public slots:
     void returnMainMenuSlot();
+    void openCharacterInformationScreen();
 
 private:
     Ui::CharacterSelection ui;
