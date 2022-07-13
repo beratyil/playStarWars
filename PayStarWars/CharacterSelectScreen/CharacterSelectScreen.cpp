@@ -50,10 +50,14 @@ void CharacterSelection::openCharacterInformationScreen()
     if (objectName == "paratrooper") {
         infoScreen = new CloneParatrooper();
     }
+    else if (objectName == "heavyGunner") {
+        infoScreen = new CloneHeavyGunner();
+    }
     else {
         
     }
 
-    infoScreen->show();
+    if(infoScreen != nullptr)
+        infoScreen->show();
 }
 
