@@ -19,4 +19,6 @@ private:
     void setCharImage(QString imageDir);
     void setDescription();
     void setAttributes(QStringList attributes);
+    
+    QStringList prepAttributes();
 };
