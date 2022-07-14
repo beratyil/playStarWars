@@ -20,16 +20,27 @@ void ICharacterInformationScreen::setDescription(QString description)
     ui.description->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 }
 
-void ICharacterInformationScreen::setAttributes(QStringList attributes)
+void ICharacterInformationScreen::setAttributes(QStringList& attributes)
 {
-    QStringList attrList = prepAttributes();
+    prepAttributes(attributes);
 
     ui.attributes->setFrameStyle(QFrame::Panel | QFrame::Plain);
 
-    for (auto it = attrList.begin(); it != attrList.end(); it++) {
+    for (auto it = attributes.begin(); it != attributes.end(); it++) {
 
         QString attrLine = *it;
 
         ui.attributes->appendHtml(attrLine);
     }
+}
+
+void ICharacterInformationScreen::prepInfoScreen(QString imageDir, QString desc, QStringList& attr)
+{
+    setCharImage(imageDir);
+
+    setDescription(desc);
+
+    ui.attributes->setReadOnly(true);
+
+    setAttributes(attr);
 }

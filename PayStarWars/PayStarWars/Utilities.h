@@ -14,9 +14,11 @@ public:
 protected:
     virtual void setCharImage(QString imageDir);
     virtual void setDescription(QString description);
-    virtual void setAttributes(QStringList attributes);
+    virtual void setAttributes(QStringList& attributes);
 
-    virtual QStringList prepAttributes() = 0;
+    void prepInfoScreen(QString imageDir, QString desc, QStringList& attr);
+
+    virtual void prepAttributes(QStringList& attr) = 0;
 
 
 protected:

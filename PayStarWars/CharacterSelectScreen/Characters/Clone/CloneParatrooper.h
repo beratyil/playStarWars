@@ -16,5 +16,5 @@ signals:
 public slots:
 
 private:
-    QStringList prepAttributes() override;
+    void prepAttributes(QStringList& attr) override;
 };
