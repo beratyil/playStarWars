@@ -16,9 +16,6 @@ signals:
 public slots:
 
 private:
-    void setCharImage(QString imageDir);
-    void setDescription();
-    void setAttributes(QStringList attributes);
-    
-    QStringList prepAttributes();
+    QStringList prepAttributes() override;
+
 };

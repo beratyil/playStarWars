@@ -6,47 +6,18 @@ CloneHeavyGunner::CloneHeavyGunner(QWidget* parent)
  
     setCharImage("..\\Resources\\Soldiers\\Clones\\CloneHeavyGunner.png");
 
-    setDescription();
+    QString description = "Heavy Gunners were clone troopers in the Grand Army\nof the Republic that used Z-6 rotary\nblaster cannons. The troopers had better clone\ntrooper armor than other clones in the army.\nDue to their heavy blaster, they had superior\nfirepower as well.";
+
+    setDescription(description);
     
     ui.attributes->setReadOnly(true);
+    
     QStringList list;
     setAttributes(list); 
 }
 
 CloneHeavyGunner::~CloneHeavyGunner()
 {
-}
-
-void CloneHeavyGunner::setCharImage(QString imageDir)
-{
-    QPixmap heroImage(imageDir);
-    
-    ui.heroImage->setPixmap(heroImage);
-}
-
-void CloneHeavyGunner::setDescription()
-{
-    QString descrition = "Heavy Gunners were clone troopers in the Grand Army\nof the Republic that used Z-6 rotary\nblaster cannons. The troopers had better clone\ntrooper armor than other clones in the army.\nDue to their heavy blaster, they had superior\nfirepower as well.";
-    
-    ui.description->setFrameStyle(QFrame::Panel | QFrame::Plain);
-    ui.description->setText(descrition);
-    ui.description->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-}
-
-void CloneHeavyGunner::setAttributes(QStringList attributes)
-{
-    QString exampleLine = "<ul><li>Coffee< / li><li>Tea< / li>< / ul>";
-
-    QStringList attrList = prepAttributes();
-
-    ui.attributes->setFrameStyle(QFrame::Panel | QFrame::Plain);
-
-    for (auto it = attrList.begin(); it != attrList.end(); it++) {
-        
-        QString attrLine = *it;
-
-        ui.attributes->appendHtml(attrLine);
-    }
 }
 
 QStringList CloneHeavyGunner::prepAttributes()

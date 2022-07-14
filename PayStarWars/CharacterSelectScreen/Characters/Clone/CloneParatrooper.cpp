@@ -6,9 +6,11 @@ CloneParatrooper::CloneParatrooper(QWidget* parent)
  
     setCharImage("..\\Resources\\Soldiers\\Clones\\CloneParatrooper.png");
 
-    setDescription();
+    QString description = "Clone paratroopers, also known as airborne clones,\n were specialized clone troopers trained for airborne\n operations in the Grand Army of the \nRepublic.In the waning days of the Clone Wars, the \nparatroopers of the 212th Attack Battalion served \nas front line assault units in the \nBattle of Utapau.";
+    setDescription(description);
     
     ui.attributes->setReadOnly(true);
+    
     QStringList list;
     setAttributes(list);
 }
@@ -17,42 +19,9 @@ CloneParatrooper::~CloneParatrooper()
 {
 }
 
-void CloneParatrooper::setCharImage(QString imageDir)
-{
-    QPixmap heroImage(imageDir);
-    
-    ui.heroImage->setPixmap(heroImage);
-}
-
-void CloneParatrooper::setDescription()
-{
-    QString descrition = "Clone paratroopers, also known as airborne clones,\n were specialized clone troopers trained for airborne\n operations in the Grand Army of the \nRepublic.In the waning days of the Clone Wars, the \nparatroopers of the 212th Attack Battalion served \nas front line assault units in the \nBattle of Utapau.";
-    
-    ui.description->setFrameStyle(QFrame::Panel | QFrame::Plain);
-    ui.description->setText(descrition);
-    ui.description->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-}
-
-void CloneParatrooper::setAttributes(QStringList attributes)
-{
-    QString exampleLine = "<ul><li>Coffee< / li><li>Tea< / li>< / ul>";
-
-    QStringList attrList = prepAttributes();
-
-    ui.attributes->setFrameStyle(QFrame::Panel | QFrame::Plain);
-
-    for (auto it = attrList.begin(); it != attrList.end(); it++) {
-        
-        QString attrLine = *it;
-
-        ui.attributes->appendHtml(attrLine);
-    }
-}
-
 QStringList CloneParatrooper::prepAttributes()
 {
     QStringList returnAttrList;
-
     
     QString armor = "<ul><li>Armor : 1</li>";
     QString health = "<li>Armor : 4</li>";
