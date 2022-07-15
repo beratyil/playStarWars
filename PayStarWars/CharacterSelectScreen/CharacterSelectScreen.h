@@ -19,12 +19,13 @@ public:
 
 signals:
     void clicked();
-    void returnMainMenuSignal();
+    void returnMainMenu();
 
 public slots:
-    void returnMainMenuSlot();
     void openCharacterInformationScreen();
+    void closeCharacterInformationScreen();
 
 private:
     Ui::CharacterSelection ui;
+    ICharacterInformationScreen* mCharInfoScreen;
 };

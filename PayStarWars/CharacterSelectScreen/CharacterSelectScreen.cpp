@@ -2,10 +2,11 @@
 
 CharacterSelection::CharacterSelection(QWidget* parent)
     : QMainWindow(parent)
+    , mCharInfoScreen(nullptr)
 {
     ui.setupUi(this);
     
-    connect(ui.returnMainMenu, SIGNAL(clicked()), this, SLOT(returnMainMenuSlot()));
+    connect(ui.returnMainMenu, SIGNAL(clicked()), this, SIGNAL(returnMainMenu()));
 
     /* @note make background color more transparent */
     QImage backGroundImage("..\\Resources\\CharacterSelectionScreen\\backGround.jpeg");
@@ -32,11 +33,6 @@ void CharacterSelection::exit()
     this->close();
 }
 
-void CharacterSelection::returnMainMenuSlot()
-{
-    emit returnMainMenuSignal();
-}
-
 void CharacterSelection::openCharacterInformationScreen()
 {
     /* @warning: Using sender function violates the modularity of oop principles. Look at the Documentation of Qt */
@@ -57,7 +53,20 @@ void CharacterSelection::openCharacterInformationScreen()
         
     }
 
-    if(infoScreen != nullptr)
-        infoScreen->show();
+    mCharInfoScreen = infoScreen;
+
+    infoScreen = nullptr;
+    delete infoScreen;
+
+    if(mCharInfoScreen != nullptr)
+        mCharInfoScreen->show();
+}
+
+void CharacterSelection::closeCharacterInformationScreen()
+{
+    mCharInfoScreen->close();
+
+    delete mCharInfoScreen;
+    mCharInfoScreen = nullptr;
 }
 

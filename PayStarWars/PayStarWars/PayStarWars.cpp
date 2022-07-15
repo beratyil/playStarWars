@@ -42,7 +42,7 @@ void PayStarWars::openNewGame()
     mCharacterSelectScreen = newCharacterSelectScreen;
 
     /* Create Return Path From Character Select Screen to Main Menu */
-    connect(mCharacterSelectScreen, &CharacterSelection::returnMainMenuSignal, this, &PayStarWars::returnMainMenu);
+    connect(mCharacterSelectScreen, &CharacterSelection::returnMainMenu, this, &PayStarWars::returnMainMenu);
     
     /* @note: Destroy temp pointer */
     newCharacterSelectScreen = nullptr;
