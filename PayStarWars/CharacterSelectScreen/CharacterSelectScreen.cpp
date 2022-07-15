@@ -22,6 +22,10 @@ CharacterSelection::CharacterSelection(QWidget* parent)
     connect(ui.sharpShooter, SIGNAL(clicked()), this, SLOT(openCharacterInformationScreen()));
     connect(ui.commander, SIGNAL(clicked()), this, SLOT(openCharacterInformationScreen()));
 
+    connect(mCharInfoScreen, &ICharacterInformationScreen::goBack, this, &CharacterSelection::closeCharacterInformationScreen);
+    //connect(mCharInfoScreen, &CloneParatrooper::goBack, this, &CharacterSelection::closeCharacterInformationScreen);
+    //connect(mCharInfoScreen, SIGNAL(goBack), this, SLOT(closeCharacterInformationScreen));
+
 }
 
 CharacterSelection::~CharacterSelection()
@@ -64,9 +68,8 @@ void CharacterSelection::openCharacterInformationScreen()
 
 void CharacterSelection::closeCharacterInformationScreen()
 {
-    mCharInfoScreen->close();
+    mCharInfoScreen->closed();
 
     delete mCharInfoScreen;
     mCharInfoScreen = nullptr;
 }
-

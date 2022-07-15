@@ -12,6 +12,9 @@ CloneParatrooper::CloneParatrooper(QWidget* parent)
     QStringList list;
 
     prepInfoScreen(imageDir, description, list);
+
+    connect(ui.goBack, &QPushButton::clicked, this, &ICharacterInformationScreen::closed);
+
 }
 
 CloneParatrooper::~CloneParatrooper()
@@ -31,4 +34,9 @@ void CloneParatrooper::prepAttributes(QStringList& attr)
     attr.append(damage);
     attr.append(race);
     attr.append(weapon);
+}
+
+void CloneParatrooper::test()
+{
+    emit goBack();
 }

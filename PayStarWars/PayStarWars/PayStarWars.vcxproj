@@ -108,7 +108,7 @@
   <ItemGroup>
     <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneParatrooper.h" />
     <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneHeavyGunner.h" />
-    <ClInclude Include="Utilities.h" />
+    <QtMoc Include="Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

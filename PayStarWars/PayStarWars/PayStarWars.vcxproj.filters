@@ -83,10 +83,8 @@
     <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneHeavyGunner.h">
       <Filter>CharacterInformation\Clone</Filter>
     </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Utilities.h">
+    <QtMoc Include="Utilities.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </QtMoc>
   </ItemGroup>
 </Project>

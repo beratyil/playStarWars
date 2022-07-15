@@ -3,7 +3,24 @@
 ICharacterInformationScreen::ICharacterInformationScreen(QWidget* parent)
     : QMainWindow(parent)
 {
+}
 
+void ICharacterInformationScreen::prepInfoScreen(QString imageDir, QString desc, QStringList& attr)
+{
+    setCharImage(imageDir);
+
+    setDescription(desc);
+
+    ui.attributes->setReadOnly(true);
+
+    setAttributes(attr);
+}
+
+void ICharacterInformationScreen::closed()
+{
+    emit goBack();
+
+    this->close();
 }
 
 void ICharacterInformationScreen::setCharImage(QString imageDir)
@@ -32,15 +49,4 @@ void ICharacterInformationScreen::setAttributes(QStringList& attributes)
 
         ui.attributes->appendHtml(attrLine);
     }
-}
-
-void ICharacterInformationScreen::prepInfoScreen(QString imageDir, QString desc, QStringList& attr)
-{
-    setCharImage(imageDir);
-
-    setDescription(desc);
-
-    ui.attributes->setReadOnly(true);
-
-    setAttributes(attr);
 }
