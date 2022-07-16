@@ -5,9 +5,8 @@ ICharacterInformationScreen::ICharacterInformationScreen(QWidget* parent)
 {
     ui.setupUi(this);
 
-    connect(ui.select, &QPushButton::clicked, this, &ICharacterInformationScreen::testSignal);
-    
-    connect(this, &ICharacterInformationScreen::testSignal, this, &ICharacterInformationScreen::closed);
+    /* Emit Signal For Closing Information Screen and Return to CharacterSelectionScreen */
+    connect(ui.goBack, &QPushButton::clicked, this, &ICharacterInformationScreen::goBack);
 }
 
 void ICharacterInformationScreen::prepInfoScreen(QString imageDir, QString desc, QStringList& attr)
@@ -19,13 +18,6 @@ void ICharacterInformationScreen::prepInfoScreen(QString imageDir, QString desc,
     ui.attributes->setReadOnly(true);
 
     setAttributes(attr);
-}
-
-void ICharacterInformationScreen::closed()
-{
-    emit goBack();
-
-    this->close();
 }
 
 void ICharacterInformationScreen::setCharImage(QString imageDir)

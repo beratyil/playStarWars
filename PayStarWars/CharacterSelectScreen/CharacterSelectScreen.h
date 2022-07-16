@@ -3,9 +3,8 @@
 #include <QtWidgets/QMainWindow>
 #include <qpainter.h>
 #include "ui_CharacterSelectScreen.h"
-#include "..\\..\\PayStarWars\PayStarWars\Utilities.h"
 #include "Characters/Clone/CloneParatrooper.h"
-#include "Characters/Clone/CloneHeavyGunner.h"  
+#include "Characters/Clone/CloneHeavyGunner.h"
 
 class CharacterSelection : public QMainWindow
 {

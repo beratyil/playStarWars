@@ -21,11 +21,6 @@ CharacterSelection::CharacterSelection(QWidget* parent)
     connect(ui.heavyGunner, SIGNAL(clicked()), this, SLOT(openCharacterInformationScreen()));
     connect(ui.sharpShooter, SIGNAL(clicked()), this, SLOT(openCharacterInformationScreen()));
     connect(ui.commander, SIGNAL(clicked()), this, SLOT(openCharacterInformationScreen()));
-
-    connect(mCharInfoScreen, &ICharacterInformationScreen::goBack, this, &CharacterSelection::closeCharacterInformationScreen);
-    //connect(mCharInfoScreen, &CloneParatrooper::goBack, this, &CharacterSelection::closeCharacterInformationScreen);
-    //connect(mCharInfoScreen, SIGNAL(goBack), this, SLOT(closeCharacterInformationScreen));
-
 }
 
 CharacterSelection::~CharacterSelection()
@@ -48,7 +43,7 @@ void CharacterSelection::openCharacterInformationScreen()
     ICharacterInformationScreen* infoScreen = nullptr;
 
     if (objectName == "paratrooper") {
-        infoScreen = new CloneParatrooper();
+        infoScreen = new CloneParatrooper(this);
     }
     else if (objectName == "heavyGunner") {
         infoScreen = new CloneHeavyGunner();
@@ -62,13 +57,17 @@ void CharacterSelection::openCharacterInformationScreen()
     infoScreen = nullptr;
     delete infoScreen;
 
-    if(mCharInfoScreen != nullptr)
+    if (mCharInfoScreen != nullptr) {
+
+        connect(mCharInfoScreen, &ICharacterInformationScreen::goBack, this, &CharacterSelection::closeCharacterInformationScreen);
+        
         mCharInfoScreen->show();
+    }
 }
 
 void CharacterSelection::closeCharacterInformationScreen()
 {
-    mCharInfoScreen->closed();
+    mCharInfoScreen->close();
 
     delete mCharInfoScreen;
     mCharInfoScreen = nullptr;

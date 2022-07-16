@@ -5,13 +5,11 @@ CloneParatrooper::CloneParatrooper(QWidget* parent)
 {
     QString imageDir = "..\\Resources\\Soldiers\\Clones\\CloneParatrooper.png";
 
-    QString description = "Clone paratroopers, also known as airborne clones,\n were specialized clone troopers trained for airborne\n operations in the Grand Army of the \nRepublic.In the waning days of the Clone Wars, the \nparatroopers of the 212th Attack Battalion served \nas front line assault units in the \nBattle of Utapau.";
+    QString description = "Clone paratroopers, also known as airborne clones,\nwere specialized clone troopers trained for airborne\noperations in the Grand Army of the \nRepublic.In the waning days of the Clone Wars, the \nparatroopers of the 212th Attack Battalion served \nas front line assault units in the \nBattle of Utapau.";
     
     QStringList list;
 
     prepInfoScreen(imageDir, description, list);
-
-    connect(ui.goBack, &QPushButton::clicked, this, &ICharacterInformationScreen::closed);
 
 }
 
@@ -32,9 +30,4 @@ void CloneParatrooper::prepAttributes(QStringList& attr)
     attr.append(damage);
     attr.append(race);
     attr.append(weapon);
-}
-
-void CloneParatrooper::test()
-{
-    emit goBack();
 }

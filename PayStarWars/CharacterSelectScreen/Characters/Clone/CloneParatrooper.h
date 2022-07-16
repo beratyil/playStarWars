@@ -16,7 +16,6 @@ signals:
 public slots:
 
 private slots:
-    void test() override;
 
 private:
     void prepAttributes(QStringList& attr) override;
