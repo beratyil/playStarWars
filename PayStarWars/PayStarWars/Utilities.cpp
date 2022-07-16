@@ -3,6 +3,11 @@
 ICharacterInformationScreen::ICharacterInformationScreen(QWidget* parent)
     : QMainWindow(parent)
 {
+    ui.setupUi(this);
+
+    connect(ui.select, &QPushButton::clicked, this, &ICharacterInformationScreen::testSignal);
+    
+    connect(this, &ICharacterInformationScreen::testSignal, this, &ICharacterInformationScreen::closed);
 }
 
 void ICharacterInformationScreen::prepInfoScreen(QString imageDir, QString desc, QStringList& attr)
