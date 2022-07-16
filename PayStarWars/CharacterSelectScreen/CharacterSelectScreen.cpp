@@ -17,10 +17,10 @@ CharacterSelection::CharacterSelection(QWidget* parent)
     backGroundPainter.end();
     ui.backGround->setPixmap(QPixmap::fromImage(backGroundImage));
 
+    connect(ui.trooper, SIGNAL(clicked()), this, SLOT(openCharacterInformationScreen()));
     connect(ui.paratrooper, SIGNAL(clicked()), this, SLOT(openCharacterInformationScreen()));
     connect(ui.heavyGunner, SIGNAL(clicked()), this, SLOT(openCharacterInformationScreen()));
     connect(ui.sharpShooter, SIGNAL(clicked()), this, SLOT(openCharacterInformationScreen()));
-    connect(ui.commander, SIGNAL(clicked()), this, SLOT(openCharacterInformationScreen()));
 }
 
 CharacterSelection::~CharacterSelection()
@@ -50,6 +50,9 @@ void CharacterSelection::openCharacterInformationScreen()
     }
     else if (objectName == "sharpShooter") {
         infoScreen = new CloneSharpShooter();
+    }
+    else if (objectName == "trooper") {
+        infoScreen = new CloneTrooper();
     }
     else {
         

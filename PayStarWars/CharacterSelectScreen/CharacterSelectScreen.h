@@ -6,6 +6,7 @@
 #include "Characters/Clone/CloneParatrooper.h"
 #include "Characters/Clone/CloneHeavyGunner.h"
 #include "Characters/Clone/CloneSharpShooter.h"
+#include "Characters/Clone/CloneTrooper.h"
 
 class CharacterSelection : public QMainWindow
 {

@@ -67,6 +67,9 @@
     <ClCompile Include="..\CharacterSelectScreen\Characters\Clone\CloneSharpShooter.cpp">
       <Filter>CharacterInformation\Clone</Filter>
     </ClCompile>
+    <ClCompile Include="..\CharacterSelectScreen\Characters\Clone\CloneTrooper.cpp">
+      <Filter>CharacterInformation\Clone</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="..\CharacterSelectScreen\CharacterSelectScreen.ui">
@@ -90,6 +93,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneSharpShooter.h">
+      <Filter>CharacterInformation\Clone</Filter>
+    </QtMoc>
+    <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneTrooper.h">
       <Filter>CharacterInformation\Clone</Filter>
     </QtMoc>
   </ItemGroup>
