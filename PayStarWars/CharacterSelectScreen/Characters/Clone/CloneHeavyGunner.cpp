@@ -5,7 +5,7 @@ CloneHeavyGunner::CloneHeavyGunner(QWidget* parent)
 {
     QString imageDir = "..\\Resources\\Soldiers\\Clones\\CloneHeavyGunner.png";
 
-    QString description = "Heavy Gunners were clone troopers in the Grand Army\nof the Republic that used Z-6 rotary\nblaster cannons. The troopers had better clone\ntrooper armor than other clones in the army.\nDue to their heavy blaster, they had superior\nfirepower as well.";
+    QString description = "Heavy Gunners were clone troopers in the Grand Army of the Republic that used Z-6 rotary blaster cannons. The troopers had better clone trooper armor than other clones in the army. Due to their heavy blaster, they had superior firepower as well.";
 
     QStringList list;
 

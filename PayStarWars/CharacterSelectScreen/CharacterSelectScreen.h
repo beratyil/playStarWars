@@ -5,6 +5,7 @@
 #include "ui_CharacterSelectScreen.h"
 #include "Characters/Clone/CloneParatrooper.h"
 #include "Characters/Clone/CloneHeavyGunner.h"
+#include "Characters/Clone/CloneSharpShooter.h"
 
 class CharacterSelection : public QMainWindow
 {

@@ -32,6 +32,9 @@ void ICharacterInformationScreen::setDescription(QString description)
     ui.description->setFrameStyle(QFrame::Panel | QFrame::Plain);
     ui.description->setText(description);
     ui.description->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+
+    /* In order to fit the paragraph to widget */
+    ui.description->setWordWrap(true);
 }
 
 void ICharacterInformationScreen::setAttributes(QStringList& attributes)
