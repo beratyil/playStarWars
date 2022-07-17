@@ -6,3 +6,5 @@ PayStarWars/build-PayStarWars-Desktop_Qt_5_15_1_MSVC2019_64bit-Debug
 PayStarWars/PayStarWars/PayStarWars.pri
 PayStarWars/PayStarWars/PayStarWars.pro
 PayStarWars/PayStarWars/PayStarWars.pro.user
+Soldiers/.vs
+Soldiers/x64
