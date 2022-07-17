@@ -1,17 +1,10 @@
 #pragma once
 
-#include "soldier_global.h"
 #include "qstring.h"
+#include "qmap.h"
 
 namespace SoldierSpace
 {
-	enum Weapon {
-		DC_15A_CARBINE,
-		DC_15A_RIFLE,
-		Z_6_ROTARY_CANON,
-		DC_15X_SNIPER
-	};
-
 	class Damage
 	{
 	public:
@@ -27,6 +20,40 @@ namespace SoldierSpace
 
 	private:
 		qint16 mCurrentDamage;
+	};
+
+	class CloneWeapon
+	{
+	public:
+
+		enum Weapon {
+			DC_15A_CARBINE,
+			DC_15A_RIFLE,
+			Z_6_ROTARY_CANON,
+			DC_15X_SNIPER
+		};
+
+		CloneWeapon(Weapon newWeapon);
+		~CloneWeapon();
+
+		void setWeapon(Weapon newWeapon);
+		Weapon getWeapon();
+
+		QString WeaponString();
+
+		qint16 getWeaponDamage();
+
+	private:
+		Weapon weapon;
+		Damage weaponDamage;
+
+		QMap<Weapon, qint16> WeaponDamageMap{
+			{DC_15A_CARBINE, 2},
+			{DC_15A_RIFLE, 3},
+			{Z_6_ROTARY_CANON, 5},
+			{DC_15X_SNIPER, 4}
+		};
+
 	};
 
 	class CloneCommonSkill
