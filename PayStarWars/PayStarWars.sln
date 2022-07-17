@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PayStarWars", "PayStarWars\PayStarWars.vcxproj", "{A097E73F-D2DE-4913-9C72-C88F73B2F4E0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Soldier", "..\Soldiers\Soldier.vcxproj", "{4A93266E-D472-4740-BCCC-33248EB68105}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -15,6 +17,10 @@ Global
 		{A097E73F-D2DE-4913-9C72-C88F73B2F4E0}.Debug|x64.Build.0 = Debug|x64
 		{A097E73F-D2DE-4913-9C72-C88F73B2F4E0}.Release|x64.ActiveCfg = Release|x64
 		{A097E73F-D2DE-4913-9C72-C88F73B2F4E0}.Release|x64.Build.0 = Release|x64
+		{4A93266E-D472-4740-BCCC-33248EB68105}.Debug|x64.ActiveCfg = Debug|x64
+		{4A93266E-D472-4740-BCCC-33248EB68105}.Debug|x64.Build.0 = Debug|x64
+		{4A93266E-D472-4740-BCCC-33248EB68105}.Release|x64.ActiveCfg = Release|x64
+		{4A93266E-D472-4740-BCCC-33248EB68105}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

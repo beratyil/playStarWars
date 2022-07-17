@@ -11,6 +11,7 @@ CloneTrooper::CloneTrooper(QWidget* parent)
 
     prepInfoScreen(imageDir, description, list);
 }
+
 CloneTrooper::~CloneTrooper()
 {
 }
@@ -19,9 +20,9 @@ void CloneTrooper::prepAttributes(QStringList& attr)
 {
     QString armor = "<ul><li>Armor : 2</li>";
     QString health = "<li>Health : 2</li>";
-    QString damage = "<li>Damage : 5</li>";
+    QString damage = "<li>Damage : 2</li>";
     QString race = "<li>Race : Human</li>";
-    QString weapon = "<li>Weapon : Blaster Sniper</li></ul>";
+    QString weapon = "<li>Weapon : Blaster</li></ul>";
 
     attr.append(armor);
     attr.append(health);
