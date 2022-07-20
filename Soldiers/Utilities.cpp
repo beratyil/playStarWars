@@ -5,6 +5,7 @@ typedef SoldierSpace::CloneCommonSkill CloneCommonSkill;
 typedef SoldierSpace::CloneSpecialSkill CloneSpecialSkill;
 typedef SoldierSpace::CloneWeapon CloneWeapon;
 typedef CloneWeapon::Weapon Weapon;
+typedef SoldierSpace::SkillFunction SkillFunction;
 
 /* Damage Definitions */
 Damage::Damage()
@@ -98,6 +99,9 @@ CloneCommonSkill::CloneCommonSkill(qint16 closeRange, qint16 longRange)
 {
 	mCloseRangeDamage = closeRange;
 	mLongRangeDamage = longRange;
+
+	/*skillMap.insert(BLASTERATTACK, &CloneCommonSkill::blasterAttack);
+	skillMap.insert(MELEEATTACK, &CloneCommonSkill::meleeAttack);*/
 }
 
 CloneCommonSkill::~CloneCommonSkill()
@@ -122,6 +126,11 @@ qint16 CloneCommonSkill::blasterAttack()
 qint16 CloneCommonSkill::meleeAttack()
 {
 	return mCloseRangeDamage.damage();
+}
+
+QMap<CloneCommonSkill::CommonSkill, SkillFunction> CloneCommonSkill::getSkills()
+{
+	return skillMap;
 }
 
 /* CloneSpecialSkill Definitions */

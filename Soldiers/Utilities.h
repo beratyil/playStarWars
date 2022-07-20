@@ -5,6 +5,8 @@
 
 namespace SoldierSpace
 {
+	typedef qint16 (*SkillFunction)();
+
 	class Damage
 	{
 	public:
@@ -59,6 +61,12 @@ namespace SoldierSpace
 	class CloneCommonSkill
 	{
 	public:
+
+		enum CommonSkill {
+			BLASTERATTACK,
+			MELEEATTACK
+		};
+
 		CloneCommonSkill(qint16 closeRange, qint16 longRange);
 		~CloneCommonSkill();
 
@@ -68,9 +76,13 @@ namespace SoldierSpace
 		void setBlasterDamage(qint16 newBlasterDamage);
 		void setMeleeDamage(qint16 newMeleeDamage);
 
+		QMap<CommonSkill, SkillFunction> getSkills(); // Qnote: getSkill map as function pointers
+
 	private:
 		Damage mLongRangeDamage;
 		Damage mCloseRangeDamage;
+
+		QMap<CommonSkill, SkillFunction> skillMap;
 	};
 
 	class CloneSpecialSkill
