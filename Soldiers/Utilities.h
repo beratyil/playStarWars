@@ -79,6 +79,9 @@ namespace SoldierSpace
 		void setMeleeDamage(qint16 newMeleeDamage);
 
 		QMap<CommonSkill, SkillFunction> getSkills(); // @note: getSkill map as function pointers
+		
+		// @note: this functions will be used after level up and new skill unlocked
+		void addSkill(CloneCommonSkill::CommonSkill newSkillName, CloneCommonSkill::SkillFunction newSkill);
 
 	private:
 		Damage mLongRangeDamage;
@@ -112,7 +115,11 @@ namespace SoldierSpace
 		void setBlasterDamage(qint16 newBlasterDamage);
 		void setEquipmentDamage(qint16 newMeleeDamage);
 
-		QMap<SpecialSkill, SkillFunction> getSkills(); // Qnote: getSkill map as function pointers
+		// @note: getSkill map as function pointers
+		QMap<SpecialSkill, SkillFunction> getSkills();
+
+		// @note: this functions will be used after level up and new skill unlocked
+		void addSkill(CloneSpecialSkill::SpecialSkill newSkillName, CloneSpecialSkill::SkillFunction newSkill);
 
 	private:
 		Damage mBlasterSpecialDamage;

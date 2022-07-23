@@ -129,6 +129,11 @@ QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> CloneCommon
 	return skillLut;
 }
 
+void CloneCommonSkill::addSkill(CloneCommonSkill::CommonSkill newSkillName, SkillFunction newSkill)
+{
+	skillLut.insert(newSkillName, newSkill);
+}
+
 /* CloneSpecialSkill Definitions */
 
 CloneSpecialSkill::CloneSpecialSkill(qint16 blaster, qint16 equipment)
@@ -164,4 +169,9 @@ qint16 CloneSpecialSkill::equipmentAttack()
 QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> CloneSpecialSkill::getSkills()
 {
 	return skillLut;
+}
+
+void CloneSpecialSkill::addSkill(CloneSpecialSkill::SpecialSkill newSkillName, CloneSpecialSkill::SkillFunction newSkill)
+{
+	skillLut.insert(newSkillName, newSkill);
 }
