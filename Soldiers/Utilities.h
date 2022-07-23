@@ -34,7 +34,9 @@ namespace SoldierSpace
 			DC_15X_SNIPER
 		};
 
+		CloneWeapon() = default;
 		CloneWeapon(Weapon newWeapon);
+		
 		~CloneWeapon();
 
 		void setWeapon(Weapon newWeapon);
@@ -69,7 +71,9 @@ namespace SoldierSpace
 			meleeAttack
 		};
 
+		CloneCommonSkill() = default;
 		CloneCommonSkill(qint16 closeRange, qint16 longRange);
+
 		~CloneCommonSkill();
 
 		qint16 blasterAttack();
@@ -106,7 +110,9 @@ namespace SoldierSpace
 
 		typedef qint16(CloneSpecialSkill::* SkillFunction)();
 
+		CloneSpecialSkill() = default;
 		CloneSpecialSkill(qint16 blaster, qint16 equipment);
+		
 		~CloneSpecialSkill();
 
 		qint16 blasterAttack();
