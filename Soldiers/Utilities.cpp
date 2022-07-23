@@ -5,7 +5,7 @@ typedef SoldierSpace::CloneCommonSkill CloneCommonSkill;
 typedef SoldierSpace::CloneSpecialSkill CloneSpecialSkill;
 typedef SoldierSpace::CloneWeapon CloneWeapon;
 typedef CloneWeapon::Weapon Weapon;
-typedef SoldierSpace::SkillFunction SkillFunction;
+typedef SoldierSpace::CloneCommonSkill::SkillFunction SkillFunction;
 
 /* Damage Definitions */
 Damage::Damage()
@@ -99,6 +99,9 @@ CloneCommonSkill::CloneCommonSkill(qint16 closeRange, qint16 longRange)
 {
 	mCloseRangeDamage = closeRange;
 	mLongRangeDamage = longRange;
+
+	/* @note: For adding elements to skillMap, both this line, and the statement in the header works, but I prefer
+	statement on the header because it is a look up table */
 
 	/*skillMap.insert(BLASTERATTACK, &CloneCommonSkill::blasterAttack);
 	skillMap.insert(MELEEATTACK, &CloneCommonSkill::meleeAttack);*/
