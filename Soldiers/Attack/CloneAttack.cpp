@@ -1,37 +1,49 @@
 #include "CloneAttack.h"
 
-/*Soldier::Soldier()
+CloneAttack::CloneAttack(CloneWeapon newWeapon)
+{
+    currentWeapon = newWeapon;
+}
+
+CloneAttack::~CloneAttack()
 {
 }
 
-int Soldier::getHealth() {
-    return health;
+qint16 CloneAttack::attack(CloneWeapon weapon)
+{
+    return currentWeapon.getWeaponDamage();
 }
 
-void Soldier::setHealth(int health) {
-    this->health = health;
+qint16 CloneAttack::attack(CloneCommonSkill::CommonSkill commonSkill)
+{
+    QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> skills = currentCommonSkills.getSkills();
+    auto skill = skills.find(commonSkill);
+
+    CloneCommonSkill::SkillFunction function = skill.value();
+
+    //quint16 returnDamage = function();
+
+    return 0;
 }
 
-int Soldier::getArmor() {
-    return armor;
+qint16 CloneAttack::attack(CloneSpecialSkill::SpecialSkill specialSkill)
+{
+    QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> skills = currentSpecialSkills.getSkills();
+    auto skill = skills.find(specialSkill);
+    
+    CloneSpecialSkill::SkillFunction function = skill.value();
+    
+    //quint16 returnDamage = function();
+    
+    return 0;
 }
 
-void Soldier::setArmor(int armor) {
-    this->armor = armor;
+CloneWeapon CloneAttack::getWeapon()
+{
+    return currentWeapon;
 }
 
-QString Soldier::getLifeForm() {
-    return lifeForm;
+void CloneAttack::updateGun(CloneWeapon newWeapon)
+{
+    currentWeapon = newWeapon;
 }
-
-void Soldier::setLifeForm(QString lifeForm) {
-    this->lifeForm = lifeForm;
-}
-
-QString Soldier::getSoldierType() {
-    return soldierType;
-}
-
-void Soldier::setSoldierType(QString soldierType) {
-    this->soldierType = soldierType;
-}*/
