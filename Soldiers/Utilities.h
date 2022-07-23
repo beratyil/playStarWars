@@ -27,7 +27,7 @@ namespace SoldierSpace
 	{
 	public:
 
-		enum Weapon {
+		enum class Weapon {
 			DC_15A_CARBINE,
 			DC_15A_RIFLE,
 			Z_6_ROTARY_CANON,
@@ -49,10 +49,10 @@ namespace SoldierSpace
 		Damage weaponDamage;
 
 		QMap<Weapon, qint16> WeaponDamageMap{
-			{DC_15A_CARBINE, 2},
-			{DC_15A_RIFLE, 3},
-			{Z_6_ROTARY_CANON, 5},
-			{DC_15X_SNIPER, 4}
+			{Weapon::DC_15A_CARBINE, 2},
+			{Weapon::DC_15A_RIFLE, 3},
+			{Weapon::Z_6_ROTARY_CANON, 5},
+			{Weapon::DC_15X_SNIPER, 4}
 		};
 
 	};
@@ -64,9 +64,9 @@ namespace SoldierSpace
 	public:
 		typedef qint16(CloneCommonSkill::* SkillFunction)();
 
-		enum CommonSkill {
-			BLASTERATTACK,
-			MELEEATTACK
+		enum class CommonSkill {
+			blasterAttack,
+			meleeAttack
 		};
 
 		CloneCommonSkill(qint16 closeRange, qint16 longRange);
@@ -78,17 +78,16 @@ namespace SoldierSpace
 		void setBlasterDamage(qint16 newBlasterDamage);
 		void setMeleeDamage(qint16 newMeleeDamage);
 
-		QMap<CommonSkill, SkillFunction> getSkills(); // Qnote: getSkill map as function pointers
+		QMap<CommonSkill, SkillFunction> getSkills(); // @note: getSkill map as function pointers
 
 	private:
 		Damage mLongRangeDamage;
 		Damage mCloseRangeDamage;
 
-		QMap<CommonSkill, SkillFunction> skillMap{
-			{BLASTERATTACK, &CloneCommonSkill::blasterAttack},
-			{MELEEATTACK, &CloneCommonSkill::meleeAttack}
+		QMap<CommonSkill, SkillFunction> skillLut{
+			{CommonSkill::blasterAttack, &CloneCommonSkill::blasterAttack},
+			{CommonSkill::meleeAttack, &CloneCommonSkill::meleeAttack}
 		};
-		//QMap<CommonSkill, SkillFunction> skillMap;
 
 	};
 
@@ -96,6 +95,14 @@ namespace SoldierSpace
 	class CloneSpecialSkill
 	{
 	public:
+		
+		enum class SpecialSkill {
+			blasterAttack,
+			equipmentAttack
+		};
+
+		typedef qint16(CloneSpecialSkill::* SkillFunction)();
+
 		CloneSpecialSkill(qint16 blaster, qint16 equipment);
 		~CloneSpecialSkill();
 
@@ -105,10 +112,16 @@ namespace SoldierSpace
 		void setBlasterDamage(qint16 newBlasterDamage);
 		void setEquipmentDamage(qint16 newMeleeDamage);
 
+		QMap<SpecialSkill, SkillFunction> getSkills(); // Qnote: getSkill map as function pointers
+
 	private:
 		Damage mBlasterSpecialDamage;
 		Damage mEquipmentSpecialDamage;
+
+		QMap<SpecialSkill, SkillFunction> skillLut{
+			{SpecialSkill::blasterAttack, &CloneSpecialSkill::blasterAttack},
+			{SpecialSkill::equipmentAttack, &CloneSpecialSkill::equipmentAttack}
+		};
 	};
-	
 
 };

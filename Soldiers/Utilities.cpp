@@ -5,7 +5,6 @@ typedef SoldierSpace::CloneCommonSkill CloneCommonSkill;
 typedef SoldierSpace::CloneSpecialSkill CloneSpecialSkill;
 typedef SoldierSpace::CloneWeapon CloneWeapon;
 typedef CloneWeapon::Weapon Weapon;
-typedef SoldierSpace::CloneCommonSkill::SkillFunction SkillFunction;
 
 /* Damage Definitions */
 Damage::Damage()
@@ -67,16 +66,16 @@ QString CloneWeapon::WeaponString()
 
 	switch (currentWeapon)
 	{
-	case DC_15A_CARBINE:
+	case Weapon::DC_15A_CARBINE:
 		weaponString = "DC-15A BLASTER CARBINE";
 		break;
-	case DC_15A_RIFLE:
+	case Weapon::DC_15A_RIFLE:
 		weaponString = "DC-15A BLASTER RIFLE";
 		break;
-	case Z_6_ROTARY_CANON:
+	case Weapon::Z_6_ROTARY_CANON:
 		weaponString = "Z6 ROTARY BLASTER CANON";
 		break;
-	case DC_15X_SNIPER:
+	case Weapon::DC_15X_SNIPER:
 		weaponString = "DC-15x SNIPER BLASTER";
 		break;
 	default:
@@ -99,12 +98,6 @@ CloneCommonSkill::CloneCommonSkill(qint16 closeRange, qint16 longRange)
 {
 	mCloseRangeDamage = closeRange;
 	mLongRangeDamage = longRange;
-
-	/* @note: For adding elements to skillMap, both this line, and the statement in the header works, but I prefer
-	statement on the header because it is a look up table */
-
-	/*skillMap.insert(BLASTERATTACK, &CloneCommonSkill::blasterAttack);
-	skillMap.insert(MELEEATTACK, &CloneCommonSkill::meleeAttack);*/
 }
 
 CloneCommonSkill::~CloneCommonSkill()
@@ -131,9 +124,9 @@ qint16 CloneCommonSkill::meleeAttack()
 	return mCloseRangeDamage.damage();
 }
 
-QMap<CloneCommonSkill::CommonSkill, SkillFunction> CloneCommonSkill::getSkills()
+QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> CloneCommonSkill::getSkills()
 {
-	return skillMap;
+	return skillLut;
 }
 
 /* CloneSpecialSkill Definitions */
@@ -166,4 +159,9 @@ qint16 CloneSpecialSkill::blasterAttack()
 qint16 CloneSpecialSkill::equipmentAttack()
 {
 	return mEquipmentSpecialDamage.damage();
+}
+
+QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> CloneSpecialSkill::getSkills()
+{
+	return skillLut;
 }
