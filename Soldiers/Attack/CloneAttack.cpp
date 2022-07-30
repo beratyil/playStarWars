@@ -16,26 +16,30 @@ qint16 CloneAttack::attack(CloneWeapon weapon)
 
 qint16 CloneAttack::attack(CloneCommonSkill::CommonSkill commonSkill)
 {
+    quint16 returnDamage = 0;
+
     QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> skills = currentCommonSkills.getSkills();
     auto skill = skills.find(commonSkill);
 
     CloneCommonSkill::SkillFunction function = skill.value();
 
-    //quint16 returnDamage = function();
+    //returnDamage = function();
 
-    return 0;
+    return returnDamage;
 }
 
 qint16 CloneAttack::attack(CloneSpecialSkill::SpecialSkill specialSkill)
 {
+    quint16 returnDamage = 0;
+
     QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> skills = currentSpecialSkills.getSkills();
     auto skill = skills.find(specialSkill);
     
     CloneSpecialSkill::SkillFunction function = skill.value();
     
-    //quint16 returnDamage = function();
+    //returnDamage = function();
     
-    return 0;
+    return returnDamage;
 }
 
 CloneWeapon CloneAttack::getWeapon()
