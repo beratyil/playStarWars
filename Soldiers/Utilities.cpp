@@ -134,6 +134,37 @@ void CloneCommonSkill::addSkill(CloneCommonSkill::CommonSkill newSkillName, Skil
 	skillLut.insert(newSkillName, newSkill);
 }
 
+QStringList SoldierSpace::CloneCommonSkill::skillsString()
+{
+	qint16 skillNumber = skillLut.size();
+	
+	QStringList skillList = QStringList();
+
+	for (auto it = skillLut.begin(); it != skillLut.end(); it++) {
+		auto skill = it.key();
+
+		QString skillString = convertString(skill);
+
+		skillList.append(skillString);
+	}
+
+	return skillList;
+}
+
+QString SoldierSpace::CloneCommonSkill::convertString(CommonSkill skill)
+{
+	QString stringSkill = "";
+
+	if (skill == CommonSkill::blasterAttack) {
+		stringSkill = "Blaster Attack";
+	}
+	else if (skill == CommonSkill::meleeAttack) {
+		stringSkill = "Melee Attack";
+	}
+
+	return stringSkill;
+}
+
 /* CloneSpecialSkill Definitions */
 
 CloneSpecialSkill::CloneSpecialSkill(qint16 blaster, qint16 equipment)
@@ -174,4 +205,35 @@ QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> CloneSpe
 void CloneSpecialSkill::addSkill(CloneSpecialSkill::SpecialSkill newSkillName, CloneSpecialSkill::SkillFunction newSkill)
 {
 	skillLut.insert(newSkillName, newSkill);
+}
+
+QStringList SoldierSpace::CloneSpecialSkill::skillsString()
+{
+	qint16 skillNumber = skillLut.size();
+
+	QStringList skillList = QStringList();
+
+	for (auto it = skillLut.begin(); it != skillLut.end(); it++) {
+		auto skill = it.key();
+
+		QString skillString = convertString(skill);
+
+		skillList.append(skillString);
+	}
+
+	return skillList;
+}
+
+QString SoldierSpace::CloneSpecialSkill::convertString(SpecialSkill skill)
+{
+	QString stringSkill = "";
+
+	if (skill == SpecialSkill::blasterAttack) {
+		stringSkill = "Blaster Attack";
+	}
+	else if (skill == SpecialSkill::equipmentAttack) {
+		stringSkill = "Equipment Attack";
+	}
+
+	return stringSkill;
 }

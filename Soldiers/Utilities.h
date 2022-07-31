@@ -87,6 +87,8 @@ namespace SoldierSpace
 		// @note: this functions will be used after level up and new skill unlocked
 		void addSkill(CloneCommonSkill::CommonSkill newSkillName, CloneCommonSkill::SkillFunction newSkill);
 
+		QStringList skillsString();
+
 	private:
 		Damage mLongRangeDamage;
 		Damage mCloseRangeDamage;
@@ -95,6 +97,8 @@ namespace SoldierSpace
 			{CommonSkill::blasterAttack, &CloneCommonSkill::blasterAttack},
 			{CommonSkill::meleeAttack, &CloneCommonSkill::meleeAttack}
 		};
+
+		QString convertString(CommonSkill);
 
 	};
 
@@ -127,6 +131,9 @@ namespace SoldierSpace
 		// @note: this functions will be used after level up and new skill unlocked
 		void addSkill(CloneSpecialSkill::SpecialSkill newSkillName, CloneSpecialSkill::SkillFunction newSkill);
 
+		QStringList skillsString();
+
+
 	private:
 		Damage mBlasterSpecialDamage;
 		Damage mEquipmentSpecialDamage;
@@ -135,6 +142,9 @@ namespace SoldierSpace
 			{SpecialSkill::blasterAttack, &CloneSpecialSkill::blasterAttack},
 			{SpecialSkill::equipmentAttack, &CloneSpecialSkill::equipmentAttack}
 		};
+
+		QString convertString(SpecialSkill);
+
 	};
 
 };
