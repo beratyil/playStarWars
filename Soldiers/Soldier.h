@@ -2,6 +2,7 @@
 
 #include "soldier_global.h"
 #include "qstring.h"
+#include "qstringlist.h"
 
 class SOLDIER_EXPORT Soldier
 {
@@ -24,9 +25,7 @@ public:
 
     void setSoldierType(QString soldierType);
 
-    void print();
-
-    virtual qint16 attack() = 0;
+    virtual qint16 attack(qint16 abilityType, qint16 attackNumber) = 0;
 
 private:
     qint16 health;
@@ -34,4 +33,5 @@ private:
 
     QString lifeForm;
     QString soldierType;
+
 };

@@ -35,15 +35,3 @@ QString Soldier::getSoldierType() {
 void Soldier::setSoldierType(QString soldierType) {
     this->soldierType = soldierType;
 }
-
-void Soldier::print() {
-
-    /* This codes was designed to be a console application. For gui application it will be decided how to
-    print these information to the screen. */
-
-    /*std::cout << "Health: " + health << std::endl;
-    std::cout << "armor: " + armor << std::endl;
-    std::cout << "lifeForm: " + lifeForm << std::endl;
-    std::cout << "soldierType: " + soldierType << std::endl;*/
-
-}
