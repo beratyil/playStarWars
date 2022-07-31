@@ -4,6 +4,9 @@
 #include "qstring.h"
 #include "qstringlist.h"
 
+//Soldier Abstract Class
+//Used as pointer for every type of Soldier Classes,
+//e.x Clone, Droid, Jedi or Sith
 class SOLDIER_EXPORT Soldier
 {
 public:
@@ -28,10 +31,10 @@ public:
     virtual qint16 attack(qint16 abilityType, qint16 attackNumber) = 0;
 
 private:
-    qint16 health;
-    qint16 armor;
+    qint16 mHealth;
+    qint16 mArmor;
 
-    QString lifeForm;
-    QString soldierType;
+    QString mLifeForm;
+    QString mSoldierType;
 
 };

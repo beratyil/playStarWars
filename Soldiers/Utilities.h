@@ -47,10 +47,10 @@ namespace SoldierSpace
 		qint16 getWeaponDamage();
 
 	private:
-		Weapon weapon;
-		Damage weaponDamage;
+		Weapon mWeapon;
+		Damage mWeaponDamage;
 
-		QMap<Weapon, qint16> WeaponDamageMap{
+		QMap<Weapon, qint16> mWeaponDamageLut{
 			{Weapon::DC_15A_CARBINE, 2},
 			{Weapon::DC_15A_RIFLE, 3},
 			{Weapon::Z_6_ROTARY_CANON, 5},
@@ -93,7 +93,7 @@ namespace SoldierSpace
 		Damage mLongRangeDamage;
 		Damage mCloseRangeDamage;
 
-		QMap<CommonSkill, SkillFunction> skillLut{
+		QMap<CommonSkill, SkillFunction> mSkillLut{
 			{CommonSkill::blasterAttack, &CloneCommonSkill::blasterAttack},
 			{CommonSkill::meleeAttack, &CloneCommonSkill::meleeAttack}
 		};
@@ -138,7 +138,7 @@ namespace SoldierSpace
 		Damage mBlasterSpecialDamage;
 		Damage mEquipmentSpecialDamage;
 
-		QMap<SpecialSkill, SkillFunction> skillLut{
+		QMap<SpecialSkill, SkillFunction> mSkillLut{
 			{SpecialSkill::blasterAttack, &CloneSpecialSkill::blasterAttack},
 			{SpecialSkill::equipmentAttack, &CloneSpecialSkill::equipmentAttack}
 		};

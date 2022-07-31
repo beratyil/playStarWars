@@ -37,7 +37,7 @@ qint16 Damage::damage()
 
 CloneWeapon::CloneWeapon(Weapon newWeapon)
 {
-	weapon = newWeapon;
+	mWeapon = newWeapon;
 }
 
 CloneWeapon::~CloneWeapon()
@@ -46,16 +46,18 @@ CloneWeapon::~CloneWeapon()
 
 void CloneWeapon::setWeapon(Weapon newWeapon)
 {
-	weapon = newWeapon;
+	mWeapon = newWeapon;
 
-	qint16 damage = WeaponDamageMap.take(weapon);
+	auto it = mWeaponDamageLut.find(mWeapon);
+
+	qint16 damage = it.value();
 	
-	weaponDamage.setDamage(damage);
+	mWeaponDamage.setDamage(damage);
 }
 
 Weapon CloneWeapon::getWeapon()
 {
-	return weapon;
+	return mWeapon;
 }
 
 QString CloneWeapon::WeaponString()
@@ -87,7 +89,7 @@ QString CloneWeapon::WeaponString()
 
 qint16 CloneWeapon::getWeaponDamage()
 {
-	qint16 damage = weaponDamage.damage();
+	qint16 damage = mWeaponDamage.damage();
 
 	return damage;
 }
@@ -126,21 +128,21 @@ qint16 CloneCommonSkill::meleeAttack()
 
 QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> CloneCommonSkill::getSkills()
 {
-	return skillLut;
+	return mSkillLut;
 }
 
 void CloneCommonSkill::addSkill(CloneCommonSkill::CommonSkill newSkillName, SkillFunction newSkill)
 {
-	skillLut.insert(newSkillName, newSkill);
+	mSkillLut.insert(newSkillName, newSkill);
 }
 
 QStringList SoldierSpace::CloneCommonSkill::skillsString()
 {
-	qint16 skillNumber = skillLut.size();
+	qint16 skillNumber = mSkillLut.size();
 	
 	QStringList skillList = QStringList();
 
-	for (auto it = skillLut.begin(); it != skillLut.end(); it++) {
+	for (auto it = mSkillLut.begin(); it != mSkillLut.end(); it++) {
 		auto skill = it.key();
 
 		QString skillString = convertString(skill);
@@ -199,21 +201,21 @@ qint16 CloneSpecialSkill::equipmentAttack()
 
 QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> CloneSpecialSkill::getSkills()
 {
-	return skillLut;
+	return mSkillLut;
 }
 
 void CloneSpecialSkill::addSkill(CloneSpecialSkill::SpecialSkill newSkillName, CloneSpecialSkill::SkillFunction newSkill)
 {
-	skillLut.insert(newSkillName, newSkill);
+	mSkillLut.insert(newSkillName, newSkill);
 }
 
 QStringList SoldierSpace::CloneSpecialSkill::skillsString()
 {
-	qint16 skillNumber = skillLut.size();
+	qint16 skillNumber = mSkillLut.size();
 
 	QStringList skillList = QStringList();
 
-	for (auto it = skillLut.begin(); it != skillLut.end(); it++) {
+	for (auto it = mSkillLut.begin(); it != mSkillLut.end(); it++) {
 		auto skill = it.key();
 
 		QString skillString = convertString(skill);

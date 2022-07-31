@@ -36,7 +36,7 @@ qint16 Clone::attack(qint16 abilityType, qint16 attackNumber)
 
         default:
         {
-            returnDamage = CloneAttack::attack(currentWeapon);
+            returnDamage = CloneAttack::attack(mCurrentWeapon);
             break;
         }
     }

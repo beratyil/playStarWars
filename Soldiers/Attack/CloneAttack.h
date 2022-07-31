@@ -6,7 +6,6 @@
 //      handgranade
 //      headshot
 
-
 #pragma once
 
 #include "..\\Utilities.h"
@@ -15,6 +14,9 @@ using SoldierSpace::CloneCommonSkill;
 using SoldierSpace::CloneSpecialSkill;
 using SoldierSpace::CloneWeapon;
 
+//CloneAttack Class
+//Wrapps every attack operation
+//Common Skills, Special Skills or Normal Attack
 class CloneAttack
 {
 
@@ -49,9 +51,9 @@ protected:
 
     qint16 attack(CloneSpecialSkill::SpecialSkill specialSkill);
 
-    CloneWeapon currentWeapon;
-    CloneCommonSkill currentCommonSkills;
-    CloneSpecialSkill currentSpecialSkills;
+    CloneWeapon mCurrentWeapon;
+    CloneCommonSkill mCurrentCommonSkills;
+    CloneSpecialSkill mCurrentSpecialSkills;
 
     
 };

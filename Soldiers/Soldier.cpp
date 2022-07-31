@@ -5,33 +5,33 @@ Soldier::Soldier()
 }
 
 int Soldier::getHealth() {
-    return health;
+    return mHealth;
 }
 
 void Soldier::setHealth(int health) {
-    this->health = health;
+    mHealth = health;
 }
 
 int Soldier::getArmor() {
-    return armor;
+    return mArmor;
 }
 
 void Soldier::setArmor(int armor) {
-    this->armor = armor;
+    mArmor = armor;
 }
 
 QString Soldier::getLifeForm() {
-    return lifeForm;
+    return mLifeForm;
 }
 
 void Soldier::setLifeForm(QString lifeForm) {
-    this->lifeForm = lifeForm;
+    mLifeForm = lifeForm;
 }
 
 QString Soldier::getSoldierType() {
-    return soldierType;
+    return mSoldierType;
 }
 
 void Soldier::setSoldierType(QString soldierType) {
-    this->soldierType = soldierType;
+    mSoldierType = soldierType;
 }
