@@ -2,31 +2,44 @@
 
 // @note: CloneAttack class will be implemented
 
-//Clone::Clone()
-//{
-//    setHealth(4);
-//    setArmor(3);
-//    setLifeForm("Human");
-//    setSoldierType("Clone");
-//    //attack = new cloneAttack();
-//}
-//
-//Clone::Clone(int health, int armor, QString lifeForm, QString soldierType, Weapon weapon)
-//{
-//    setHealth(health);
-//    setArmor(armor);
-//    setLifeForm(lifeForm);
-//    setSoldierType(soldierType);
-//    //attack = new cloneAttack(weapon);
-//}
-//
-//void Clone::print() {
-//
-//    //System.out.println("Weapon: " + attack.weaponString());
-//
-//}
-//
-//qint16 Clone::attack()
-//{
-//    return qint16(-100);
-//}
+Clone::Clone(qint16 health, qint16 armor, QString lifeForm, QString soldierType, CloneWeapon::Weapon weapon)
+    : CloneAttack(weapon)
+{
+    setHealth(health);
+    setArmor(armor);
+    setLifeForm(lifeForm);
+    setSoldierType(soldierType);
+}
+
+Clone::~Clone()
+{
+}
+
+qint16 Clone::attack(qint16 abilityType, qint16 attackNumber)
+{
+    qint16 returnDamage = 0;
+
+    switch (abilityType){
+        case skillType::commonSkill:
+        {
+            CloneCommonSkill::CommonSkill commonSkillNumber = static_cast<CloneCommonSkill::CommonSkill>(attackNumber);
+            returnDamage = CloneAttack::attack(commonSkillNumber);
+            break;
+        }
+
+        case skillType::specialSkill:
+        {
+            CloneSpecialSkill::SpecialSkill specialSkillNumber = static_cast<CloneSpecialSkill::SpecialSkill>(attackNumber);
+            returnDamage = CloneAttack::attack(specialSkillNumber);
+            break;
+        }
+
+        default:
+        {
+            returnDamage = CloneAttack::attack(currentWeapon);
+            break;
+        }
+    }
+
+    return returnDamage;
+}
