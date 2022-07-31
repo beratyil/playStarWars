@@ -47,6 +47,26 @@ CloneWeapon CloneAttack::getWeapon()
     return currentWeapon;
 }
 
+QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> CloneAttack::getCommonSkills()
+{
+    return currentCommonSkills.getSkills();
+}
+
+QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> CloneAttack::getSpecialSkills()
+{
+    return currentSpecialSkills.getSkills();
+}
+
+QStringList CloneAttack::getCommonSkillsString()
+{
+    return currentCommonSkills.skillsString();
+}
+
+QStringList CloneAttack::getSpecialSkillsString()
+{
+    return currentSpecialSkills.skillsString();
+}
+
 void CloneAttack::updateGun(CloneWeapon newWeapon)
 {
     currentWeapon = newWeapon;
