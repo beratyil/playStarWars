@@ -8,3 +8,5 @@ PayStarWars/PayStarWars/PayStarWars.pro
 PayStarWars/PayStarWars/PayStarWars.pro.user
 Soldiers/.vs
 Soldiers/x64
+Test/TestSoldier/x64
+Test/TestSoldier/TestSoldier.vcxproj.user
