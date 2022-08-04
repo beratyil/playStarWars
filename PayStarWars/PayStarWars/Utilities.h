@@ -28,6 +28,7 @@ signals:
     void goBack();
     void closeMapSender();
     void openMapSender();
+    void mapObjectSender(Map* map);
     
 public slots:
     void openMap();

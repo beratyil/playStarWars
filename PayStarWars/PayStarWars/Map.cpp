@@ -7,8 +7,6 @@ Map::Map(QWidget* parent)
 
 	QPixmap pixmapMap("..\\Resources\\Map\\SpaceMap.jpg");
 	ui.backGround->setPixmap(pixmapMap);
-
-	ui.show();
 }
 
 Map::~Map()

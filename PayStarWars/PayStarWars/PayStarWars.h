@@ -26,6 +26,9 @@ public slots:
     */
     void charInfoScreenReceiver(ICharacterInformationScreen* charInfoScreen);
     
+    
+    void mapObjectReceiver(Map* map);
+    
     /*
     Kill all the screens
     1.Kill Character Information Screen

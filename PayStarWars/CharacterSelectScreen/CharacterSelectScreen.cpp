@@ -68,6 +68,8 @@ void CharacterSelection::openCharacterInformationScreen()
         connect(mCharInfoScreen, &ICharacterInformationScreen::goBack, this, &CharacterSelection::closeCharacterInformationScreen);
         connect(mCharInfoScreen, &ICharacterInformationScreen::openMapSender, this, &CharacterSelection::openMapSender);
         
+        connect(mCharInfoScreen, &ICharacterInformationScreen::mapObjectSender, this, &CharacterSelection::mapObjectSender);
+        
         mCharInfoScreen->show();
     }
 }

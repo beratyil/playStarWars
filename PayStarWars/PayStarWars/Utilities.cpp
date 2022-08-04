@@ -59,6 +59,7 @@ void ICharacterInformationScreen::openMap()
 {
     mMap = new Map(this);
 
+    emit mapObjectSender(mMap);
     emit openMapSender();
 }
 
