@@ -66,6 +66,7 @@ void CharacterSelection::openCharacterInformationScreen()
     if (mCharInfoScreen != nullptr) {
 
         connect(mCharInfoScreen, &ICharacterInformationScreen::goBack, this, &CharacterSelection::closeCharacterInformationScreen);
+        connect(mCharInfoScreen, &ICharacterInformationScreen::openMapSender, this, &CharacterSelection::openMapSender);
         
         mCharInfoScreen->show();
     }

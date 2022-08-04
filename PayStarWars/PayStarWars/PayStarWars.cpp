@@ -43,6 +43,7 @@ void PayStarWars::openNewGame()
 
     /* Create Return Path From Character Select Screen to Main Menu */
     connect(mCharacterSelectScreen, &CharacterSelection::returnMainMenu, this, &PayStarWars::returnMainMenu);
+    connect(mCharacterSelectScreen, &CharacterSelection::openMapSender, this, &PayStarWars::killCharInfoScreen);
     
     /* @note: Destroy temp pointer */
     newCharacterSelectScreen = nullptr;
@@ -58,6 +59,21 @@ void PayStarWars::returnMainMenu()
     delete mCharacterSelectScreen;
     
     mCharacterSelectScreen = nullptr;
+}
+
+void PayStarWars::charInfoScreenReceiver(ICharacterInformationScreen* charInfoScreen)
+{
+    mCharInfoScreen = charInfoScreen;
+}
+
+void PayStarWars::killCharInfoScreen()
+{
+    /* Access Char Info Screen Via Char Select Screen */
+    mCharacterSelectScreen->closeCharacterInformationScreen();
+
+    mCharInfoScreen = nullptr;
+
+    returnMainMenu();
 }
 
 void PayStarWars::exit()

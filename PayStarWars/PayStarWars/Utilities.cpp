@@ -7,6 +7,10 @@ ICharacterInformationScreen::ICharacterInformationScreen(QWidget* parent)
 
     /* Emit Signal For Closing Information Screen and Return to CharacterSelectionScreen */
     connect(ui.goBack, &QPushButton::clicked, this, &ICharacterInformationScreen::goBack);
+
+    /* Open Map, Kill Character Selection and Character Information Screen */
+    //connect(ui.select, &QPushButton::clicked, this, &ICharacterInformationScreen::openMapSender);
+    connect(ui.select, &QPushButton::clicked, this, &ICharacterInformationScreen::openMap);
 }
 
 void ICharacterInformationScreen::prepInfoScreen(QString imageDir, QString desc, QStringList& attr)
@@ -49,4 +53,17 @@ void ICharacterInformationScreen::setAttributes(QStringList& attributes)
 
         ui.attributes->appendHtml(attrLine);
     }
+}
+
+void ICharacterInformationScreen::openMap()
+{
+    mMap = new Map(this);
+
+    emit openMapSender();
+}
+
+void ICharacterInformationScreen::closeMap()
+{
+    delete mMap;
+    mMap = nullptr;
 }

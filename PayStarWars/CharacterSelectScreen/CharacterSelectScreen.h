@@ -21,6 +21,8 @@ public:
 signals:
     void clicked();
     void returnMainMenu();
+    void charInfoScreenObjectSender(ICharacterInformationScreen* charInfoScreen);
+    void openMapSender();
 
 public slots:
     void openCharacterInformationScreen();
