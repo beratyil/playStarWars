@@ -4,13 +4,13 @@
 #include "ui_PayStarWars.h"
 #include "CharacterSelectScreen.h"
 
-class PayStarWars : public QMainWindow
+class PlayStarWars : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    PayStarWars(QWidget *parent = nullptr);
-    ~PayStarWars();
+    PlayStarWars(QWidget *parent = nullptr);
+    ~PlayStarWars();
 
 signals:
     void clicked();
@@ -36,8 +36,10 @@ public slots:
     */
     void killCharInfoScreen();
 
+    void closeMap();
+
 private:
-    Ui::PayStarWarsClass ui;
+    Ui::PlayStarWarsClass ui;
     CharacterSelection* mCharacterSelectScreen;
     ICharacterInformationScreen* mCharInfoScreen;
     Map* mMap;

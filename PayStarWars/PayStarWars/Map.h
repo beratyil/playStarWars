@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ui_Map.h"
 #include <QtWidgets/QMainWindow>
+#include "ui_Map.h"
 
 class Map : public QMainWindow
 {
@@ -11,7 +11,8 @@ public:
 	Map(QWidget* parent = nullptr);
 	~Map();
 
-	
+signals:
+	void returnMainMenu();
 
 private:
 	Ui::Map ui;

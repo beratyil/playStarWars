@@ -1,11 +1,14 @@
 #include "PayStarWars.h"
 
-PayStarWars::PayStarWars(QWidget *parent)
+PlayStarWars::PlayStarWars(QWidget *parent)
     : QMainWindow(parent)
+    , mCharacterSelectScreen(nullptr)
+    , mCharInfoScreen(nullptr)
+    , mMap(nullptr)
 {
     ui.setupUi(this);
 
-    connect(ui.exitButton, &QPushButton::clicked, this, &PayStarWars::exit);
+    connect(ui.exitButton, &QPushButton::clicked, this, &PlayStarWars::exit);
     //connect(ui.exitButton, SIGNAL(clicked()), QApplication::instance(), SLOT(quit()));
 
     connect(ui.newGameButton, SIGNAL(clicked()), this, SLOT(openNewGame()));
@@ -20,14 +23,12 @@ PayStarWars::PayStarWars(QWidget *parent)
 
     QPixmap pixmapLogo("..\\Resources\\Menu\\StarWars.png");
     ui.backGround->setPixmap(pixmapLogo);
-
-    mCharacterSelectScreen = nullptr;
 }
 
-PayStarWars::~PayStarWars()
+PlayStarWars::~PlayStarWars()
 {}
 
-void PayStarWars::openNewGame()
+void PlayStarWars::openNewGame()
 {
     /* Create object for Character Select Screen */
     CharacterSelection* newCharacterSelectScreen = nullptr;
@@ -42,17 +43,17 @@ void PayStarWars::openNewGame()
     mCharacterSelectScreen = newCharacterSelectScreen;
 
     /* Create Return Path From Character Select Screen to Main Menu */
-    connect(mCharacterSelectScreen, &CharacterSelection::returnMainMenu, this, &PayStarWars::returnMainMenu);
+    connect(mCharacterSelectScreen, &CharacterSelection::returnMainMenu, this, &PlayStarWars::returnMainMenu);
     
-    connect(mCharacterSelectScreen, &CharacterSelection::openMapSender, this, &PayStarWars::killCharInfoScreen);
-    connect(mCharacterSelectScreen, &CharacterSelection::mapObjectSender, this, &PayStarWars::mapObjectReceiver);
+    connect(mCharacterSelectScreen, &CharacterSelection::openMapSender, this, &PlayStarWars::killCharInfoScreen);
+    connect(mCharacterSelectScreen, &CharacterSelection::mapObjectSender, this, &PlayStarWars::mapObjectReceiver);
     
     /* @note: Destroy temp pointer */
     newCharacterSelectScreen = nullptr;
     delete newCharacterSelectScreen;
 }
 
-void PayStarWars::returnMainMenu()
+void PlayStarWars::returnMainMenu()
 {
     this->setVisible(true);
 
@@ -63,17 +64,20 @@ void PayStarWars::returnMainMenu()
     mCharacterSelectScreen = nullptr;
 }
 
-void PayStarWars::charInfoScreenReceiver(ICharacterInformationScreen* charInfoScreen)
+void PlayStarWars::charInfoScreenReceiver(ICharacterInformationScreen* charInfoScreen)
 {
     mCharInfoScreen = charInfoScreen;
 }
 
-void PayStarWars::mapObjectReceiver(Map* map)
+void PlayStarWars::mapObjectReceiver(Map* map)
 {
     mMap = map;
+    connect(mMap, &Map::returnMainMenu, this, &PlayStarWars::closeMap);
+    
+    mMap->show();
 }
 
-void PayStarWars::killCharInfoScreen()
+void PlayStarWars::killCharInfoScreen()
 {
     /* Access Char Info Screen Via Char Select Screen */
     mCharacterSelectScreen->closeCharacterInformationScreen();
@@ -83,7 +87,17 @@ void PayStarWars::killCharInfoScreen()
     returnMainMenu();
 }
 
-void PayStarWars::exit()
+void PlayStarWars::closeMap()
+{
+    mMap->close();
+
+    delete mMap;
+    mMap = nullptr;
+
+    setVisible(true);
+}
+
+void PlayStarWars::exit()
 {
     QCoreApplication::exit();
 }

@@ -61,6 +61,7 @@ void ICharacterInformationScreen::openMap()
 
     emit mapObjectSender(mMap);
     emit openMapSender();
+
 }
 
 void ICharacterInformationScreen::closeMap()
