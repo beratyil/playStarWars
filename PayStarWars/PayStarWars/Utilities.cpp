@@ -10,7 +10,7 @@ ICharacterInformationScreen::ICharacterInformationScreen(QWidget* parent)
 
     /* Open Map, Kill Character Selection and Character Information Screen */
     //connect(ui.select, &QPushButton::clicked, this, &ICharacterInformationScreen::openMapSender);
-    connect(ui.select, &QPushButton::clicked, this, &ICharacterInformationScreen::openMap);
+    connect(ui.select, &QPushButton::clicked, this, &ICharacterInformationScreen::startGame);
 }
 
 void ICharacterInformationScreen::prepInfoScreen(QString imageDir, QString desc, QStringList& attr)
@@ -55,17 +55,8 @@ void ICharacterInformationScreen::setAttributes(QStringList& attributes)
     }
 }
 
-void ICharacterInformationScreen::openMap()
+void ICharacterInformationScreen::startGame()
 {
-    mMap = new Map(this);
-
-    emit mapObjectSender(mMap);
     emit openMapSender();
 
-}
-
-void ICharacterInformationScreen::closeMap()
-{
-    delete mMap;
-    mMap = nullptr;
 }

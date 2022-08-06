@@ -2,8 +2,6 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_CharacterSelectionCloneSoldierSelection.h"
-#include "Map.h"
-//#include "CharacterSelectScreen.h"
 
 class ICharacterInformationScreen : public QMainWindow
 {
@@ -26,15 +24,11 @@ protected:
 
 signals:
     void goBack();
-    void closeMapSender();
     void openMapSender();
-    void mapObjectSender(Map* map);
     
 public slots:
-    void openMap();
-    void closeMap();
+    void startGame();
 
 protected:
     Ui::CharacterSelectionCharacter ui;
-    Map* mMap;
 };

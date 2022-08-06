@@ -3,6 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_PayStarWars.h"
 #include "CharacterSelectScreen.h"
+#include "Map.h"
 
 class PlayStarWars : public QMainWindow
 {
@@ -20,8 +21,6 @@ public slots:
     void openNewGame();
     void returnMainMenu();
     
-    void mapObjectReceiver(Map* map);
-    
     /*
     Kill all the screens
     1.Kill Character Information Screen
@@ -34,6 +33,5 @@ public slots:
 private:
     Ui::PlayStarWarsClass ui;
     CharacterSelection* mCharacterSelectScreen;
-    ICharacterInformationScreen* mCharInfoScreen;
     Map* mMap;
 };

@@ -3,7 +3,6 @@
 PlayStarWars::PlayStarWars(QWidget *parent)
     : QMainWindow(parent)
     , mCharacterSelectScreen(nullptr)
-    , mCharInfoScreen(nullptr)
     , mMap(nullptr)
 {
     ui.setupUi(this);
@@ -46,7 +45,6 @@ void PlayStarWars::openNewGame()
     connect(mCharacterSelectScreen, &CharacterSelection::returnMainMenu, this, &PlayStarWars::returnMainMenu);
     
     connect(mCharacterSelectScreen, &CharacterSelection::openMapSender, this, &PlayStarWars::killCharInfoScreen);
-    connect(mCharacterSelectScreen, &CharacterSelection::mapObjectSender, this, &PlayStarWars::mapObjectReceiver);
     
     /* @note: Destroy temp pointer */
     newCharacterSelectScreen = nullptr;
@@ -64,22 +62,23 @@ void PlayStarWars::returnMainMenu()
     mCharacterSelectScreen = nullptr;
 }
 
-void PlayStarWars::mapObjectReceiver(Map* map)
-{
-    mMap = map;
-    connect(mMap, &Map::returnMainMenu, this, &PlayStarWars::closeMap);
-    
-    mMap->show();
-}
-
 void PlayStarWars::killCharInfoScreen()
 {
     /* Access Char Info Screen Via Char Select Screen */
     mCharacterSelectScreen->closeCharacterInformationScreen();
 
-    mCharInfoScreen = nullptr;
+    //@note: update returnMainMenu function. Delete and nullptr assign operation should be done in a one class
+    //returnMainMenu();
+    mCharacterSelectScreen->exit();
 
-    returnMainMenu();
+    delete mCharacterSelectScreen;
+
+    mCharacterSelectScreen = nullptr;
+
+    mMap = new Map();
+    connect(mMap, &Map::returnMainMenu, this, &PlayStarWars::closeMap);
+    
+    mMap->show();
 }
 
 void PlayStarWars::closeMap()

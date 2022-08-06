@@ -23,7 +23,6 @@ signals:
     void returnMainMenu();
     void charInfoScreenObjectSender(ICharacterInformationScreen* charInfoScreen);
     void openMapSender();
-    void mapObjectSender(Map* map);
 
 public slots:
     void openCharacterInformationScreen();
