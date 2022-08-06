@@ -100,11 +100,11 @@
     <QtUic Include="..\CharacterSelectScreen\CharacterSelectScreen.ui" />
     <QtUic Include="..\CharacterSelectScreen\Characters\CharacterSelectionCloneSoldierSelection.ui" />
     <QtUic Include="Map.ui" />
-    <QtUic Include="PayStarWars.ui" />
-    <QtMoc Include="PayStarWars.h" />
+    <QtUic Include="PlayStarWars.ui" />
+    <QtMoc Include="PlayStarWars.h" />
     <ClCompile Include="..\CharacterSelectScreen\CharacterSelectScreen.cpp" />
     <ClCompile Include="..\CharacterSelectScreen\Characters\Clone\CloneParatrooper.cpp" />
-    <ClCompile Include="PayStarWars.cpp" />
+    <ClCompile Include="PlayStarWars.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

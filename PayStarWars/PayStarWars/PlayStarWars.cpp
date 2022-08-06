@@ -1,4 +1,4 @@
-#include "PayStarWars.h"
+#include "PlayStarWars.h"
 
 PlayStarWars::PlayStarWars(QWidget *parent)
     : QMainWindow(parent)

@@ -38,13 +38,13 @@
     <QtRcc Include="PayStarWars.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="PayStarWars.ui">
+    <QtUic Include="PlayStarWars.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="PayStarWars.h">
+    <QtMoc Include="PlayStarWars.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="PayStarWars.cpp">
+    <ClCompile Include="PlayStarWars.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

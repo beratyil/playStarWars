@@ -1,4 +1,4 @@
-#include "PayStarWars.h"
+#include "PlayStarWars.h"
 #include <QtWidgets/QApplication>
 #include <QPlainTextEdit>
 #include <QtMessageHandler>
