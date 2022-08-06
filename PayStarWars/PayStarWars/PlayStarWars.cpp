@@ -64,11 +64,6 @@ void PlayStarWars::returnMainMenu()
     mCharacterSelectScreen = nullptr;
 }
 
-void PlayStarWars::charInfoScreenReceiver(ICharacterInformationScreen* charInfoScreen)
-{
-    mCharInfoScreen = charInfoScreen;
-}
-
 void PlayStarWars::mapObjectReceiver(Map* map)
 {
     mMap = map;

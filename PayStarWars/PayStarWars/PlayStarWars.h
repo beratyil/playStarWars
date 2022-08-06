@@ -20,13 +20,6 @@ public slots:
     void openNewGame();
     void returnMainMenu();
     
-    /*
-    * Hold Character Information Screen Object
-    * Mýght be uncessary
-    */
-    void charInfoScreenReceiver(ICharacterInformationScreen* charInfoScreen);
-    
-    
     void mapObjectReceiver(Map* map);
     
     /*
