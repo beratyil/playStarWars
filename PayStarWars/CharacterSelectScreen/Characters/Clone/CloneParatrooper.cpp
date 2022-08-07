@@ -3,7 +3,7 @@
 CloneParatrooper::CloneParatrooper(QWidget* parent)
     : ICharacterInformationScreen(parent)
 {
-    QString imageDir = "..\\Resources\\Soldiers\\Clones\\CloneParatrooper.png";
+    QString imageDir = ":\PlayStarWars\\Resources\\Soldiers\\Clones\\CloneParatrooper.png";
 
     QString description = "Clone paratroopers, also known as airborne clones, were specialized clone troopers trained for airborneoperations in the Grand Army of the Republic.In the waning days of the Clone Wars, the paratroopers of the 212th Attack Battalion served as front line assault units in the Battle of Utapau.";
     

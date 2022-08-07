@@ -3,7 +3,7 @@
 CloneSharpShooter::CloneSharpShooter(QWidget* parent)
     : ICharacterInformationScreen(parent)
 {
-    QString imageDir = "..\\Resources\\Soldiers\\Clones\\CloneSharpShooter.png";
+    QString imageDir = ":\PlayStarWars\\Resources\\Soldiers\\Clones\\CloneSharpshooter.png";
 
     QString description = "Clone sharpshooters, also known as clone snipers, or Clone Specialists, were a specialized variant of clone troopers who served in the Grand Army of the Galactic Republic during the Clone Wars.Due to their additional training in long range marksmanship, their ability to hit targets at extreme distance was far superior to that of regular troopers.";
     

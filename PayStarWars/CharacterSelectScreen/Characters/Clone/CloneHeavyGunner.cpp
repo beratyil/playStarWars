@@ -3,7 +3,7 @@
 CloneHeavyGunner::CloneHeavyGunner(QWidget* parent)
     : ICharacterInformationScreen(parent)
 {
-    QString imageDir = "..\\Resources\\Soldiers\\Clones\\CloneHeavyGunner.png";
+    QString imageDir = ":\PlayStarWars\\Resources\\Soldiers\\Clones\\CloneHeavyGunner.png";
 
     QString description = "Heavy Gunners were clone troopers in the Grand Army of the Republic that used Z-6 rotary blaster cannons. The troopers had better clone trooper armor than other clones in the army. Due to their heavy blaster, they had superior firepower as well.";
 

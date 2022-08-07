@@ -9,7 +9,7 @@ CharacterSelection::CharacterSelection(QWidget* parent)
     connect(ui.returnMainMenu, SIGNAL(clicked()), this, SIGNAL(returnMainMenu()));
 
     /* @note make background color more transparent */
-    QImage backGroundImage("..\\Resources\\CharacterSelectionScreen\\backGround.jpeg");
+    QImage backGroundImage(":\PlayStarWars\\Resources\\CharacterSelectionScreen\\backGround.jpeg");
     QPainter backGroundPainter;
     backGroundPainter.begin(&backGroundImage);
     backGroundPainter.setCompositionMode(QPainter::CompositionMode_DestinationIn);

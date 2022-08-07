@@ -5,7 +5,7 @@ Map::Map(QWidget* parent)
 {
 	ui.setupUi(this);
 
-	QPixmap pixmapMap("..\\Resources\\Map\\SpaceMap.jpg");
+	QPixmap pixmapMap(":\PlayStarWars\\Resources\\Map\\SpaceMap.png");
 	ui.backGround->setPixmap(pixmapMap);
 
 	connect(ui.mainMenuButton, &QPushButton::clicked, this, &Map::returnMainMenu);
