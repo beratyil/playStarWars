@@ -44,7 +44,7 @@ void PlayStarWars::openNewGame()
     /* Create Return Path From Character Select Screen to Main Menu */
     connect(mCharacterSelectScreen, &CharacterSelection::returnMainMenu, this, &PlayStarWars::returnMainMenu);
     
-    connect(mCharacterSelectScreen, &CharacterSelection::openMapSender, this, &PlayStarWars::killCharInfoScreen);
+    connect(mCharacterSelectScreen, &CharacterSelection::openMapSender, this, &PlayStarWars::startGame);
     
     /* @note: Destroy temp pointer */
     newCharacterSelectScreen = nullptr;
@@ -55,25 +55,15 @@ void PlayStarWars::returnMainMenu()
 {
     this->setVisible(true);
 
-    mCharacterSelectScreen->exit();
-
-    delete mCharacterSelectScreen;
-    
-    mCharacterSelectScreen = nullptr;
+    killCharSelect();
 }
 
-void PlayStarWars::killCharInfoScreen()
+void PlayStarWars::startGame()
 {
     /* Access Char Info Screen Via Char Select Screen */
     mCharacterSelectScreen->closeCharacterInformationScreen();
 
-    //@note: update returnMainMenu function. Delete and nullptr assign operation should be done in a one class
-    //returnMainMenu();
-    mCharacterSelectScreen->exit();
-
-    delete mCharacterSelectScreen;
-
-    mCharacterSelectScreen = nullptr;
+    killCharSelect();
 
     mMap = new Map();
     connect(mMap, &Map::returnMainMenu, this, &PlayStarWars::closeMap);
@@ -89,6 +79,15 @@ void PlayStarWars::closeMap()
     mMap = nullptr;
 
     setVisible(true);
+}
+
+void PlayStarWars::killCharSelect()
+{
+    mCharacterSelectScreen->exit();
+
+    delete mCharacterSelectScreen;
+
+    mCharacterSelectScreen = nullptr;
 }
 
 void PlayStarWars::exit()

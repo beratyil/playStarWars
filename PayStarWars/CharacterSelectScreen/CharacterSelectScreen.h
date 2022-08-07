@@ -19,9 +19,7 @@ public:
     void exit();
 
 signals:
-    void clicked();
     void returnMainMenu();
-    void charInfoScreenObjectSender(ICharacterInformationScreen* charInfoScreen);
     void openMapSender();
 
 public slots:

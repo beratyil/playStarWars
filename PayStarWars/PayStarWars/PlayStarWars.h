@@ -26,11 +26,14 @@ public slots:
     1.Kill Character Information Screen
     2.Kill Character Selection Screen
     */
-    void killCharInfoScreen();
+    void startGame();
 
     void closeMap();
 
 private:
+
+    void killCharSelect();
+
     Ui::PlayStarWarsClass ui;
     CharacterSelection* mCharacterSelectScreen;
     Map* mMap;
