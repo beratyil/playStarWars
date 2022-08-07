@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>552</width>
-    <height>518</height>
+    <width>547</width>
+    <height>540</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QLabel" name="backGround">
    <property name="geometry">
     <rect>
-     <x>6</x>
+     <x>-4</x>
      <y>2</y>
-     <width>541</width>
-     <height>431</height>
+     <width>551</width>
+     <height>441</height>
     </rect>
    </property>
    <property name="text">
@@ -32,7 +32,7 @@
      <x>-10</x>
      <y>460</y>
      <width>561</width>
-     <height>61</height>
+     <height>81</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -40,6 +40,13 @@
      <widget class="QPushButton" name="mainMenuButton">
       <property name="text">
        <string>Return Main Menu</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="buttonForward">
+      <property name="text">
+       <string>Forward</string>
       </property>
      </widget>
     </item>
@@ -58,11 +65,12 @@
     <string notr="true">QPushButton {
 	border-style: solid;
 	border-width:2px;
-	border-color: red;
 	border-radius: 20px;
-background-color: black;
+	background-color: rgb(10, 7, 44);
 	opacity: 0.2;
-}</string>
+background-image:('');
+}
+</string>
    </property>
    <property name="text">
     <string>planet</string>
