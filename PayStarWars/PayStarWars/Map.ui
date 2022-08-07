@@ -64,11 +64,9 @@
    <property name="styleSheet">
     <string notr="true">QPushButton {
 	border-style: solid;
+	border-color: red;
 	border-width:2px;
 	border-radius: 20px;
-	background-color: rgb(10, 7, 44);
-	opacity: 0.2;
-background-image:('');
 }
 </string>
    </property>
@@ -88,11 +86,9 @@ background-image:('');
    <property name="styleSheet">
     <string notr="true">QPushButton {
 	border-style: solid;
-	border-width:2px;
 	border-color: red;
+	border-width:2px;
 	border-radius: 20px;
-	background-color: black;
-	opacity: 0.2;
 }</string>
    </property>
    <property name="text">
@@ -111,11 +107,9 @@ background-image:('');
    <property name="styleSheet">
     <string notr="true">QPushButton {
 	border-style: solid;
-	border-width:2px;
 	border-color: red;
+	border-width:2px;
 	border-radius: 20px;
-	background-color: black;
-	opacity: 0.2;
 }</string>
    </property>
    <property name="text">
@@ -125,7 +119,7 @@ background-image:('');
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>420</x>
      <y>180</y>
      <width>61</width>
      <height>61</height>
@@ -134,11 +128,9 @@ background-image:('');
    <property name="styleSheet">
     <string notr="true">QPushButton {
 	border-style: solid;
-	border-width:2px;
 	border-color: red;
+	border-width:2px;
 	border-radius: 20px;
-	background-color: black;
-	opacity: 0.2;
 }</string>
    </property>
    <property name="text">
@@ -157,11 +149,9 @@ background-image:('');
    <property name="styleSheet">
     <string notr="true">QPushButton {
 	border-style: solid;
-	border-width:2px;
 	border-color: red;
+	border-width:2px;
 	border-radius: 20px;
-	background-color: black;
-	opacity: 0.2;
 }</string>
    </property>
    <property name="text">
@@ -171,7 +161,7 @@ background-image:('');
   <widget class="QPushButton" name="pushButton_6">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>40</x>
      <y>180</y>
      <width>61</width>
      <height>61</height>
@@ -180,11 +170,9 @@ background-image:('');
    <property name="styleSheet">
     <string notr="true">QPushButton {
 	border-style: solid;
-	border-width:2px;
 	border-color: red;
+	border-width:2px;
 	border-radius: 20px;
-	background-color: black;
-	opacity: 0.2;
 }</string>
    </property>
    <property name="text">
@@ -203,11 +191,9 @@ background-image:('');
    <property name="styleSheet">
     <string notr="true">QPushButton {
 	border-style: solid;
-	border-width:2px;
 	border-color: red;
+	border-width:2px;
 	border-radius: 20px;
-	background-color: black;
-	opacity: 0.2;
 }</string>
    </property>
    <property name="text">
@@ -226,11 +212,9 @@ background-image:('');
    <property name="styleSheet">
     <string notr="true">QPushButton {
 	border-style: solid;
-	border-width:2px;
 	border-color: red;
+	border-width:2px;
 	border-radius: 20px;
-	background-color: black;
-	opacity: 0.2;
 }</string>
    </property>
    <property name="text">
@@ -249,11 +233,9 @@ background-image:('');
    <property name="styleSheet">
     <string notr="true">QPushButton {
 	border-style: solid;
-	border-width:2px;
 	border-color: red;
+	border-width:2px;
 	border-radius: 20px;
-	background-color: black;
-	opacity: 0.2;
 }</string>
    </property>
    <property name="text">

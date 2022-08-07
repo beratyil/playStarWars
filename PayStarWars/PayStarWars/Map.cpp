@@ -12,7 +12,9 @@ Map::Map(QWidget* parent)
 
 	connect(ui.buttonForward, &QPushButton::clicked, this, &Map::moveForward);
 
-	currentPlanet = 1;
+	currentPlanet = 0;
+
+	moveForward();
 }
 
 Map::~Map()
@@ -28,7 +30,9 @@ QPushButton* Map::getCurrentPlanetButton()
 {
 	QPushButton* tempPlanet;
 
-	switch (currentPlanet)
+	qint16 remainder = currentPlanet % 9;
+
+	switch (remainder)
 	{
 	case 1:
 		tempPlanet = ui.pushButton_1;
@@ -54,10 +58,12 @@ QPushButton* Map::getCurrentPlanetButton()
 	case 8:
 		tempPlanet = ui.pushButton_8;
 		break;
-	case 9:
+	case 0:
 		tempPlanet = ui.pushButton_9;
+		break;
 	default:
 		tempPlanet = ui.pushButton_1;
+		break;
 	}
 
 	return tempPlanet;
@@ -73,8 +79,6 @@ void Map::moveForward()
 		"	border-width:2px;\n"
 		"	border-color: red;\n"
 		"	border-radius: 20px;\n"
-		"background-color: black;\n"
-		"	opacity: 0.2;\n"
 		"}"));
 
 	currentPlanet++;
@@ -84,10 +88,9 @@ void Map::moveForward()
 	/* Color the Current Planet */
 	currentPlanetEdit->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 		"	border-style: solid;\n"
-		"	border-width:2px;\n"
+		"	border-width:7px;\n"
 		"	border-color: red;\n"
 		"	border-radius: 20px;\n"
-		"background-color: black;\n"
 		"	opacity: 0.2;\n"
 		"}"));
 }
