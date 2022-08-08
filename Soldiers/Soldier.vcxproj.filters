@@ -41,7 +41,7 @@
     <ClInclude Include="Soldier\CloneSoldier.h">
       <Filter>Soldier</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities.h">
+    <ClInclude Include="SoldierUtilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Attack\CloneAttack.h">
@@ -52,7 +52,7 @@
     <ClCompile Include="Soldier\CloneSoldier.cpp">
       <Filter>Soldier</Filter>
     </ClCompile>
-    <ClCompile Include="Utilities.cpp">
+    <ClCompile Include="SoldierUtilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Attack\CloneAttack.cpp">

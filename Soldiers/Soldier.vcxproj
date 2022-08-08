@@ -89,13 +89,13 @@
   <ItemGroup>
     <ClCompile Include="Attack\CloneAttack.cpp" />
     <ClCompile Include="Soldier\CloneSoldier.cpp" />
-    <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="SoldierUtilities.cpp" />
     <ClInclude Include="Attack\CloneAttack.h" />
     <ClInclude Include="Soldier\CloneSoldier.h" />
     <ClInclude Include="soldier_global.h" />
     <ClInclude Include="Soldier.h" />
     <ClCompile Include="Soldier.cpp" />
-    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="SoldierUtilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

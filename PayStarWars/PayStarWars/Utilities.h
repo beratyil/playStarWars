@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_CharacterSelectionCloneSoldierSelection.h"
+#include "Soldier.h"
 
 class ICharacterInformationScreen : public QMainWindow
 {
@@ -31,4 +32,8 @@ public slots:
 
 protected:
     Ui::CharacterSelectionCharacter ui;
+    Soldier* mSoldier;
+
+private:
+    virtual void setSoldierAttributes() {};
 };

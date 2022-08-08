@@ -2,7 +2,7 @@
 
 #include "..\Soldier.h"
 #include "qstring.h"
-#include "..\\Utilities.h"
+#include "..\\SoldierUtilities.h"
 #include "../Attack/CloneAttack.h"
 
 using namespace SoldierSpace;

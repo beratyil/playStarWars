@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "..\\Utilities.h"
+#include "..\\SoldierUtilities.h"
 
 using SoldierSpace::CloneCommonSkill;
 using SoldierSpace::CloneSpecialSkill;

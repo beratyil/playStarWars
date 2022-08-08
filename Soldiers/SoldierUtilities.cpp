@@ -1,4 +1,4 @@
-#include "Utilities.h"
+#include "SoldierUtilities.h"
 
 typedef SoldierSpace::Damage Damage;
 typedef SoldierSpace::CloneCommonSkill CloneCommonSkill;

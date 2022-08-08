@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "..\\..\\Utilities.h"
+#include "Soldier\CloneSoldier.h"
 
 class CloneParatrooper : public ICharacterInformationScreen
 {
@@ -19,4 +20,5 @@ private slots:
 
 private:
     void prepAttributes(QStringList& attr) override;
+    void setSoldierAttributes() override;
 };
