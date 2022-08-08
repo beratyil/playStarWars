@@ -63,6 +63,9 @@
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\aby_6\Documents\Programming\QT\StarWarsApp\Soldiers;C:\Users\aby_6\Documents\Programming\QT\StarWarsApp\PayStarWars\CharacterSelectScreen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\\..\\Soldiers\\x64\\Debug\\Soldier.obj;..\\..\\Soldiers\\x64\\Debug\\CloneSoldier.obj;..\\..\\Soldiers\\x64\\Debug\\CloneAttack.obj;..\\..\\Soldiers\\x64\\Debug\\SoldierUtilities.obj;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
