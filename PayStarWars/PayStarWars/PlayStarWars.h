@@ -4,6 +4,7 @@
 #include "ui_PayStarWars.h"
 #include "CharacterSelectScreen.h"
 #include "Map.h"
+#include "InGame.h"
 
 class PlayStarWars : public QMainWindow
 {

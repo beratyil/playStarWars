@@ -10,3 +10,5 @@ Soldiers/.vs
 Soldiers/x64
 Test/TestSoldier/x64
 Test/TestSoldier/TestSoldier.vcxproj.user
+InGame/InGame/x64
+*.user
