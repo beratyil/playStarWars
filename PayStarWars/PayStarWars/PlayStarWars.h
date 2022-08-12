@@ -3,7 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_PayStarWars.h"
 #include "CharacterSelectScreen.h"
-#include "Map.h"
+#include "Map\\Map.h"
 #include "InGame.h"
 
 class PlayStarWars : public QMainWindow
