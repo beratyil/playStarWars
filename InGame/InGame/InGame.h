@@ -12,7 +12,7 @@ class InGame : public QMainWindow
     Q_OBJECT
 
 public:
-    InGame(QWidget *parent = nullptr);
+    InGame(QString enemyImage, QWidget *parent = nullptr);
     ~InGame();
 
 private:

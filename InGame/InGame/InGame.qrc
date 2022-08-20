@@ -5,8 +5,15 @@
         <file>Resources/Map/SpaceMap2.png</file>
         <file>Resources/Map/SpaceMap3.jpg</file>
     </qresource>
-    <qresource prefix="/Droid">
-        <file>Resources/Soldiers/Droids/BattleDroidjpg.jpg</file>
+    <qresource prefix="/Droid_1Level">
+        <file>Resources/Soldiers/Droids/Admiral.png</file>
+        <file>Resources/Soldiers/Droids/B2.jpg</file>
+        <file>Resources/Soldiers/Droids/BattleDroid.jpg</file>
+        <file>Resources/Soldiers/Droids/ClassicBattleDroid.jpg</file>
+        <file>Resources/Soldiers/Droids/Commando.jpg</file>
+        <file>Resources/Soldiers/Droids/Droideka.png</file>
+        <file>Resources/Soldiers/Droids/Grevious Guard.jpg</file>
+        <file>Resources/Soldiers/Droids/IG-11.png</file>
     </qresource>
     <qresource prefix="/Clone">
         <file>Resources/Soldiers/Clones/Clone.PNG</file>

@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/PlayStarWars">
-        <file>Resources/Map/Destroyer.png</file>
         <file>Resources/Menu/exitButton.png</file>
         <file>Resources/Menu/playButton.png</file>
         <file>Resources/Menu/StarWars.png</file>
@@ -11,8 +10,5 @@
         <file>Resources/Soldiers/Clones/CloneTrooper.png</file>
         <file>Resources/Soldiers/Clones/LongBlaster.png</file>
         <file>Resources/CharacterSelectionScreen/backGround.jpeg</file>
-        <file>Resources/Map/SpaceMap2.png</file>
-        <file>Resources/Map/SpaceMap.png</file>
-        <file>Resources/Map/SpaceMap3.jpg</file>
     </qresource>
 </RCC>

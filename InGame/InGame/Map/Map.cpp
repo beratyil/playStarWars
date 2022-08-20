@@ -5,7 +5,7 @@ Map::Map(QWidget* parent)
 {
 	ui.setupUi(this);
 
-	QPixmap pixmapMap(":\PlayStarWars\\Resources\\Map\\SpaceMap.png");
+	QPixmap pixmapMap(":\Map\\Resources\\Map\\SpaceMap.png");
 	ui.backGround->setPixmap(pixmapMap);
 
 	connect(ui.mainMenuButton, &QPushButton::clicked, this, &Map::returnMainMenu);
@@ -15,10 +15,35 @@ Map::Map(QWidget* parent)
 	currentPlanet = 0;
 
 	moveForward();
+
+	connect(ui.pushButton_1, &QPushButton::clicked, this, &Map::enterFight);
+	connect(ui.pushButton_2, &QPushButton::clicked, this, &Map::enterFight);
+	connect(ui.pushButton_3, &QPushButton::clicked, this, &Map::enterFight);
+	connect(ui.pushButton_4, &QPushButton::clicked, this, &Map::enterFight);
+	connect(ui.pushButton_5, &QPushButton::clicked, this, &Map::enterFight);
+	connect(ui.pushButton_6, &QPushButton::clicked, this, &Map::enterFight);
+	connect(ui.pushButton_7, &QPushButton::clicked, this, &Map::enterFight);
+	connect(ui.pushButton_8, &QPushButton::clicked, this, &Map::enterFight);
+	connect(ui.pushButton_9, &QPushButton::clicked, this, &Map::enterFight);
 }
 
 Map::~Map()
 {
+}
+
+void Map::enterFight()
+{
+	/* Learn planet number */
+
+	/* According to planet number, call necessary enemy from enemy database */
+	QString enemyImage = mEnemyMap[currentPlanet];
+
+	m_currentGame = new InGame(enemyImage);
+
+	/* Call InGame constructor with necessary information */
+
+	m_currentGame->show();
+
 }
 
 void Map::setCurrentPlanet(qint16 planet)
