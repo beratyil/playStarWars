@@ -64,7 +64,7 @@
       <AdditionalIncludeDirectories>C:\Users\aby_6\Documents\Programming\QT\StarWarsApp\Soldiers;C:\Users\aby_6\Documents\Programming\QT\StarWarsApp\PayStarWars\CharacterSelectScreen;..\..\InGame\InGame;..\..\InGame\InGame\x64\Debug\uic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>..\\..\\Soldiers\\x64\\Debug\\Soldier.obj;..\\..\\Soldiers\\x64\\Debug\\CloneSoldier.obj;..\\..\\Soldiers\\x64\\Debug\\CloneAttack.obj;..\\..\\Soldiers\\x64\\Debug\\SoldierUtilities.obj;..\..\InGame\InGame\x64\Debug\InGame.obj;..\..\InGame\InGame\x64\Debug\moc_InGame.obj;..\..\InGame\InGame\x64\Debug\qrc_InGame.obj;..\..\InGame\InGame\x64\Debug\Map.obj;..\..\InGame\InGame\x64\Debug\moc_Map.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\\..\\Soldiers\\x64\\Debug\\Soldier.obj;..\\..\\Soldiers\\x64\\Debug\\CloneSoldier.obj;..\\..\\Soldiers\\x64\\Debug\\CloneAttack.obj;..\\..\\Soldiers\\x64\\Debug\\SoldierUtilities.obj;..\..\InGame\InGame\x64\Debug\InGame.obj;..\..\InGame\InGame\x64\Debug\moc_InGame.obj;..\..\InGame\InGame\x64\Debug\qrc_InGame.obj;..\..\InGame\InGame\x64\Debug\Map.obj;..\..\InGame\InGame\x64\Debug\moc_Map.obj;..\..\InGame\InGame\x64\Debug\InGameUtilities.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">

@@ -1,10 +1,12 @@
 #include "InGame.h"
 
-InGame::InGame(QString enemyImage, QWidget *parent)
+InGame::InGame(EnemyDatabase currentEnemy, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::InGameClass())
 {
     ui->setupUi(this);
+
+    QString enemyImage = currentEnemy.getImageLocation();
 
     QImage imageEnemy(enemyImage);
     QImage imageEnemyMirrored = imageEnemy.mirrored(true, false);
@@ -15,7 +17,10 @@ InGame::InGame(QString enemyImage, QWidget *parent)
     const int h = ui->enemy->height();
 
     ui->enemy->setPixmap(enemyImagePixmap.scaled(w, h, Qt::KeepAspectRatio));
-    //ui->enemy->setPixmap(enemyImagePixmap);
+
+    QImage imageHero("C:\\Users\\aby_6\\Documents\\Programming\\QT\\StarWarsApp\\InGame\\InGame\\Resources\\Soldiers\\Clones\\CloneCommando.jpg");
+    QPixmap heroImagePixmap = QPixmap::fromImage(imageHero);
+    ui->hero->setPixmap(heroImagePixmap);
 }
 
 InGame::~InGame()

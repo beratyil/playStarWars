@@ -12,7 +12,7 @@ Map::Map(QWidget* parent)
 
 	connect(ui.buttonForward, &QPushButton::clicked, this, &Map::moveForward);
 
-	currentPlanet = 0;
+	mCurrentPlanet = 0;
 
 	moveForward();
 
@@ -25,6 +25,8 @@ Map::Map(QWidget* parent)
 	connect(ui.pushButton_7, &QPushButton::clicked, this, &Map::enterFight);
 	connect(ui.pushButton_8, &QPushButton::clicked, this, &Map::enterFight);
 	connect(ui.pushButton_9, &QPushButton::clicked, this, &Map::enterFight);
+
+	createEnemyDatabase();
 }
 
 Map::~Map()
@@ -36,26 +38,26 @@ void Map::enterFight()
 	/* Learn planet number */
 
 	/* According to planet number, call necessary enemy from enemy database */
-	QString enemyImage = mEnemyMap[currentPlanet];
+	EnemyDatabase currentEnemy = mEnemies[mCurrentPlanet - 1];
 
-	m_currentGame = new InGame(enemyImage);
+	mCurrentGame = new InGame(currentEnemy);
 
 	/* Call InGame constructor with necessary information */
 
-	m_currentGame->show();
+	mCurrentGame->show();
 
 }
 
 void Map::setCurrentPlanet(qint16 planet)
 {
-	currentPlanet = planet;
+	mCurrentPlanet = planet;
 }
 
 QPushButton* Map::getCurrentPlanetButton()
 {
 	QPushButton* tempPlanet;
 
-	qint16 remainder = currentPlanet % 9;
+	qint16 remainder = mCurrentPlanet % 9;
 
 	switch (remainder)
 	{
@@ -94,6 +96,41 @@ QPushButton* Map::getCurrentPlanetButton()
 	return tempPlanet;
 }
 
+void Map::createEnemyDatabase()
+{
+	QString databaseFileLine = "";
+
+	QFile file(mDroidEnemies);
+
+	if (file.open(QIODevice::ReadOnly))
+	{
+		// thrown an exception
+	}
+
+	while (!file.atEnd())
+	{
+		QByteArray line = file.readLine();
+
+		QList<QByteArray> column = line.split(',');
+
+		QString index = column.at(0);
+		QString image = column.at(1);
+		QString soldierType = column.at(2);
+		QString isMirrored = column.at(3);
+
+		bool mirroringNeeded = true;
+
+		if (isMirrored.startsWith("No"))
+		{
+			mirroringNeeded = false;
+		}
+
+		EnemyDatabase newEnemy(index.toShort(), image, soldierType, mirroringNeeded);
+
+		mEnemies.append(newEnemy);
+	}
+}
+
 void Map::moveForward()
 {
 	QPushButton* currentPlanetEdit = getCurrentPlanetButton();
@@ -106,7 +143,7 @@ void Map::moveForward()
 		"	border-radius: 20px;\n"
 		"}"));
 
-	currentPlanet++;
+	mCurrentPlanet++;
 	
 	currentPlanetEdit = getCurrentPlanetButton();
 

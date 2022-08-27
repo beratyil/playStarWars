@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_InGame.h"
+#include "InGameUtilities.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class InGameClass; };
@@ -12,7 +13,7 @@ class InGame : public QMainWindow
     Q_OBJECT
 
 public:
-    InGame(QString enemyImage, QWidget *parent = nullptr);
+    InGame(EnemyDatabase currentEnemy, QWidget* parent = nullptr);
     ~InGame();
 
 private:

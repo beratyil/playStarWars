@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
-#include "ui_PayStarWars.h"
+#include "ui_PlayStarWars.h"
 #include "CharacterSelectScreen.h"
 #include "Map\\Map.h"
 #include "InGame.h"

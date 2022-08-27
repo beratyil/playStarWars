@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="InGameUtilities.cpp" />
     <ClCompile Include="Map\Map.cpp" />
     <QtRcc Include="InGame.qrc" />
     <QtUic Include="InGame.ui" />
@@ -94,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Map\Map.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="InGameUtilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

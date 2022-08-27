@@ -1,0 +1,8 @@
+1, ":\Droid_1Level\Resources\Soldiers\Droids\ClassicBattleDroid.jpg", BattleDroid, Mirrored
+2, ":\Droid_1Level\Resources\Soldiers\Droids\Admiral.png", Admiral, NotMirrored
+3, ":\Droid_1Level\Resources\Soldiers\Droids\B2.jpg", B2, NotMirrored
+4, ":\Droid_1Level\Resources\Soldiers\Droids\Droideka.jpg", Droideka , NotMirrored
+5, ":\Droid_1Level\Resources\Soldiers\Droids\Commando.jpg", Commando, NotMirrored
+6, ":\Droid_1Level\Resources\Soldiers\Droids\Grevious Guard.jpg", Grevious Guard, NotMirrored
+7, ":\Droid_1Level\Resources\Soldiers\Droids\IG-11.png", IG-11, NotMirrored
+8, ":\Droid_1Level\Resources\Soldiers\Droids\BattleDroid.jpg", BattleDroid, Mirrored
