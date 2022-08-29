@@ -2,8 +2,8 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_PlayStarWars.h"
-#include "CharacterSelectScreen.h"
-#include "Map\\Map.h"
+#include "CharacterSelectScreen\CharacterSelectScreen.h"
+#include "Map\Map.h"
 #include "InGame.h"
 
 class PlayStarWars : public QMainWindow

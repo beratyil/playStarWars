@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
-#include "..\\..\\Utilities.h"
+#include <Utilities.h>
 #include "Soldier\CloneSoldier.h"
 
 class CloneParatrooper : public ICharacterInformationScreen

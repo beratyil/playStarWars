@@ -1,12 +1,12 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
-#include "ui_Map.h"
-#include "..\\InGame.h"
-#include <qsqldatabase.h>
-#include "..\\InGameUtilities.h"
 #include <qfile>
 #include <qtextstream.h>
+#include <InGame.h>
+#include <qsqldatabase.h>
+#include <InGameUtilities.h>
+#include "ui_Map.h"
 
 class Map : public QMainWindow
 {
