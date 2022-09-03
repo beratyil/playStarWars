@@ -1,6 +1,7 @@
 #include "SoldierUtilities.h"
 
 typedef SoldierSpace::Damage Damage;
+typedef SoldierSpace::AbstractWeapon AbstractWeapon;
 typedef SoldierSpace::CloneWeapon CloneWeapon;
 typedef SoldierSpace::DroidWeapon DroidWeapon;
 typedef SoldierSpace::AbstractCommonSkill AbstractCommonSkill;
@@ -37,11 +38,29 @@ qint16 Damage::damage()
 
 /* CloneWeapon Definitions */
 
+AbstractWeapon::AbstractWeapon(Range range)
+{
+	setRange(range);
+}
+
+AbstractWeapon::~AbstractWeapon()
+{
+}
+
+bool AbstractWeapon::isLongRange()
+{
+	return (mRange == Range::LONG) ? true : false;
+}
+
+void AbstractWeapon::setRange(Range range)
+{
+	mRange = range;
+}
+
 CloneWeapon::CloneWeapon(Weapon newWeapon, Range range)
+	: AbstractWeapon(range)
 {
 	setWeapon(newWeapon);
-
-	setRange(range);
 }
 
 CloneWeapon::~CloneWeapon()
@@ -55,7 +74,7 @@ void CloneWeapon::setWeapon(Weapon newWeapon)
 	auto it = mWeaponDamageLut.find(mWeapon);
 
 	qint16 damage = it.value();
-	
+
 	mWeaponDamage.setDamage(damage);
 }
 
@@ -64,9 +83,16 @@ CloneWeapon::Weapon CloneWeapon::getWeapon()
 	return mWeapon;
 }
 
+qint16 CloneWeapon::getWeaponDamage()
+{
+	qint16 damage = mWeaponDamage.damage();
+
+	return damage;
+}
+
 QString CloneWeapon::WeaponString()
 {
-	Weapon currentWeapon = getWeapon();
+	Weapon currentWeapon = static_cast<CloneWeapon::Weapon>(getWeapon());
 
 	QString weaponString = "";
 
@@ -89,23 +115,6 @@ QString CloneWeapon::WeaponString()
 	}
 
 	return weaponString;
-}
-
-qint16 CloneWeapon::getWeaponDamage()
-{
-	qint16 damage = mWeaponDamage.damage();
-
-	return damage;
-}
-
-bool CloneWeapon::isLongRange()
-{
-	return (mRange == Range::LONG) ? true : false;
-}
-
-void CloneWeapon::setRange(Range range)
-{
-	mRange = range;
 }
 
 
@@ -263,13 +272,13 @@ void DroidCommonSkill::updateSkillModifiers()
 		}
 		case CommonSkill::StrongSwing:
 		{
-			/*if (!mWeapon->isLongRange()) {
+			if (!mWeapon->isLongRange()) {
 				it.value() = mCurrentCharacterLevel % 2;
 			}
 			else if (mWeapon->isLongRange()) {
 				it.value() = mCurrentCharacterLevel % 4;
 			}
-			break;*/
+			break;
 		}
 		default:
 			break;

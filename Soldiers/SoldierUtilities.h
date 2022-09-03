@@ -23,12 +23,9 @@ namespace SoldierSpace
 		qint16 mCurrentDamage;
 	};
 
-	/* @todo: Abstract Weapon Class will be inherited to DroidWeapn and CloneWeapon */
 	class AbstractWeapon
 	{
 	public:
-
-		enum class Weapon {};
 
 		enum class Range {
 			LONG,
@@ -36,30 +33,26 @@ namespace SoldierSpace
 		};
 
 		AbstractWeapon() = default;
-		AbstractWeapon(Weapon newWeapon, Range range);
+		AbstractWeapon(Range range);
 
 		~AbstractWeapon();
 
-		void setWeapon(Weapon newWeapon);
-		Weapon getWeapon();
 
-		QString WeaponString();
+		virtual QString WeaponString() = 0;
 
-		qint16 getWeaponDamage();
+		virtual qint16 getWeaponDamage() = 0;
 
 		bool isLongRange();
 
 		void setRange(Range range);
 
-	private:
-		Weapon mWeapon;
-		Damage mWeaponDamage;
+	protected:
 		Range mRange;
+		Damage mWeaponDamage;
 
-		QMap<Weapon, qint16> mWeaponDamageLut;
 	};
 
-	class CloneWeapon
+	class CloneWeapon : public AbstractWeapon
 	{
 	public:
 
@@ -71,11 +64,6 @@ namespace SoldierSpace
 			DC_17M_BLASTER,
 		};
 
-		enum class Range {
-			LONG,
-			SHORT
-		};
-
 		CloneWeapon() = default;
 		CloneWeapon(Weapon newWeapon, Range range);
 
@@ -84,24 +72,54 @@ namespace SoldierSpace
 		void setWeapon(Weapon newWeapon);
 		Weapon getWeapon();
 
-		QString WeaponString();
-
-		qint16 getWeaponDamage();
-
-		bool isLongRange();
-
-		void setRange(Range range);
+		QString WeaponString() override;
+		qint16 getWeaponDamage() override;
 
 	private:
 		Weapon mWeapon;
-		Damage mWeaponDamage;
-		Range mRange;
-
 		QMap<Weapon, qint16> mWeaponDamageLut{
 			{Weapon::DC_15A_CARBINE, 2},
 			{Weapon::DC_15A_RIFLE, 3},
 			{Weapon::Z_6_ROTARY_CANON, 5},
-			{Weapon::DC_15X_SNIPER, 4}
+			{Weapon::DC_15X_SNIPER, 4} 
+		};
+
+	};
+
+	class DroidWeapon : public AbstractWeapon
+	{
+	public:
+
+		enum class Weapon {
+			E_5_BLASTER_RIFLE,
+			DUAL_WRIST_BLASTER,
+			BLASTER_CANNON,
+			RADIATION_CANNON,
+			VIBROSTAFF,
+			ELECTROSTAFF,
+		};
+
+		DroidWeapon() = default;
+		DroidWeapon(Weapon newWeapon);
+
+		~DroidWeapon();
+
+		void setWeapon(Weapon newWeapon);
+		Weapon getWeapon();
+
+		QString WeaponString() override;
+		qint16 getWeaponDamage() override;
+
+	private:
+		Weapon mWeapon;
+
+		QMap<Weapon, qint16> mWeaponDamageLut{
+			{Weapon::E_5_BLASTER_RIFLE, 2},
+			{Weapon::DUAL_WRIST_BLASTER, 3},
+			{Weapon::BLASTER_CANNON, 3},
+			{Weapon::RADIATION_CANNON, 4},
+			{Weapon::VIBROSTAFF, 6},
+			{Weapon::ELECTROSTAFF, 7},
 		};
 
 	};
@@ -127,11 +145,6 @@ namespace SoldierSpace
 		Attack with selected skill
 		*/
 		virtual qint16 attack(CommonSkill skill) = 0;
-
-		/*
-		Attack with selected skill
-		*/
-		//qint16 closeRangeAttack(CommonSkill skill);
 
 		/*
 		* Update modifiers
@@ -288,46 +301,6 @@ namespace SoldierSpace
 			{Equipment::RocketLauncher_Level1, "Rocket Launcher Level 1"},
 			{Equipment::RocketLauncher_Level2, "Rocket Launcher Level 2"},
 			{Equipment::RocketLauncher_Level3, "Rocket Launcher Level 3"}
-		};
-
-	};
-
-	class DroidWeapon
-	{
-	public:
-
-		enum class Weapon {
-			E_5_BLASTER_RIFLE,
-			DUAL_WRIST_BLASTER,
-			BLASTER_CANNON,
-			RADIATION_CANNON,
-			VIBROSTAFF,
-			ELECTROSTAFF,
-		};
-
-		DroidWeapon() = default;
-		DroidWeapon(Weapon newWeapon);
-
-		~DroidWeapon();
-
-		void setWeapon(Weapon newWeapon);
-		Weapon getWeapon();
-
-		QString WeaponString();
-
-		qint16 getWeaponDamage();
-
-	private:
-		Weapon mWeapon;
-		Damage mWeaponDamage;
-
-		QMap<Weapon, qint16> mWeaponDamageLut{
-			{Weapon::E_5_BLASTER_RIFLE, 2},
-			{Weapon::DUAL_WRIST_BLASTER, 3},
-			{Weapon::BLASTER_CANNON, 3},
-			{Weapon::RADIATION_CANNON, 4},
-			{Weapon::VIBROSTAFF, 6},
-			{Weapon::ELECTROSTAFF, 7},
 		};
 
 	};
