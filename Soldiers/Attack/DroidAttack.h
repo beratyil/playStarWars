@@ -29,17 +29,16 @@ public:
 
     CloneAttack() = default;
 
-    CloneAttack(CloneWeapon::Weapon newWeapon, CloneWeapon::Range range);
     CloneAttack(CloneWeapon newWeapon);
     ~CloneAttack();
 
-    void updateWeapon(CloneWeapon newWeapon);
+    void updateGun(CloneWeapon newWeapon);
 
     CloneWeapon getWeapon();
 
-    QVector<CloneCommonSkill::CommonSkill> getCommonSkills();
+    QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> getCommonSkills();
 
-    QVector<CloneSpecialSkill::Equipment> getSpecialSkills();
+    QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> getSpecialSkills();
 
     QStringList getCommonSkillsString();
 
@@ -50,7 +49,7 @@ protected:
 
     qint16 attack(CloneCommonSkill::CommonSkill commonSkill);
 
-    qint16 attack(CloneSpecialSkill::Equipment specialSkill);
+    qint16 attack(CloneSpecialSkill::SpecialSkill specialSkill);
 
     CloneWeapon mCurrentWeapon;
     CloneCommonSkill mCurrentCommonSkills;

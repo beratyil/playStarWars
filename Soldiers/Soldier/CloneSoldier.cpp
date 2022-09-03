@@ -2,8 +2,8 @@
 
 // @note: CloneAttack class will be implemented
 
-Clone::Clone(qint16 health, qint16 armor, QString lifeForm, QString soldierType, CloneWeapon::Weapon weapon)
-    : CloneAttack(weapon)
+Clone::Clone(qint16 health, qint16 armor, QString lifeForm, QString soldierType, CloneWeapon::Weapon weapon, CloneWeapon::Range range)
+    : CloneAttack(weapon, range)
 {
     setHealth(health);
     setArmor(armor);
@@ -29,7 +29,7 @@ qint16 Clone::attack(qint16 abilityType, qint16 attackNumber)
 
         case skillType::specialSkill:
         {
-            CloneSpecialSkill::SpecialSkill specialSkillNumber = static_cast<CloneSpecialSkill::SpecialSkill>(attackNumber);
+            CloneSpecialSkill::Equipment specialSkillNumber = static_cast<CloneSpecialSkill::Equipment>(attackNumber);
             returnDamage = CloneAttack::attack(specialSkillNumber);
             break;
         }

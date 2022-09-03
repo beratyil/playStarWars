@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
-#include "..\\..\\..\\PayStarWars\Utilities.h"
+#include "Utilities.h"
 
 class CloneTrooper : public ICharacterInformationScreen
 {

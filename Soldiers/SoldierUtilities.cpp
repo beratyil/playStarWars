@@ -4,7 +4,7 @@ typedef SoldierSpace::Damage Damage;
 typedef SoldierSpace::CloneCommonSkill CloneCommonSkill;
 typedef SoldierSpace::CloneSpecialSkill CloneSpecialSkill;
 typedef SoldierSpace::CloneWeapon CloneWeapon;
-typedef CloneWeapon::Weapon Weapon;
+typedef SoldierSpace::DroidWeapon DroidWeapon;
 
 /* Damage Definitions */
 Damage::Damage()
@@ -35,9 +35,11 @@ qint16 Damage::damage()
 
 /* CloneWeapon Definitions */
 
-CloneWeapon::CloneWeapon(Weapon newWeapon)
+CloneWeapon::CloneWeapon(Weapon newWeapon, Range range)
 {
-	mWeapon = newWeapon;
+	setWeapon(newWeapon);
+
+	setRange(range);
 }
 
 CloneWeapon::~CloneWeapon()
@@ -55,7 +57,7 @@ void CloneWeapon::setWeapon(Weapon newWeapon)
 	mWeaponDamage.setDamage(damage);
 }
 
-Weapon CloneWeapon::getWeapon()
+CloneWeapon::Weapon CloneWeapon::getWeapon()
 {
 	return mWeapon;
 }
@@ -94,58 +96,113 @@ qint16 CloneWeapon::getWeaponDamage()
 	return damage;
 }
 
+bool CloneWeapon::isLongRange()
+{
+	return (mRange == Range::LONG) ? true : false;
+}
+
+void CloneWeapon::setRange(Range range)
+{
+	mRange = range;
+}
+
+
 /* CloneCommonSkill Definitions */
 
-CloneCommonSkill::CloneCommonSkill(qint16 closeRange, qint16 longRange)
+CloneCommonSkill::CloneCommonSkill(CloneWeapon newWeapon, qint16 level)
 {
-	mCloseRangeDamage = closeRange;
-	mLongRangeDamage = longRange;
+	mWeapon = newWeapon;
+	mCurrentCharacterLevel = level;
+
+	updateSkillModifiers();
 }
 
 CloneCommonSkill::~CloneCommonSkill()
 {
 }
 
-void CloneCommonSkill::setMeleeDamage(qint16 newMeleeDamage)
+void CloneCommonSkill::setWeapon(CloneWeapon newWeapon)
 {
-	mCloseRangeDamage.setDamage(newMeleeDamage);
+	mWeapon = newWeapon;
 }
 
-void CloneCommonSkill::setBlasterDamage(qint16 newBlasterDamage)
+void CloneCommonSkill::setCurrentLevel(qint16 level)
 {
-	mLongRangeDamage.setDamage(newBlasterDamage);
+	mCurrentCharacterLevel = level;
 }
 
-qint16 CloneCommonSkill::blasterAttack()
+void CloneCommonSkill::updateSkillModifiers()
 {
-	return mLongRangeDamage.damage();
+	for (auto it = mSkillDamageLut.begin(); it != mSkillDamageLut.end(); it++)
+	{
+		switch (it.key()) {
+			case CommonSkill::WeaponStrike:
+			{
+				it.value() = mCurrentCharacterLevel % 4;
+				break;
+			}
+			case CommonSkill::HeadShot:
+			{
+				it.value() = mCurrentCharacterLevel % 2;
+				break;
+			}
+			case CommonSkill::FasterReload:
+			{
+				break;
+			}
+			case CommonSkill::StrongSwing:
+			{
+				if (!mWeapon.isLongRange()) {
+					it.value() = mCurrentCharacterLevel % 2;
+				}
+				else if (mWeapon.isLongRange()) {
+					it.value() = mCurrentCharacterLevel % 4;
+				}
+				break;
+			}
+			default:
+				break;
+		}
+	}
 }
 
-qint16 CloneCommonSkill::meleeAttack()
+qint16 CloneCommonSkill::attack(CommonSkill skill)
 {
-	return mCloseRangeDamage.damage();
+	qint16 damage = 0;
+
+	/* @note: take damage modifier */
+
+	qint16 damageModifier = mSkillDamageLut[skill];
+
+	/* @note: take weapon damage */
+
+	qint16 rawDamage = mWeapon.getWeaponDamage();
+
+	qint16 finalDamage = rawDamage + damageModifier;
+
+	return finalDamage;
 }
 
-QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> CloneCommonSkill::getSkills()
+
+QVector<CloneCommonSkill::CommonSkill> CloneCommonSkill::getCurrentSkills()
 {
-	return mSkillLut;
+	return mCurrentSkills;
 }
 
-void CloneCommonSkill::addSkill(CloneCommonSkill::CommonSkill newSkillName, SkillFunction newSkill)
+void CloneCommonSkill::addSkill(CloneCommonSkill::CommonSkill newSkillName)
 {
-	mSkillLut.insert(newSkillName, newSkill);
+	mCurrentSkills.append(newSkillName);
 }
 
 QStringList SoldierSpace::CloneCommonSkill::skillsString()
 {
-	qint16 skillNumber = mSkillLut.size();
-	
+	qint16 skillNumber = mSkillName.size();
+
 	QStringList skillList = QStringList();
 
-	for (auto it = mSkillLut.begin(); it != mSkillLut.end(); it++) {
-		auto skill = it.key();
+	for (auto it = mSkillName.begin(); it != mSkillName.end(); it++) {
 
-		QString skillString = convertString(skill);
+		QString skillString = it.value();
 
 		skillList.append(skillString);
 	}
@@ -153,72 +210,36 @@ QStringList SoldierSpace::CloneCommonSkill::skillsString()
 	return skillList;
 }
 
-QString SoldierSpace::CloneCommonSkill::convertString(CommonSkill skill)
-{
-	QString stringSkill = "";
-
-	if (skill == CommonSkill::blasterAttack) {
-		stringSkill = "Blaster Attack";
-	}
-	else if (skill == CommonSkill::meleeAttack) {
-		stringSkill = "Melee Attack";
-	}
-
-	return stringSkill;
-}
-
 /* CloneSpecialSkill Definitions */
 
-CloneSpecialSkill::CloneSpecialSkill(qint16 blaster, qint16 equipment)
+CloneSpecialSkill::CloneSpecialSkill(Equipment equipment)
 {
-	mBlasterSpecialDamage = blaster;
-	mEquipmentSpecialDamage = equipment;
+	mCurrentSkills.append(equipment);
 }
 
 CloneSpecialSkill::~CloneSpecialSkill()
 {
 }
 
-void CloneSpecialSkill::setEquipmentDamage(qint16 newMeleeDamage)
+QVector<CloneSpecialSkill::Equipment> CloneSpecialSkill::getCurrentSkills()
 {
-	mEquipmentSpecialDamage.setDamage(newMeleeDamage);
+	return mCurrentSkills;
 }
 
-void CloneSpecialSkill::setBlasterDamage(qint16 newBlasterDamage)
+void CloneSpecialSkill::addSkill(CloneSpecialSkill::Equipment newSkillName)
 {
-	mBlasterSpecialDamage.setDamage(newBlasterDamage);
-}
-
-qint16 CloneSpecialSkill::blasterAttack()
-{
-	return mBlasterSpecialDamage.damage();
-}
-
-qint16 CloneSpecialSkill::equipmentAttack()
-{
-	return mEquipmentSpecialDamage.damage();
-}
-
-QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> CloneSpecialSkill::getSkills()
-{
-	return mSkillLut;
-}
-
-void CloneSpecialSkill::addSkill(CloneSpecialSkill::SpecialSkill newSkillName, CloneSpecialSkill::SkillFunction newSkill)
-{
-	mSkillLut.insert(newSkillName, newSkill);
+	mCurrentSkills.append(newSkillName);
 }
 
 QStringList SoldierSpace::CloneSpecialSkill::skillsString()
 {
-	qint16 skillNumber = mSkillLut.size();
+	qint16 skillNumber = mSkillName.size();
 
 	QStringList skillList = QStringList();
 
-	for (auto it = mSkillLut.begin(); it != mSkillLut.end(); it++) {
-		auto skill = it.key();
-
-		QString skillString = convertString(skill);
+	for (auto it = mSkillName.begin(); it != mSkillName.end(); it++) {
+		
+		QString skillString = it.value();
 
 		skillList.append(skillString);
 	}
@@ -226,16 +247,82 @@ QStringList SoldierSpace::CloneSpecialSkill::skillsString()
 	return skillList;
 }
 
-QString SoldierSpace::CloneSpecialSkill::convertString(SpecialSkill skill)
+qint16 CloneSpecialSkill::equipmentAttack(Equipment equipment)
 {
-	QString stringSkill = "";
+	qint16 damage = 0;
 
-	if (skill == SpecialSkill::blasterAttack) {
-		stringSkill = "Blaster Attack";
-	}
-	else if (skill == SpecialSkill::equipmentAttack) {
-		stringSkill = "Equipment Attack";
-	}
+	/* @note: take damage directly from Skill Damage Look Up Table */
 
-	return stringSkill;
+	damage = mSkillDamageLut[equipment];
+
+	/* @note: take weapon damage */
+
+	return damage;
 }
+
+/* DroidWeapon Definitions */
+
+SoldierSpace::DroidWeapon::DroidWeapon(Weapon newWeapon)
+{
+	mWeapon = newWeapon;
+}
+
+DroidWeapon::~DroidWeapon()
+{
+}
+
+void DroidWeapon::setWeapon(Weapon newWeapon)
+{
+	mWeapon = newWeapon;
+
+	auto it = mWeaponDamageLut.find(mWeapon);
+
+	qint16 damage = it.value();
+
+	mWeaponDamage.setDamage(damage);
+}
+
+DroidWeapon::Weapon DroidWeapon::getWeapon()
+{
+	return mWeapon;
+}
+
+QString DroidWeapon::WeaponString()
+{
+	Weapon currentWeapon = getWeapon();
+
+	QString weaponString = "";
+
+	switch (currentWeapon)
+	{
+	case Weapon::E_5_BLASTER_RIFLE:
+		weaponString = "E 5 BLASTER RIFLE";
+		break;
+	case Weapon::DUAL_WRIST_BLASTER:
+		weaponString = "DUAL WRIST BLASTER";
+		break;
+	case Weapon::BLASTER_CANNON:
+		weaponString = "BLASTER CANNON";
+		break;
+	case Weapon::RADIATION_CANNON:
+		weaponString = "RADIATION CANNON";
+		break;
+	case Weapon::VIBROSTAFF:
+		weaponString = "VIBRO STAFF";
+		break;
+	case Weapon::ELECTROSTAFF:
+		weaponString = "ELECTROSTAFF";
+		break;
+	default:
+		break;
+	}
+	return weaponString;
+}
+
+qint16 DroidWeapon::getWeaponDamage()
+{
+	qint16 damage = mWeaponDamage.damage();
+
+	return damage;
+}
+

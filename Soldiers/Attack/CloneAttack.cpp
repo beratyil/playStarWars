@@ -1,5 +1,12 @@
 #include "CloneAttack.h"
 
+CloneAttack::CloneAttack(CloneWeapon::Weapon newWeapon, CloneWeapon::Range range)
+{
+    mCurrentWeapon.setWeapon(newWeapon);
+    mCurrentWeapon.setRange(range);
+}
+
+
 CloneAttack::CloneAttack(CloneWeapon newWeapon)
 {
     mCurrentWeapon = newWeapon;
@@ -18,26 +25,16 @@ qint16 CloneAttack::attack(CloneCommonSkill::CommonSkill commonSkill)
 {
     quint16 returnDamage = 0;
 
-    QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> skills = mCurrentCommonSkills.getSkills();
-    auto skill = skills.find(commonSkill);
-
-    CloneCommonSkill::SkillFunction function = skill.value();
-
-    //returnDamage = function();
+    returnDamage = mCurrentCommonSkills.attack(commonSkill);
 
     return returnDamage;
 }
 
-qint16 CloneAttack::attack(CloneSpecialSkill::SpecialSkill specialSkill)
+qint16 CloneAttack::attack(CloneSpecialSkill::Equipment specialSkill)
 {
     quint16 returnDamage = 0;
-
-    QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> skills = mCurrentSpecialSkills.getSkills();
-    auto skill = skills.find(specialSkill);
     
-    CloneSpecialSkill::SkillFunction function = skill.value();
-    
-    //returnDamage = function();
+    returnDamage = mCurrentSpecialSkills.equipmentAttack(specialSkill);
     
     return returnDamage;
 }
@@ -47,14 +44,14 @@ CloneWeapon CloneAttack::getWeapon()
     return mCurrentWeapon;
 }
 
-QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> CloneAttack::getCommonSkills()
+QVector<CloneCommonSkill::CommonSkill> CloneAttack::getCommonSkills()
 {
-    return mCurrentCommonSkills.getSkills();
+    return mCurrentCommonSkills.getCurrentSkills();
 }
 
-QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> CloneAttack::getSpecialSkills()
+QVector<CloneSpecialSkill::Equipment> CloneAttack::getSpecialSkills()
 {
-    return mCurrentSpecialSkills.getSkills();
+    return mCurrentSpecialSkills.getCurrentSkills();
 }
 
 QStringList CloneAttack::getCommonSkillsString()
@@ -67,7 +64,7 @@ QStringList CloneAttack::getSpecialSkillsString()
     return mCurrentSpecialSkills.skillsString();
 }
 
-void CloneAttack::updateGun(CloneWeapon newWeapon)
+void CloneAttack::updateWeapon(CloneWeapon newWeapon)
 {
     mCurrentWeapon = newWeapon;
 }

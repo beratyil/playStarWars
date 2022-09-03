@@ -12,19 +12,19 @@ class SOLDIER_EXPORT Soldier
 public:
     Soldier();
 
-    int getHealth();
+    int getHealth() const;
 
     void setHealth(int health);
 
-    int getArmor();
+    int getArmor() const;
 
     void setArmor(int armor);
 
-    QString getLifeForm();
+    QString getLifeForm() const;
 
     void setLifeForm(QString lifeForm);
 
-    QString getSoldierType();
+    QString getSoldierType() const;
 
     void setSoldierType(QString soldierType);
 
