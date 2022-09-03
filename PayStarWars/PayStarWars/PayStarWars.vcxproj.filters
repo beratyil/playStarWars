@@ -24,9 +24,6 @@
     <Filter Include="Widgets">
       <UniqueIdentifier>{b3ae667d-d4b6-47b9-98c4-13d317ee5d0d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\CharacterInformation">
-      <UniqueIdentifier>{694bab1c-eb43-426b-9ad3-097e5a29fa2c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="CharacterInformation">
       <UniqueIdentifier>{80cd442e-860d-4900-bc1b-5ca7e776def9}</UniqueIdentifier>
     </Filter>

@@ -14,13 +14,16 @@ PlayStarWars::PlayStarWars(QWidget *parent)
     
     connect(ui.loadGameButton, SIGNAL(toggled()), this, SLOT(exit()));
 
-    QIcon iconNewGame(":\PlayStarWars\\Resources\\Menu\\playButton.png");
+    QIcon iconNewGame(":\\PlayStarWars\\Resources\\Menu\\playButton.png");
     ui.newGameButton->setIcon(iconNewGame);
 
-    QIcon iconExit(":\PlayStarWars\\Resources\\Menu\\exitButton.png");
+    QIcon iconLoadGame(":\\PlayStarWars\\Resources\\Menu\\playButton.png");
+    ui.loadGameButton->setIcon(iconLoadGame);
+
+    QIcon iconExit(":\\PlayStarWars\\Resources\\Menu\\exitButton.png");
     ui.exitButton->setIcon(iconExit);
 
-    QPixmap pixmapLogo(":\PlayStarWars\\Resources\\Menu\\StarWars.png");
+    QPixmap pixmapLogo(":\\PlayStarWars\\Resources\\Menu\\StarWars.png");
     ui.backGround->setPixmap(pixmapLogo);
 }
 

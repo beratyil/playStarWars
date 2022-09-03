@@ -45,9 +45,9 @@ public:
 
     QStringList getSpecialSkillsString();
 
-protected:
-    qint16 attack(CloneWeapon weapon);
+    bool addSkill(skillType skillType, qint16 skill);
 
+protected:
     qint16 attack(CloneCommonSkill::CommonSkill commonSkill);
 
     qint16 attack(CloneSpecialSkill::Equipment specialSkill);

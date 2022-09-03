@@ -23,6 +23,42 @@ namespace SoldierSpace
 		qint16 mCurrentDamage;
 	};
 
+	/* @todo: Abstract Weapon Class will be inherited to DroidWeapn and CloneWeapon */
+	class AbstractWeapon
+	{
+	public:
+
+		enum class Weapon {};
+
+		enum class Range {
+			LONG,
+			SHORT
+		};
+
+		AbstractWeapon() = default;
+		AbstractWeapon(Weapon newWeapon, Range range);
+
+		~AbstractWeapon();
+
+		void setWeapon(Weapon newWeapon);
+		Weapon getWeapon();
+
+		QString WeaponString();
+
+		qint16 getWeaponDamage();
+
+		bool isLongRange();
+
+		void setRange(Range range);
+
+	private:
+		Weapon mWeapon;
+		Damage mWeaponDamage;
+		Range mRange;
+
+		QMap<Weapon, qint16> mWeaponDamageLut;
+	};
+
 	class CloneWeapon
 	{
 	public:
@@ -70,11 +106,10 @@ namespace SoldierSpace
 
 	};
 
-	class CloneCommonSkill
+	class AbstractCommonSkill
 	{
 
 	public:
-		typedef qint16(CloneCommonSkill::* SkillFunction)();
 
 		enum class CommonSkill {
 			WeaponStrike,
@@ -83,15 +118,15 @@ namespace SoldierSpace
 			StrongSwing, //Melee weapon
 		};
 
-		CloneCommonSkill() = default;
-		CloneCommonSkill(CloneWeapon newWeapon, qint16 newLevel);
+		AbstractCommonSkill() = default;
+		AbstractCommonSkill(qint16 newLevel);
 
-		~CloneCommonSkill();
+		~AbstractCommonSkill();
 
 		/*
 		Attack with selected skill
 		*/
-		qint16 attack(CommonSkill skill);
+		virtual qint16 attack(CommonSkill skill) = 0;
 
 		/*
 		Attack with selected skill
@@ -103,19 +138,18 @@ namespace SoldierSpace
 		*/
 		void updateSkillModifiers();
 
-		void setWeapon(CloneWeapon newWeapon);
+		virtual void setWeapon(void* weapon) = 0;
 
 		void setCurrentLevel(qint16 level);
 
 		QVector<CommonSkill> getCurrentSkills(); // @note: getSkill map as function pointers
-		
+
 		// @note: this functions will be used after level up and new skill unlocked
-		void addSkill(CloneCommonSkill::CommonSkill newSkillName);
+		void addSkill(AbstractCommonSkill::CommonSkill newSkillName);
 
 		QStringList skillsString();
 
-	private:
-		CloneWeapon mWeapon;
+	protected:
 		qint16 mCurrentCharacterLevel;
 
 		QMap<CommonSkill, qint16> mSkillDamageLut = {
@@ -133,6 +167,38 @@ namespace SoldierSpace
 		};
 
 		QVector<CommonSkill> mCurrentSkills;
+	};
+
+	class CloneCommonSkill : public AbstractCommonSkill
+	{
+
+	public:
+
+		CloneCommonSkill() = default;
+		CloneCommonSkill(CloneWeapon newWeapon, qint16 newLevel);
+
+		~CloneCommonSkill();
+
+		/*
+		Attack with selected skill
+		*/
+		qint16 attack(CommonSkill skill) override;
+
+		/*
+		Attack with selected skill
+		*/
+		//qint16 closeRangeAttack(CommonSkill skill);
+
+		/*
+		* Update modifiers
+		*/
+		void updateSkillModifiers();
+
+		void setWeapon(void* weapon) override;
+
+	private:
+		CloneWeapon* mWeapon;
+		
 	};
 
 
@@ -264,6 +330,32 @@ namespace SoldierSpace
 			{Weapon::ELECTROSTAFF, 7},
 		};
 
+	};
+
+	class DroidCommonSkill : public AbstractCommonSkill
+	{
+
+	public:
+		typedef qint16(CloneCommonSkill::* SkillFunction)();
+
+		DroidCommonSkill() = default;
+		DroidCommonSkill(DroidWeapon newWeapon, qint16 newLevel);
+
+		~DroidCommonSkill();
+
+		/*
+		Attack with selected skill
+		*/
+		qint16 attack(CommonSkill skill) override;
+
+		void updateSkillModifiers();
+
+		void setWeapon(void* weapon) override;
+
+
+	private:
+		DroidWeapon* mWeapon;
+		
 	};
 
 

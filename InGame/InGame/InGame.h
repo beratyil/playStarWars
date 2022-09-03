@@ -18,4 +18,8 @@ public:
 
 private:
     Ui::InGameClass *ui;
+
+    /* @note: call for testing Game Screen Features */
+    void InGame::exampleInGameScreen();
+
 };
