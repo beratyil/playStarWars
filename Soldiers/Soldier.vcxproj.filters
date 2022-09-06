@@ -47,6 +47,9 @@
     <ClInclude Include="Attack\CloneAttack.h">
       <Filter>Attack</Filter>
     </ClInclude>
+    <ClInclude Include="Attack\DroidAttack.h">
+      <Filter>Attack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Soldier\CloneSoldier.cpp">
@@ -56,6 +59,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Attack\CloneAttack.cpp">
+      <Filter>Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack\DroidAttack.cpp">
       <Filter>Attack</Filter>
     </ClCompile>
   </ItemGroup>

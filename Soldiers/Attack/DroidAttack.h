@@ -10,50 +10,51 @@
 
 #include "SoldierUtilities.h"
 
-using SoldierSpace::CloneCommonSkill;
-using SoldierSpace::CloneSpecialSkill;
-using SoldierSpace::CloneWeapon;
+using SoldierSpace::DroidCommonSkill;
+using SoldierSpace::DroidSpecialSkill;
+using SoldierSpace::DroidWeapon;
 
 //CloneAttack Class
 //Wrapps every attack operation
 //Common Skills, Special Skills or Normal Attack
-class CloneAttack
+class DroidAttack
 {
 
 public:
 
-    typedef enum skillType{
+    typedef enum skillType {
         commonSkill,
         specialSkill
     };
 
-    CloneAttack() = default;
+    DroidAttack() = default;
 
-    CloneAttack(CloneWeapon newWeapon);
-    ~CloneAttack();
+    DroidAttack(DroidWeapon::Weapon newWeapon, DroidWeapon::Range range);
+    DroidAttack(DroidWeapon newWeapon);
+    ~DroidAttack();
 
-    void updateGun(CloneWeapon newWeapon);
+    void updateWeapon(DroidWeapon newWeapon);
 
-    CloneWeapon getWeapon();
+    DroidWeapon getWeapon();
 
-    QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> getCommonSkills();
+    QVector<DroidCommonSkill::CommonSkill> getCommonSkills();
 
-    QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> getSpecialSkills();
+    QVector<DroidSpecialSkill::Equipment> getSpecialSkills();
 
     QStringList getCommonSkillsString();
 
     QStringList getSpecialSkillsString();
 
+    bool addSkill(skillType skillType, qint16 skill);
+
 protected:
-    qint16 attack(CloneWeapon weapon);
+    qint16 attack(DroidCommonSkill::CommonSkill commonSkill);
 
-    qint16 attack(CloneCommonSkill::CommonSkill commonSkill);
+    qint16 attack(DroidSpecialSkill::Equipment specialSkill);
 
-    qint16 attack(CloneSpecialSkill::SpecialSkill specialSkill);
+    DroidWeapon mCurrentWeapon;
+    DroidCommonSkill mCurrentCommonSkills;
+    DroidSpecialSkill mCurrentSpecialSkills;
 
-    CloneWeapon mCurrentWeapon;
-    CloneCommonSkill mCurrentCommonSkills;
-    CloneSpecialSkill mCurrentSpecialSkills;
 
-    
 };

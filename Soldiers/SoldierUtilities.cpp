@@ -8,6 +8,7 @@ typedef SoldierSpace::AbstractCommonSkill AbstractCommonSkill;
 typedef SoldierSpace::CloneCommonSkill CloneCommonSkill;
 typedef SoldierSpace::DroidCommonSkill DroidCommonSkill;
 typedef SoldierSpace::CloneSpecialSkill CloneSpecialSkill;
+typedef SoldierSpace::DroidSpecialSkill DroidSpecialSkill;
 
 /* Damage Definitions */
 Damage::Damage()
@@ -311,6 +312,7 @@ void DroidCommonSkill::setWeapon(void* weapon)
 /* CloneSpecialSkill Definitions */
 
 CloneSpecialSkill::CloneSpecialSkill(Equipment equipment)
+	: ISpecialSkill()
 {
 	mCurrentSkills.append(equipment);
 }
@@ -324,12 +326,19 @@ QVector<CloneSpecialSkill::Equipment> CloneSpecialSkill::getCurrentSkills()
 	return mCurrentSkills;
 }
 
+void CloneSpecialSkill::addSkill(qint16 newSkillName)
+{
+	Equipment equip = static_cast<Equipment>(newSkillName);
+
+	mCurrentSkills.append(equip);
+}
+
 void CloneSpecialSkill::addSkill(CloneSpecialSkill::Equipment newSkillName)
 {
 	mCurrentSkills.append(newSkillName);
 }
 
-QStringList SoldierSpace::CloneSpecialSkill::skillsString()
+QStringList CloneSpecialSkill::skillsString()
 {
 	qint16 skillNumber = mSkillName.size();
 
@@ -345,7 +354,22 @@ QStringList SoldierSpace::CloneSpecialSkill::skillsString()
 	return skillList;
 }
 
-qint16 CloneSpecialSkill::equipmentAttack(Equipment equipment)
+qint16 CloneSpecialSkill::equipmentAttack(qint16 equipment)
+{
+	Equipment equip = static_cast<Equipment>(equipment);
+
+	qint16 damage = 0;
+
+	/* @note: take damage directly from Skill Damage Look Up Table */
+
+	damage = mSkillDamageLut[equip];
+
+	/* @note: take weapon damage */
+
+	return damage;
+}
+
+qint16 CloneSpecialSkill::equipmentAttack(CloneSpecialSkill::Equipment equipment)
 {
 	qint16 damage = 0;
 
@@ -356,6 +380,115 @@ qint16 CloneSpecialSkill::equipmentAttack(Equipment equipment)
 	/* @note: take weapon damage */
 
 	return damage;
+}
+
+bool CloneSpecialSkill::setEquipmentDamage(qint16 equipment, qint16 newDamage)
+{
+	Equipment equip = static_cast<Equipment>(equipment);
+	bool isFound = false;
+
+	for (auto it = mCurrentSkills.begin(); mCurrentSkills.end(); it++) {
+		if (*it == equip) {
+			isFound = true;
+		}
+	}
+
+	if (isFound) {
+		mSkillDamageLut[equip] = newDamage;
+	}
+
+	return isFound;
+}
+
+/* DroidSpecialSkill Definitions */
+
+DroidSpecialSkill::DroidSpecialSkill(Equipment equipment)
+	: ISpecialSkill()
+{
+	mCurrentSkills.append(equipment);
+}
+
+DroidSpecialSkill::~DroidSpecialSkill()
+{
+}
+
+QVector<DroidSpecialSkill::Equipment> DroidSpecialSkill::getCurrentSkills()
+{
+	return mCurrentSkills;
+}
+
+void DroidSpecialSkill::addSkill(qint16 newSkillName)
+{
+	Equipment equip = static_cast<Equipment>(newSkillName);
+
+	mCurrentSkills.append(equip);
+}
+
+void DroidSpecialSkill::addSkill(DroidSpecialSkill::Equipment newSkillName)
+{
+	mCurrentSkills.append(newSkillName);
+}
+
+QStringList DroidSpecialSkill::skillsString()
+{
+	qint16 skillNumber = mSkillName.size();
+
+	QStringList skillList = QStringList();
+
+	for (auto it = mSkillName.begin(); it != mSkillName.end(); it++) {
+
+		QString skillString = it.value();
+
+		skillList.append(skillString);
+	}
+
+	return skillList;
+}
+
+qint16 DroidSpecialSkill::equipmentAttack(qint16 equipment)
+{
+	Equipment equip = static_cast<Equipment>(equipment);
+
+	qint16 damage = 0;
+
+	/* @note: take damage directly from Skill Damage Look Up Table */
+
+	damage = mSkillDamageLut[equip];
+
+	/* @note: take weapon damage */
+
+	return damage;
+}
+
+qint16 DroidSpecialSkill::equipmentAttack(DroidSpecialSkill::Equipment equipment)
+{
+	qint16 damage = 0;
+
+	/* @note: take damage directly from Skill Damage Look Up Table */
+
+	damage = mSkillDamageLut[equipment];
+
+	/* @note: take weapon damage */
+
+	return damage;
+}
+
+bool DroidSpecialSkill::setEquipmentDamage(qint16 equipment, qint16 newDamage)
+{
+	Equipment equip = static_cast<Equipment>(equipment);
+	bool isFound = false;
+
+	for (auto it = mCurrentSkills.begin(); mCurrentSkills.end(); it++) {
+		if (*it == equip) {
+			isFound = true;
+		}
+	}
+
+	if (isFound) {
+		mSkillDamageLut[equip] = newDamage;
+	}
+
+	return isFound;
 }
 
 /* DroidWeapon Definitions */

@@ -1,73 +1,90 @@
-#include "CloneAttack.h"
+#include "DroidAttack.h"
 
-CloneAttack::CloneAttack(CloneWeapon newWeapon)
+DroidAttack::DroidAttack(DroidWeapon::Weapon newWeapon, DroidWeapon::Range range)
+{
+    mCurrentWeapon.setWeapon(newWeapon);
+    mCurrentWeapon.setRange(range);
+}
+
+
+DroidAttack::DroidAttack(DroidWeapon newWeapon)
 {
     mCurrentWeapon = newWeapon;
 }
 
-CloneAttack::~CloneAttack()
+DroidAttack::~DroidAttack()
 {
 }
 
-qint16 CloneAttack::attack(CloneWeapon weapon)
-{
-    return mCurrentWeapon.getWeaponDamage();
-}
-
-qint16 CloneAttack::attack(CloneCommonSkill::CommonSkill commonSkill)
+qint16 DroidAttack::attack(DroidCommonSkill::CommonSkill commonSkill)
 {
     quint16 returnDamage = 0;
 
-    QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> skills = mCurrentCommonSkills.getSkills();
-    auto skill = skills.find(commonSkill);
-
-    CloneCommonSkill::SkillFunction function = skill.value();
-
-    //returnDamage = function();
+    returnDamage = mCurrentCommonSkills.attack(commonSkill);
 
     return returnDamage;
 }
 
-qint16 CloneAttack::attack(CloneSpecialSkill::SpecialSkill specialSkill)
+qint16 DroidAttack::attack(DroidSpecialSkill::Equipment specialSkill)
 {
     quint16 returnDamage = 0;
 
-    QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> skills = mCurrentSpecialSkills.getSkills();
-    auto skill = skills.find(specialSkill);
-    
-    CloneSpecialSkill::SkillFunction function = skill.value();
-    
-    //returnDamage = function();
-    
+    returnDamage = mCurrentSpecialSkills.equipmentAttack(specialSkill);
+
     return returnDamage;
 }
 
-CloneWeapon CloneAttack::getWeapon()
+DroidWeapon DroidAttack::getWeapon()
 {
     return mCurrentWeapon;
 }
 
-QMap<CloneCommonSkill::CommonSkill, CloneCommonSkill::SkillFunction> CloneAttack::getCommonSkills()
+QVector<DroidCommonSkill::CommonSkill> DroidAttack::getCommonSkills()
 {
-    return mCurrentCommonSkills.getSkills();
+    return mCurrentCommonSkills.getCurrentSkills();
 }
 
-QMap<CloneSpecialSkill::SpecialSkill, CloneSpecialSkill::SkillFunction> CloneAttack::getSpecialSkills()
+QVector<DroidSpecialSkill::Equipment> DroidAttack::getSpecialSkills()
 {
-    return mCurrentSpecialSkills.getSkills();
+    return mCurrentSpecialSkills.getCurrentSkills();
 }
 
-QStringList CloneAttack::getCommonSkillsString()
+QStringList DroidAttack::getCommonSkillsString()
 {
     return mCurrentCommonSkills.skillsString();
 }
 
-QStringList CloneAttack::getSpecialSkillsString()
+QStringList DroidAttack::getSpecialSkillsString()
 {
     return mCurrentSpecialSkills.skillsString();
 }
 
-void CloneAttack::updateGun(CloneWeapon newWeapon)
+void DroidAttack::updateWeapon(DroidWeapon newWeapon)
 {
     mCurrentWeapon = newWeapon;
 }
+
+bool DroidAttack::addSkill(skillType skillType, qint16 skill)
+{
+    bool isAdded = true;
+
+    switch (skillType)
+    {
+    case DroidAttack::commonSkill: {
+        DroidCommonSkill::CommonSkill newSkill = static_cast<DroidCommonSkill::CommonSkill>(skill);
+        mCurrentCommonSkills.addSkill(newSkill);
+        break;
+    }
+    case DroidAttack::specialSkill: {
+        DroidSpecialSkill::Equipment newSkill = static_cast<DroidSpecialSkill::Equipment>(skill);
+        mCurrentSpecialSkills.addSkill(newSkill);
+        break;
+    }
+    default:
+        isAdded = false;
+        break;
+    }
+
+    return isAdded;
+}
+

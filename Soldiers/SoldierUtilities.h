@@ -26,7 +26,6 @@ namespace SoldierSpace
 	class AbstractWeapon
 	{
 	public:
-
 		enum class Range {
 			LONG,
 			SHORT
@@ -36,7 +35,6 @@ namespace SoldierSpace
 		AbstractWeapon(Range range);
 
 		~AbstractWeapon();
-
 
 		virtual QString WeaponString() = 0;
 
@@ -49,7 +47,6 @@ namespace SoldierSpace
 	protected:
 		Range mRange;
 		Damage mWeaponDamage;
-
 	};
 
 	class CloneWeapon : public AbstractWeapon
@@ -77,6 +74,7 @@ namespace SoldierSpace
 
 	private:
 		Weapon mWeapon;
+
 		QMap<Weapon, qint16> mWeaponDamageLut{
 			{Weapon::DC_15A_CARBINE, 2},
 			{Weapon::DC_15A_RIFLE, 3},
@@ -149,7 +147,7 @@ namespace SoldierSpace
 		/*
 		* Update modifiers
 		*/
-		void updateSkillModifiers();
+		virtual void updateSkillModifiers() = 0;
 
 		virtual void setWeapon(void* weapon) = 0;
 
@@ -198,14 +196,9 @@ namespace SoldierSpace
 		qint16 attack(CommonSkill skill) override;
 
 		/*
-		Attack with selected skill
-		*/
-		//qint16 closeRangeAttack(CommonSkill skill);
-
-		/*
 		* Update modifiers
 		*/
-		void updateSkillModifiers();
+		void updateSkillModifiers() override;
 
 		void setWeapon(void* weapon) override;
 
@@ -214,8 +207,63 @@ namespace SoldierSpace
 		
 	};
 
+	class DroidCommonSkill : public AbstractCommonSkill
+	{
 
-	class CloneSpecialSkill
+	public:
+		typedef qint16(CloneCommonSkill::* SkillFunction)();
+
+		DroidCommonSkill() = default;
+		DroidCommonSkill(DroidWeapon newWeapon, qint16 newLevel);
+
+		~DroidCommonSkill();
+
+		/*
+		Attack with selected skill
+		*/
+		qint16 attack(CommonSkill skill) override;
+
+		void updateSkillModifiers() override;
+
+		void setWeapon(void* weapon) override;
+
+
+	private:
+		DroidWeapon* mWeapon;
+
+	};
+
+	class ISpecialSkill
+	{
+	public:
+
+		ISpecialSkill() = default;
+
+		virtual ~ISpecialSkill() {};
+
+		/*
+		Attack with selected equipment
+		if no equipment, return -1
+		*/
+		virtual qint16 equipmentAttack(qint16 equipment) = 0;
+
+		/*
+		Update damage of selected equipment
+		if selected equipment not exists return false, otherwise true
+		*/
+		virtual bool setEquipmentDamage(qint16 equipment, qint16 newDamage) = 0;
+
+		// @note: this functions will be used after level up and new skill unlocked
+		virtual void addSkill(qint16 newSkillName) = 0;
+
+		virtual QStringList skillsString() = 0;
+
+
+	private:
+
+	};
+
+	class CloneSpecialSkill : public ISpecialSkill
 	{
 	public:
 		
@@ -242,8 +290,6 @@ namespace SoldierSpace
 			RocketLauncher_Level3,
 		};
 
-		typedef qint16(CloneSpecialSkill::* SkillFunction)();
-
 		CloneSpecialSkill() = default;
 		CloneSpecialSkill(Equipment equipment);
 		
@@ -253,24 +299,29 @@ namespace SoldierSpace
 		Attack with selected equipment
 		if no equipment, return -1
 		*/
+		qint16 equipmentAttack(qint16 equipment) override;
+		
 		qint16 equipmentAttack(Equipment equipment);
 
 		/*
 		Update damage of selected equipment
 		if selected equipment not exists return false, otherwise true
 		*/
-		bool setEquipmentDamage(Equipment equipment, qint16 newDamage);
+		bool setEquipmentDamage(qint16 equipment, qint16 newDamage) override;
 
 		// @note: getSkill map as function pointers
 		QVector<Equipment> getCurrentSkills();
 
 		// @note: this functions will be used after level up and new skill unlocked
 		void addSkill(CloneSpecialSkill::Equipment newSkillName);
+		
+		void addSkill(qint16 newSkillName) override;
 
-		QStringList skillsString();
+		QStringList skillsString() override;
 
 
 	private:
+
 		QVector<Equipment> mCurrentSkills;
 		
 		QMap<Equipment, qint16> mSkillDamageLut = {
@@ -305,31 +356,100 @@ namespace SoldierSpace
 
 	};
 
-	class DroidCommonSkill : public AbstractCommonSkill
+	class DroidSpecialSkill : public ISpecialSkill
 	{
-
 	public:
-		typedef qint16(CloneCommonSkill::* SkillFunction)();
-
-		DroidCommonSkill() = default;
-		DroidCommonSkill(DroidWeapon newWeapon, qint16 newLevel);
-
-		~DroidCommonSkill();
 
 		/*
-		Attack with selected skill
+		* @note: Four Different Type of Equipment
+		* 1)Hand Grenade
+		* 2)MiniGun like blaster
+		* 3)Granade Launcher
+		* 4)Rocket Launcher
+		* Every equipment has three levels. Each level will have specific identifier
 		*/
-		qint16 attack(CommonSkill skill) override;
+		enum class Equipment {
+			HandGrenade_Level1,
+			HandGrenade_Level2,
+			HandGrenade_Level3,
+			MiniBlasterGun_Level1,
+			MiniBlasterGun_Level2,
+			MiniBlasterGun_Level3,
+			WristRockect_Level1,
+			WristRockect_Level2,
+			WristRockect_Level3,
+			RocketLauncher_Level1,
+			RocketLauncher_Level2,
+			RocketLauncher_Level3,
+		};
 
-		void updateSkillModifiers();
+		DroidSpecialSkill() = default;
+		DroidSpecialSkill(Equipment equipment);
 
-		void setWeapon(void* weapon) override;
+		~DroidSpecialSkill();
+
+		/*
+		Attack with selected equipment
+		if no equipment, return -1
+		*/
+		qint16 equipmentAttack(qint16 equipment) override;
+
+		qint16 equipmentAttack(Equipment equipment);
+
+		/*
+		Update damage of selected equipment
+		if selected equipment not exists return false, otherwise true
+		*/
+		bool setEquipmentDamage(qint16 equipment, qint16 newDamage) override;
+
+		// @note: getSkill map as function pointers
+		QVector<Equipment> getCurrentSkills();
+
+		// @note: this functions will be used after level up and new skill unlocked
+		void addSkill(DroidSpecialSkill::Equipment newSkillName);
+
+		void addSkill(qint16 newSkillName) override;
+
+		QStringList skillsString() override;
 
 
 	private:
-		DroidWeapon* mWeapon;
 		
+		QVector<Equipment> mCurrentSkills;
+
+		QMap<Equipment, qint16> mSkillDamageLut = {
+			{Equipment::HandGrenade_Level1, 5},
+			{Equipment::HandGrenade_Level2, 10},
+			{Equipment::HandGrenade_Level3, 20},
+			{Equipment::MiniBlasterGun_Level1, 6},
+			{Equipment::MiniBlasterGun_Level2, 12},
+			{Equipment::MiniBlasterGun_Level3, 24},
+			{Equipment::WristRockect_Level1, 7},
+			{Equipment::WristRockect_Level2, 14},
+			{Equipment::WristRockect_Level3, 28},
+			{Equipment::RocketLauncher_Level1, 10},
+			{Equipment::RocketLauncher_Level2, 20},
+			{Equipment::RocketLauncher_Level3, 40},
+		};
+
+		QMap<Equipment, QString> mSkillName{
+			{Equipment::HandGrenade_Level1, "Hand Grenade Level 1"},
+			{Equipment::HandGrenade_Level2, "Hand Grenade Level 2"},
+			{Equipment::HandGrenade_Level3, "Hand Grenade Level 3"},
+			{Equipment::MiniBlasterGun_Level1, "Mini Blaster Gun Level 1"},
+			{Equipment::MiniBlasterGun_Level2, "Mini Blaster Gun Level 2"},
+			{Equipment::MiniBlasterGun_Level3, "Mini Blaster Gun Level 3"},
+			{Equipment::WristRockect_Level1, "Grenade Launcher Level 1"},
+			{Equipment::WristRockect_Level2, "Grenade Launcher Level 2"},
+			{Equipment::WristRockect_Level3, "Grenade Launcher Level 3"},
+			{Equipment::RocketLauncher_Level1, "Rocket Launcher Level 1"},
+			{Equipment::RocketLauncher_Level2, "Rocket Launcher Level 2"},
+			{Equipment::RocketLauncher_Level3, "Rocket Launcher Level 3"}
+		};
+
 	};
+
+	
 
 
 };
