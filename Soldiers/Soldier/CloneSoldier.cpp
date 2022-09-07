@@ -2,9 +2,11 @@
 
 // @note: CloneAttack class will be implemented
 
-Clone::Clone(qint16 health, qint16 armor, QString lifeForm, QString soldierType, CloneWeapon::Weapon weapon, CloneWeapon::Range range)
+Clone::Clone(qint16 health, qint16 armor, QString lifeForm, SoldierType soldierType, CloneWeapon::Weapon weapon, CloneWeapon::Range range)
     : CloneAttack(weapon, range)
 {
+    setType(Type::Clone);
+
     setHealth(health);
     setArmor(armor);
     setLifeForm(lifeForm);

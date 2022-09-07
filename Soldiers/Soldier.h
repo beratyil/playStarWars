@@ -10,6 +10,35 @@
 class SOLDIER_EXPORT Soldier
 {
 public:
+
+    enum class Type {
+        Uninitalized,
+        Droid,
+        Clone,
+        Jedi,
+        Sith
+    };
+
+    enum class SoldierType {
+        Uninitalized = -1,
+        Admiral = 100,
+        BattleDroid,
+        B2,
+        Commando,
+        Droideka,
+        Grevious_Guard,
+        IG_11,
+        Assault = 200,
+        Heavy_Assault,
+        Sniper,
+        Commander,
+        Jedi_Padawan = 300,
+        Jedi_Knight,
+        Jedi_Master,
+        Sith_Apprentice = 400,
+        Sith_Master
+    };
+
     Soldier();
 
     int getHealth() const;
@@ -20,21 +49,31 @@ public:
 
     void setArmor(int armor);
 
+    Type getType() const;
+
     QString getLifeForm() const;
 
     void setLifeForm(QString lifeForm);
 
-    QString getSoldierType() const;
+    SoldierType getSoldierType() const;
 
-    void setSoldierType(QString soldierType);
+    bool setSoldierType(SoldierType soldierType);
 
     virtual qint16 attack(qint16 abilityType, qint16 attackNumber) = 0;
+
+protected:
+    void setType(Type type);
 
 private:
     qint16 mHealth;
     qint16 mArmor;
 
     QString mLifeForm;
-    QString mSoldierType;
+
+    Type mType;
+    QString mTypeStr;
+    
+    SoldierType mSoldierType;
+    QString mSoldierTypeStr;
 
 };

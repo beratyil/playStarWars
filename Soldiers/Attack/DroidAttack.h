@@ -1,10 +1,4 @@
-// @Explaining: This class for every Clone Attack
-// Simple Attack
-//      hand to hand combat
-//      blaster attack
-// Special Attack
-//      handgranade
-//      headshot
+// @Explaining: This class for every Droid Attack
 
 #pragma once
 
@@ -14,9 +8,9 @@ using SoldierSpace::DroidCommonSkill;
 using SoldierSpace::DroidSpecialSkill;
 using SoldierSpace::DroidWeapon;
 
-//CloneAttack Class
+//DroidAttack Class
 //Wrapps every attack operation
-//Common Skills, Special Skills or Normal Attack
+//Common Skills, Special Skills
 class DroidAttack
 {
 

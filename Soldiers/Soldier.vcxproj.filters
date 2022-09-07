@@ -50,6 +50,9 @@
     <ClInclude Include="Attack\DroidAttack.h">
       <Filter>Attack</Filter>
     </ClInclude>
+    <ClInclude Include="Soldier\DroidSoldier.h">
+      <Filter>Soldier</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Soldier\CloneSoldier.cpp">
@@ -63,6 +66,9 @@
     </ClCompile>
     <ClCompile Include="Attack\DroidAttack.cpp">
       <Filter>Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Soldier\DroidSoldier.cpp">
+      <Filter>Soldier</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

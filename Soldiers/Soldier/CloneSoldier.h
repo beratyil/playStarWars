@@ -12,14 +12,18 @@ class Clone : public Soldier, public CloneAttack
 public:
     Clone() = default;
 
-    Clone(qint16 health, qint16 armor, QString lifeForm, QString soldierType, CloneWeapon::Weapon weapon, CloneWeapon::Range range = CloneWeapon::Range::SHORT);
+    Clone(qint16 health, qint16 armor, QString lifeForm, SoldierType type, CloneWeapon::Weapon weapon, CloneWeapon::Range range = CloneWeapon::Range::SHORT);
 
     Clone operator=(const Clone& clone)
     {
         qint16 health = clone.getHealth();
         qint16 armor = clone.getArmor();
         QString lifeForm = clone.getLifeForm();
-        QString soldierType = clone.getSoldierType();
+        SoldierType soldierType = clone.getSoldierType();
+        
+        Type type = clone.getType();
+
+        setType(type);
 
         setHealth(health);
         setArmor(armor);

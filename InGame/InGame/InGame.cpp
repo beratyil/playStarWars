@@ -33,7 +33,7 @@ void InGame::exampleInGameScreen()
     QPixmap heroImagePixmap = QPixmap::fromImage(imageHero);
     ui->hero->setPixmap(heroImagePixmap);
 
-    Soldier* hero = new Clone(10, 10, "Human", "Clone Commando", CloneWeapon::Weapon::DC_15A_CARBINE);
+    Soldier* hero = new Clone(10, 10, "Human", Soldier::SoldierType::Assault, CloneWeapon::Weapon::DC_15A_CARBINE);
 
     CloneAttack* attackInterface = dynamic_cast<CloneAttack*>(hero);
     attackInterface->addSkill(CloneAttack::skillType::commonSkill, 0);
