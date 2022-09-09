@@ -94,11 +94,13 @@
   <ItemGroup>
     <ClCompile Include="Attack\CloneAttack.cpp" />
     <ClCompile Include="Attack\DroidAttack.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="Soldier\CloneSoldier.cpp" />
     <ClCompile Include="SoldierUtilities.cpp" />
     <ClCompile Include="Soldier\DroidSoldier.cpp" />
     <ClInclude Include="Attack\CloneAttack.h" />
     <ClInclude Include="Attack\DroidAttack.h" />
+    <ClInclude Include="Health.h" />
     <ClInclude Include="Soldier\CloneSoldier.h" />
     <ClInclude Include="Soldier\DroidSoldier.h" />
     <ClInclude Include="soldier_global.h" />
