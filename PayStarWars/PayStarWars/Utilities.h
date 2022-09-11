@@ -37,3 +37,19 @@ protected:
 private:
     virtual void setSoldierAttributes() {};
 };
+
+/*
+* Hide elements going through classes
+*/
+class Collection
+{
+public:
+
+    Collection(Soldier* soldier);
+
+    Soldier* getSoldier();
+
+private:
+    Soldier* mSoldier;
+
+};

@@ -10,6 +10,9 @@ InGame::InGame(EnemyDatabase currentEnemy, QWidget *parent)
 {
     ui->setupUi(this);
 
+    //Q_INIT_RESOURCE(InGame);
+    bool isRegistered = QResource::registerResource("InGame.qrc");
+
     QString enemyImage = currentEnemy.getImageLocation();
 
     QImage imageEnemy(enemyImage);
@@ -29,11 +32,23 @@ InGame::InGame(EnemyDatabase currentEnemy, QWidget *parent)
 void InGame::exampleInGameScreen()
 {
     /* @note: test hero image */
-    QImage imageHero("C:\\Users\\aby_6\\Documents\\Programming\\QT\\StarWarsApp\\InGame\\InGame\\Resources\\Soldiers\\Clones\\CloneCommando.jpg");
-    QPixmap heroImagePixmap = QPixmap::fromImage(imageHero);
-    ui->hero->setPixmap(heroImagePixmap);
+    QString image = ":/Droid_1Level/Resources/Soldiers/Droids/Droideka.png";
 
-    Soldier* hero = new Clone(10, 10, "Human", Soldier::SoldierType::Assault, CloneWeapon::Weapon::DC_15A_CARBINE);
+    QImage imageHero(image);
+    /*QPixmap heroImagePixmap = QPixmap::fromImage(imageHero);
+    ui->hero->setPixmap(heroImagePixmap);*/
+
+    QImage imageEnemy(imageHero);
+    QImage imageEnemyMirrored = imageEnemy.mirrored(true, false);
+
+    QPixmap enemyImagePixmap = QPixmap::fromImage(imageEnemyMirrored);
+
+    const int w = ui->enemy->width();
+    const int h = ui->enemy->height();
+
+    ui->hero->setPixmap(enemyImagePixmap.scaled(w, h, Qt::KeepAspectRatio));
+
+    Soldier* hero = new Clone("Rex", "Human", Soldier::SoldierType::Commander, 10, CloneWeapon::Weapon::DC_15A_CARBINE);
 
     CloneAttack* attackInterface = dynamic_cast<CloneAttack*>(hero);
     attackInterface->addSkill(CloneAttack::skillType::commonSkill, 0);
@@ -59,4 +74,34 @@ void InGame::exampleInGameScreen()
 InGame::~InGame()
 {
     delete ui;
+}
+
+void InGame::gameTurn()
+{
+    QObject* sender = QObject::sender();
+
+    /* @note: get name of the object */
+    QString objectName = sender->objectName();
+
+    if (objectName == "comSkill_1") {
+        //infoScreen = new CloneParatrooper();
+    }
+    else if (objectName == "comSkill_2") {
+        //infoScreen = new CloneHeavyGunner();
+    }
+    else if (objectName == "comSkill_3") {
+        //infoScreen = new CloneSharpShooter();
+    }
+    else if (objectName == "speSkill_1") {
+        //infoScreen = new CloneTrooper();
+    }
+    else if (objectName == "speSkill_1") {
+        //infoScreen = new CloneTrooper();
+    }
+    else if (objectName == "speSkill_1") {
+        //infoScreen = new CloneTrooper();
+    }
+    else {
+
+    }
 }

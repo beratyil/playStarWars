@@ -3,27 +3,17 @@
 typedef Soldier::SoldierType SoldierType;
 typedef Soldier::Type Type;
 
-Soldier::Soldier()
+Soldier::Soldier(QString charName)
     : mLifeForm{}
     , mSoldierType{}
-    , mHealth{0}
-    , mArmor{0}
-{}
-
-int Soldier::getHealth() const {
-    return mHealth;
-}
-
-void Soldier::setHealth(int health) {
-    mHealth = health;
-}
-
-int Soldier::getArmor() const {
-    return mArmor;
-}
-
-void Soldier::setArmor(int armor) {
-    mArmor = armor;
+    , mCharName{}
+{
+    if (charName.isEmpty()) {
+        mCharName = "";
+    }
+    else {
+        mCharName = charName;
+    }
 }
 
 void Soldier::setType(Type type)

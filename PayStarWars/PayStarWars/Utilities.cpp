@@ -60,3 +60,13 @@ void ICharacterInformationScreen::startGame()
     emit openMapSender();
 
 }
+
+Collection::Collection(Soldier* soldier)
+{
+    mSoldier = soldier;
+}
+
+Soldier* Collection::getSoldier()
+{
+    return mSoldier;
+}

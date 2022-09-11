@@ -4,32 +4,31 @@
 #include "qstring.h"
 #include "SoldierUtilities.h"
 #include "Attack/DroidAttack.h"
+#include "Health.h"
 
 using namespace SoldierSpace;
 
-class Droid : public Soldier, public DroidAttack
+class Droid : public Soldier, public DroidAttack, public Health
 {
 public:
 
     Droid() = default;
 
-    Droid(qint16 health, qint16 armor, QString lifeForm, SoldierType soldierType, DroidWeapon::Weapon weapon, DroidWeapon::Range range = DroidWeapon::Range::SHORT);
+    Droid(QString charName, QString lifeForm, SoldierType soldierType, qint16 level, DroidWeapon::Weapon weapon, DroidWeapon::Range range = DroidWeapon::Range::SHORT);
 
     Droid operator=(const Droid& droid)
     {
-        qint16 health = droid.getHealth();
-        qint16 armor = droid.getArmor();
         QString lifeForm = droid.getLifeForm();
         SoldierType soldierType = droid.getSoldierType();
+        qint16 level = droid.getLevel();
 
         Type type = droid.getType();
 
         setType(type);
 
-        setHealth(health);
-        setArmor(armor);
         setLifeForm(lifeForm);
         setSoldierType(soldierType);
+
     }
 
     ~Droid();

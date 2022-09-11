@@ -39,15 +39,7 @@ public:
         Sith_Master
     };
 
-    Soldier();
-
-    int getHealth() const;
-
-    void setHealth(int health);
-
-    int getArmor() const;
-
-    void setArmor(int armor);
+    Soldier(QString charName);
 
     Type getType() const;
 
@@ -65,9 +57,7 @@ protected:
     void setType(Type type);
 
 private:
-    qint16 mHealth;
-    qint16 mArmor;
-
+    QString mCharName;
     QString mLifeForm;
 
     Type mType;

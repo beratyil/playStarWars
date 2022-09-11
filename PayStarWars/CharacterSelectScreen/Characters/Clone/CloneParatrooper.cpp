@@ -18,13 +18,12 @@ CloneParatrooper::~CloneParatrooper()
 
 void CloneParatrooper::setSoldierAttributes()
 {
-    qint16 health = 4;
-    qint16 armor = 1;
+    QString name = "DefaultName";
     QString lifeForm = "Human";
     Clone::SoldierType type = Clone::SoldierType::Assault;
     CloneWeapon::Weapon weapon = CloneWeapon::Weapon::DC_15A_CARBINE;
 
-    mSoldier = new Clone(health, armor, lifeForm, type, weapon);
+    mSoldier = new Clone(name, lifeForm, type, 1, weapon);
 }
 
 void CloneParatrooper::prepAttributes(QStringList& attr)

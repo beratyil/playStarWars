@@ -35,7 +35,7 @@ Map::~Map()
 
 void Map::enterFight()
 {
-	/* Learn planet number */
+	/* Default Hero */
 
 	/* According to planet number, call necessary enemy from enemy database */
 	EnemyDatabase currentEnemy = mEnemies[mCurrentPlanet - 1];
@@ -116,7 +116,8 @@ void Map::createEnemyDatabase()
 		QString index = column.at(0);
 		QString image = column.at(1);
 		QString soldierType = column.at(2);
-		QString isMirrored = column.at(3);
+		QString level = column.at(3);
+		QString isMirrored = column.at(4);
 
 		bool mirroringNeeded = true;
 
@@ -125,7 +126,7 @@ void Map::createEnemyDatabase()
 			mirroringNeeded = false;
 		}
 
-		EnemyDatabase newEnemy(index.toShort(), image, soldierType, mirroringNeeded);
+		EnemyDatabase newEnemy((unsigned)index.toShort(), image, soldierType, (signed)level.toShort(), mirroringNeeded);
 
 		mEnemies.append(newEnemy);
 	}

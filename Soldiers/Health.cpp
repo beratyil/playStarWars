@@ -3,16 +3,26 @@
 Health::Health(qint16 level, SoldierType soldierType)
 {
 	mLevel = level;
+	mSoldierType = soldierType;
+
+	updateMaxDefense();
 }
 
 void Health::incrementLevel()
 {
 	mLevel++;
+
+	updateMaxDefense();
 }
 
-quint16 Health::getLevel()
+quint16 Health::getLevel() const
 {
 	return mLevel;
+}
+
+void Health::setLevel(qint16 level)
+{
+	mLevel = level;
 }
 
 void Health::setCurrentHealth(qint16 newHealth)
@@ -20,7 +30,7 @@ void Health::setCurrentHealth(qint16 newHealth)
 	mCurrentHealth = newHealth;
 }
 
-qint16 Health::getCurrentHealth()
+qint16 Health::getCurrentHealth() const
 {
 	return mCurrentHealth;
 }
@@ -30,7 +40,7 @@ void Health::setCurrentArmor(qint16 newArmor)
 	mCurrentArmor = newArmor;
 }
 
-qint16 Health::getCurrentArmor()
+qint16 Health::getCurrentArmor() const
 {
 	return mCurrentArmor;
 }
@@ -40,7 +50,7 @@ void Health::setMaxHealth(qint16 newHealth)
 	mMaxHealth = newHealth;
 }
 
-qint16 Health::getMaxHealth()
+qint16 Health::getMaxHealth() const
 {
 	return mMaxHealth;
 }
@@ -50,47 +60,32 @@ void Health::setMaxArmor(qint16 newArmor)
 	mMaxArmor = newArmor;
 }
 
-qint16 Health::getMaxAmor()
+qint16 Health::getMaxAmor() const
 {
 	return mMaxArmor;
 }
 
-qint16 Health::getHealthModifier()
+void Health::updateMaxDefense()
 {
 	qint16 health = 0;
 	qint16 armor = 0;
 	qint16 coeffHealth = 0;
 	qint16 coeffArmor = 0;
 
+	QMap<qint16, qint16> lut = coeffLut[mSoldierType];
 
-	switch (mSoldierType) {
-		case(SoldierType::Admiral) : {
+	auto it = lut.begin();
 
-			coeffHealth = 3;
-			coeffArmor = 3;
+	qint16 healthLevelCoeff = it.key();
+	qint16 healthModifier = it.value();
 
-			health = ((mLevel / 2) * coeffHealth) / 4 + 2;
-			armor = ((mLevel / 2) * coeffArmor) / 4 + 2;
+	it++;
 
-			break;
-		}
-		case(SoldierType::BattleDroid): {
+	qint16 armorLevelCoeff = it.key();
+	qint16 armorModifier = it.value();
 
-			coeffHealth = 3;
-			coeffArmor = 3;
+	mMaxHealth = ((mLevel / healthLevelCoeff) * healthModifier) / 4 + 2;
+	mMaxArmor = ((mLevel / armorLevelCoeff) * armorModifier) / 4 + 2;
 
-			health = ((mLevel / 2) * coeffHealth) / 4 + 2;
-			armor = ((mLevel / 2) * coeffArmor) / 4 + 2;
-
-			break;
-		}
-	}
-	return qint16();
 }
-
-qint16 Health::getArmorModifier()
-{
-	return qint16();
-}
-
 

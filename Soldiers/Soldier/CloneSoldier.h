@@ -1,34 +1,34 @@
 #pragma once
 
 #include "Soldier.h"
+#include "Health.h"
 #include "qstring.h"
 #include "SoldierUtilities.h"
 #include "Attack/CloneAttack.h"
 
 using namespace SoldierSpace;
 
-class Clone : public Soldier, public CloneAttack
+class Clone : public Soldier, public CloneAttack, public Health
 {
 public:
     Clone() = default;
 
-    Clone(qint16 health, qint16 armor, QString lifeForm, SoldierType type, CloneWeapon::Weapon weapon, CloneWeapon::Range range = CloneWeapon::Range::SHORT);
+    Clone(QString charName, QString lifeForm, SoldierType soldierType, qint16 level, CloneWeapon::Weapon weapon, CloneWeapon::Range range = CloneWeapon::Range::SHORT);
 
     Clone operator=(const Clone& clone)
     {
-        qint16 health = clone.getHealth();
-        qint16 armor = clone.getArmor();
         QString lifeForm = clone.getLifeForm();
         SoldierType soldierType = clone.getSoldierType();
+        qint16 level = clone.getLevel();
         
         Type type = clone.getType();
 
         setType(type);
 
-        setHealth(health);
-        setArmor(armor);
         setLifeForm(lifeForm);
         setSoldierType(soldierType);
+
+        setLevel(level);
     }
 
     ~Clone();

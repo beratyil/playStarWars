@@ -7,6 +7,9 @@
 #include <qsqldatabase.h>
 #include <InGameUtilities.h>
 #include "ui_Map.h"
+#include "Soldier.h"
+#include "Soldier/CloneSoldier.h"
+#include "Soldier/DroidSoldier.h"
 
 class Map : public QMainWindow
 {
