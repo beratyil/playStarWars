@@ -10,7 +10,7 @@ class ICharacterInformationScreen : public QMainWindow
 
 
 public:
-    ICharacterInformationScreen(QWidget* parent);
+    ICharacterInformationScreen(void* collection, QWidget* parent);
     ICharacterInformationScreen() = default;
     virtual ~ICharacterInformationScreen(){};
 
@@ -33,9 +33,10 @@ public slots:
 protected:
     Ui::CharacterSelectionCharacter ui;
     Soldier* mSoldier;
+    QString mSoldierName;
 
 private:
-    virtual void setSoldierAttributes() {};
+    virtual void setSoldierAttributes() = 0;
 };
 
 /*
@@ -45,11 +46,13 @@ class Collection
 {
 public:
 
-    Collection(Soldier* soldier);
+    Collection(Soldier* soldier, QString& soldierName);
 
     Soldier* getSoldier();
+    QString getSoldierName();
 
 private:
     Soldier* mSoldier;
+    QString mSoldierName;
 
 };

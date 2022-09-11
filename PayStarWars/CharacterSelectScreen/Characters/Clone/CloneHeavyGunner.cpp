@@ -1,7 +1,7 @@
 #include "CloneHeavyGunner.h"
 
-CloneHeavyGunner::CloneHeavyGunner(QWidget* parent)
-    : ICharacterInformationScreen(parent)
+CloneHeavyGunner::CloneHeavyGunner(void* collection, QWidget* parent)
+    : ICharacterInformationScreen(collection, parent)
 {
     QString imageDir = ":\PlayStarWars\\Resources\\Soldiers\\Clones\\CloneHeavyGunner.png";
 
@@ -14,6 +14,15 @@ CloneHeavyGunner::CloneHeavyGunner(QWidget* parent)
 
 CloneHeavyGunner::~CloneHeavyGunner()
 {
+}
+
+void CloneHeavyGunner::setSoldierAttributes()
+{
+    QString lifeForm = "Human";
+    Clone::SoldierType type = Clone::SoldierType::Heavy_Assault;
+    CloneWeapon::Weapon weapon = CloneWeapon::Weapon::Z_6_ROTARY_CANON;
+
+    mSoldier = new Clone(mSoldierName, lifeForm, type, 1, weapon);
 }
 
 void CloneHeavyGunner::prepAttributes(QStringList& attr)

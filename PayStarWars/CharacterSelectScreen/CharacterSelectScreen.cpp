@@ -1,8 +1,9 @@
 #include "CharacterSelectScreen.h"
 
-CharacterSelection::CharacterSelection(QWidget* parent)
+CharacterSelection::CharacterSelection(void* collection, QWidget* parent)
     : QMainWindow(parent)
     , mCharInfoScreen(nullptr)
+    , mCollection{collection}
 {
     ui.setupUi(this);
     
@@ -43,16 +44,16 @@ void CharacterSelection::openCharacterInformationScreen()
     ICharacterInformationScreen* infoScreen = nullptr;
 
     if (objectName == "paratrooper") {
-        infoScreen = new CloneParatrooper();
+        infoScreen = new CloneParatrooper(mCollection);
     }
     else if (objectName == "heavyGunner") {
-        infoScreen = new CloneHeavyGunner();
+        infoScreen = new CloneHeavyGunner(mCollection);
     }
     else if (objectName == "sharpShooter") {
-        infoScreen = new CloneSharpShooter();
+        infoScreen = new CloneSharpShooter(mCollection);
     }
     else if (objectName == "trooper") {
-        infoScreen = new CloneTrooper();
+        infoScreen = new CloneTrooper(mCollection);
     }
     else {
         

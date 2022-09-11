@@ -1,7 +1,7 @@
 #include "CloneTrooper.h"
 
-CloneTrooper::CloneTrooper(QWidget* parent)
-    : ICharacterInformationScreen(parent)
+CloneTrooper::CloneTrooper(void* collection, QWidget* parent)
+    : ICharacterInformationScreen(collection, parent)
 {
     QString imageDir = ":\PlayStarWars\\Resources\\Soldiers\\Clones\\CloneTrooper.png";
 
@@ -29,4 +29,13 @@ void CloneTrooper::prepAttributes(QStringList& attr)
     attr.append(damage);
     attr.append(race);
     attr.append(weapon);
+}
+
+void CloneTrooper::setSoldierAttributes()
+{
+    QString lifeForm = "Human";
+    Clone::SoldierType type = Clone::SoldierType::Assault;
+    CloneWeapon::Weapon weapon = CloneWeapon::Weapon::DC_15A_CARBINE;
+
+    mSoldier = new Clone(mSoldierName, lifeForm, type, 1, weapon);
 }

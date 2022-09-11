@@ -38,4 +38,6 @@ private:
     Ui::PlayStarWarsClass ui;
     CharacterSelection* mCharacterSelectScreen;
     Map* mMap;
+    Collection* mCollection;
+    Soldier* mSoldier;
 };

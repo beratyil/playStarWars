@@ -13,7 +13,7 @@ class CharacterSelection : public QMainWindow
     Q_OBJECT
 
 public:
-    CharacterSelection(QWidget* parent = nullptr);
+    CharacterSelection(void* collection, QWidget* parent = nullptr);
     ~CharacterSelection();
 
     void exit();
@@ -29,4 +29,5 @@ public slots:
 private:
     Ui::CharacterSelection ui;
     ICharacterInformationScreen* mCharInfoScreen;
+    void* mCollection;
 };

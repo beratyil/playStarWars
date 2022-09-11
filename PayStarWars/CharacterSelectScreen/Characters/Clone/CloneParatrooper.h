@@ -9,7 +9,7 @@ class CloneParatrooper : public ICharacterInformationScreen
     Q_OBJECT
 
 public:
-    CloneParatrooper(QWidget* parent = nullptr);
+    CloneParatrooper(void* collection, QWidget* parent = nullptr);
     ~CloneParatrooper();
 
 signals:

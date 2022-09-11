@@ -4,6 +4,8 @@ PlayStarWars::PlayStarWars(QWidget *parent)
     : QMainWindow(parent)
     , mCharacterSelectScreen(nullptr)
     , mMap(nullptr)
+    , mSoldier{nullptr}
+    , mCollection{nullptr}
 {
     ui.setupUi(this);
 
@@ -25,6 +27,9 @@ PlayStarWars::PlayStarWars(QWidget *parent)
 
     QPixmap pixmapLogo(":\\PlayStarWars\\Resources\\Menu\\StarWars.png");
     ui.backGround->setPixmap(pixmapLogo);
+
+    QString defaultSoldierName = "Default";
+    mCollection = new Collection(mSoldier, defaultSoldierName);
 }
 
 PlayStarWars::~PlayStarWars()
@@ -39,7 +44,7 @@ void PlayStarWars::openNewGame()
     hide();
 
     /* Show Character Select Screen */
-    newCharacterSelectScreen = new CharacterSelection();
+    newCharacterSelectScreen = new CharacterSelection(mCollection);
     newCharacterSelectScreen->show();
 
     mCharacterSelectScreen = newCharacterSelectScreen;

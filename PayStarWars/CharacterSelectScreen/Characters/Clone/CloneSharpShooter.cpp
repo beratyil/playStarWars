@@ -1,7 +1,7 @@
 #include "CloneSharpShooter.h"
 
-CloneSharpShooter::CloneSharpShooter(QWidget* parent)
-    : ICharacterInformationScreen(parent)
+CloneSharpShooter::CloneSharpShooter(void* collection, QWidget* parent)
+    : ICharacterInformationScreen(collection, parent)
 {
     QString imageDir = ":\PlayStarWars\\Resources\\Soldiers\\Clones\\CloneSharpshooter.png";
 
@@ -13,6 +13,15 @@ CloneSharpShooter::CloneSharpShooter(QWidget* parent)
 }
 CloneSharpShooter::~CloneSharpShooter()
 {
+}
+
+void CloneSharpShooter::setSoldierAttributes()
+{
+    QString lifeForm = "Human";
+    Clone::SoldierType type = Clone::SoldierType::Sniper;
+    CloneWeapon::Weapon weapon = CloneWeapon::Weapon::DC_15X_SNIPER;
+
+    mSoldier = new Clone(mSoldierName, lifeForm, type, 1, weapon);
 }
 
 void CloneSharpShooter::prepAttributes(QStringList& attr)
