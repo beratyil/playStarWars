@@ -3,7 +3,7 @@
 // @note: DroidAttack class will be implemented
 
 Droid::Droid(QString charName, QString lifeForm, SoldierType soldierType, qint16 level, DroidWeapon::Weapon weapon, DroidWeapon::Range range)
-    : Soldier(charName)
+    : Soldier(charName, level)
     , DroidAttack(weapon, range)
     , Health(level, soldierType)
 {

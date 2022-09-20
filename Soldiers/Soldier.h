@@ -39,15 +39,21 @@ public:
         Sith_Master
     };
 
-    Soldier(QString charName);
+    Soldier(QString charName, qint16 level);
+
+    QString getName();
 
     Type getType() const;
+
+    qint16 getLevel2() const;
 
     QString getLifeForm() const;
 
     void setLifeForm(QString lifeForm);
 
     SoldierType getSoldierType() const;
+
+    QString getSoldierTypeStr() const;
 
     bool setSoldierType(SoldierType soldierType);
 
@@ -64,6 +70,6 @@ private:
     QString mTypeStr;
     
     SoldierType mSoldierType;
-    QString mSoldierTypeStr;
 
+    qint16 mLevel;
 };

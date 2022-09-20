@@ -10,7 +10,7 @@ class ICharacterInformationScreen : public QMainWindow
 
 
 public:
-    ICharacterInformationScreen(void* collection, QWidget* parent);
+    ICharacterInformationScreen(void* collection, QWidget* parent = nullptr);
     ICharacterInformationScreen() = default;
     virtual ~ICharacterInformationScreen(){};
 

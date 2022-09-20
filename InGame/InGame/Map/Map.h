@@ -10,13 +10,14 @@
 #include "Soldier.h"
 #include "Soldier/CloneSoldier.h"
 #include "Soldier/DroidSoldier.h"
+#include "PayStarWars/Utilities.h"
 
 class Map : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	Map(QWidget* parent = nullptr);
+	Map(void* collection, QWidget* parent = nullptr);
 	~Map();
 
 
@@ -26,6 +27,7 @@ signals:
 public slots:
 	void moveForward();
 	void enterFight();
+	void saveProgress();
 
 private:
 	/*
@@ -41,6 +43,9 @@ private:
 	qint16 mCurrentPlanet;
 	InGame* mCurrentGame;
 	QVector<EnemyDatabase> mEnemies;
+	
+	Collection* mCollection;
+	Soldier* mSoldier;
 
 	QString mDroidEnemies = "..\\..\\Database\\DroidEnemies.txt";
 };

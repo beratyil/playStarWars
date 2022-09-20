@@ -1,6 +1,6 @@
 #include "Map.h"
 
-Map::Map(QWidget* parent)
+Map::Map(void* collection, QWidget* parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
@@ -27,6 +27,9 @@ Map::Map(QWidget* parent)
 	connect(ui.pushButton_9, &QPushButton::clicked, this, &Map::enterFight);
 
 	createEnemyDatabase();
+
+	mCollection = static_cast<Collection*>(collection);
+	mSoldier = mCollection->getSoldier();
 }
 
 Map::~Map()
@@ -40,11 +43,35 @@ void Map::enterFight()
 	/* According to planet number, call necessary enemy from enemy database */
 	EnemyDatabase currentEnemy = mEnemies[mCurrentPlanet - 1];
 
-	mCurrentGame = new InGame(currentEnemy);
+	mCurrentGame = new InGame(mCollection, currentEnemy);
 
 	/* Call InGame constructor with necessary information */
 
 	mCurrentGame->show();
+
+}
+
+void Map::saveProgress()
+{
+	/*@note: get Character Information and save it the file */
+	QString name = mSoldier->getName();
+
+	QString type = mSoldier->getSoldierTypeStr();
+	
+	Health* health = dynamic_cast<Health*>(mSoldier);
+	
+	qint16 level = health->getLevel();
+
+	QFile file("..\\..\\..\\Database\\heroProgress.txt");
+
+	if (file.open(QIODevice::ReadWrite)) {
+		QString nameLine = "Name: " + name + "\n";
+	}
+	else {
+		
+	}
+
+
 
 }
 

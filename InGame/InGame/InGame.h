@@ -4,6 +4,7 @@
 #include "ui_InGame.h"
 #include "InGameUtilities.h"
 #include <qresource.h>
+#include "PayStarWars/Utilities.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class InGameClass; };
@@ -15,7 +16,7 @@ class InGame : public QMainWindow
 
 public:
     //InGame(Soldier* hero, EnemyDatabase currentEnemy, QWidget* parent = nullptr);
-    InGame(EnemyDatabase currentEnemy, QWidget* parent = nullptr);
+    InGame(void* collection, EnemyDatabase currentEnemy, QWidget* parent = nullptr);
     ~InGame();
 
 public slots:
@@ -27,6 +28,7 @@ private:
     /* @note: call for testing Game Screen Features */
     void InGame::exampleInGameScreen();
 
-    //Soldier* mSoldier;
+    Soldier* mSoldier;
+    Collection* mCollection;
 
 };

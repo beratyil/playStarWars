@@ -4,7 +4,7 @@
 
 using SoldierSpace::CloneWeapon;
 
-InGame::InGame(EnemyDatabase currentEnemy, QWidget *parent)
+InGame::InGame(void* collection, EnemyDatabase currentEnemy, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::InGameClass())
 {
@@ -27,6 +27,8 @@ InGame::InGame(EnemyDatabase currentEnemy, QWidget *parent)
 
     exampleInGameScreen();
 
+    mCollection = static_cast<Collection*>(collection);
+    mSoldier = mCollection->getSoldier();
 }
 
 void InGame::exampleInGameScreen()

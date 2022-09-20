@@ -3,7 +3,7 @@
 // @note: CloneAttack class will be implemented
 
 Clone::Clone(QString charName, QString lifeForm, SoldierType soldierType, qint16 level, CloneWeapon::Weapon weapon, CloneWeapon::Range range)
-    : Soldier(charName)
+    : Soldier(charName, level)
     , CloneAttack(weapon, range)
     , Health(level, soldierType)
 {

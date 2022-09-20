@@ -3,10 +3,11 @@
 typedef Soldier::SoldierType SoldierType;
 typedef Soldier::Type Type;
 
-Soldier::Soldier(QString charName)
+Soldier::Soldier(QString charName, qint16 level)
     : mLifeForm{}
     , mSoldierType{}
     , mCharName{}
+    , mLevel{ level }
 {
     if (charName.isEmpty()) {
         mCharName = "";
@@ -14,6 +15,11 @@ Soldier::Soldier(QString charName)
     else {
         mCharName = charName;
     }
+}
+
+QString Soldier::getName()
+{
+    return mCharName;
 }
 
 void Soldier::setType(Type type)
@@ -77,3 +83,87 @@ bool Soldier::setSoldierType(SoldierType soldierType)
 
     return isSet;
 }
+
+QString Soldier::getSoldierTypeStr() const
+{
+    QString soldierTypeStr = "";
+    switch (mSoldierType)
+    {
+        case(SoldierType::Admiral): {
+            soldierTypeStr = "Admiral";
+            break;
+        }
+        case(SoldierType::BattleDroid): {
+            soldierTypeStr = "Battle Droid";
+            break;
+        }
+        case(SoldierType::B2): {
+            soldierTypeStr = "B2";
+            break;
+        }
+        case(SoldierType::Commando): {
+            soldierTypeStr = "Commando";
+            break;
+        }
+        case(SoldierType::Droideka): {
+            soldierTypeStr = "Droideka";
+            break;
+        }
+        case(SoldierType::Grevious_Guard): {
+            soldierTypeStr = "Grevious Guard";
+            break;
+        }
+        case(SoldierType::IG_11): {
+            soldierTypeStr = "IG-11";
+            break;
+        }
+        case(SoldierType::Assault): {
+            soldierTypeStr = "Assault";
+            break;
+        }
+        case(SoldierType::Heavy_Assault): {
+            soldierTypeStr = "Heavy Assault";
+            break;
+        }
+        case(SoldierType::Sniper): {
+            soldierTypeStr = "Sniper";
+            break;
+        }
+        case(SoldierType::Commander): {
+            soldierTypeStr = "Commander";
+            break;
+        }
+        case(SoldierType::Jedi_Padawan): {
+            soldierTypeStr = "Jedi Padawan";
+            break;
+        }
+        case(SoldierType::Jedi_Knight): {
+            soldierTypeStr = "Jedi Knight";
+            break;
+        }
+        case(SoldierType::Jedi_Master): {
+            soldierTypeStr = "Jedi Master";
+            break;
+        }
+        case(SoldierType::Sith_Apprentice): {
+            soldierTypeStr = "Sith Apprentice";
+            break;
+        }
+        case(SoldierType::Sith_Master): {
+            soldierTypeStr = "Sith Master";
+            break;
+        }
+        default:
+            soldierTypeStr = "Uninitalized";
+            break;
+    }
+
+    return soldierTypeStr;
+}
+
+qint16 Soldier::getLevel2() const
+{
+    return mLevel;
+}
+
+

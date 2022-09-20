@@ -76,7 +76,7 @@ void PlayStarWars::startGame()
         killCharSelect();
     }
 
-    mMap = new Map();
+    mMap = new Map(mCollection);
     connect(mMap, &Map::returnMainMenu, this, &PlayStarWars::closeMap);
     
     mMap->show();
