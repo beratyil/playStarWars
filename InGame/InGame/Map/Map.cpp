@@ -1,6 +1,6 @@
 #include "Map.h"
 
-Map::Map(void* collection, QWidget* parent)
+Map::Map(Collection* collection, QWidget* parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
@@ -29,7 +29,9 @@ Map::Map(void* collection, QWidget* parent)
 	createEnemyDatabase();
 
 	mCollection = static_cast<Collection*>(collection);
-	mSoldier = mCollection->getSoldier();
+	mSoldier = *(mCollection->getSoldier());
+
+	saveProgress();
 }
 
 Map::~Map()
@@ -62,15 +64,45 @@ void Map::saveProgress()
 	
 	qint16 level = health->getLevel();
 
-	QFile file("..\\..\\..\\Database\\heroProgress.txt");
+	QDir dir("..\\..\\..\\Database\\heroProgress.txt");
 
-	if (file.open(QIODevice::ReadWrite)) {
-		QString nameLine = "Name: " + name + "\n";
+	QString absolutePath = dir.absolutePath();
+
+	QFile file(absolutePath);
+
+	if (!file.exists()) {
+		file.open(QIODevice::WriteOnly);
 	}
 	else {
-		
+		file.open(QIODevice::ReadWrite | QIODevice::Text);
 	}
 
+	if (file.isOpen()) {
+
+		QString nameLine = "Name: " + name + "\n";
+		QString typeLine = "Name: " + type + "\n";
+		QString currentHealthLine = "Current_health: " + QString::number(health->getCurrentHealth()) + "\n";
+		QString maxHealthLine = "Max_health: " + QString::number(health->getCurrentHealth()) + "\n";
+		QString currentArmorLine = "Current_armor: " + QString::number(health->getCurrentArmor()) + "\n";
+		QString maxArmorLine = "Max_armor: " + QString::number(health->getMaxArmor()) + "\n";
+		QString levelLine = "Name: " + QString::number(level) + "\n";
+
+
+		file.write(nameLine.toLatin1());
+		file.write(typeLine.toLatin1());
+		file.write(currentHealthLine.toLatin1());
+		file.write(maxHealthLine.toLatin1());
+		file.write(currentArmorLine.toLatin1());
+		file.write(maxArmorLine.toLatin1());
+		file.write(levelLine.toLatin1());
+
+		file.close();
+	}
+	else {
+		qDebug("Error at saving game!");
+	}
+
+	
 
 
 }

@@ -12,10 +12,9 @@ ICharacterInformationScreen::ICharacterInformationScreen(void* collection, QWidg
     //connect(ui.select, &QPushButton::clicked, this, &ICharacterInformationScreen::openMapSender);
     connect(ui.select, &QPushButton::clicked, this, &ICharacterInformationScreen::startGame);
 
-    Collection* collect = static_cast<Collection*>(collection);
+    /*Collection* collect = static_cast<Collection*>(collection);
 
-    mSoldier = collect->getSoldier();
-    mSoldierName = collect->getSoldierName();
+    mSoldier = collect->getSoldier();*/
 }
 
 void ICharacterInformationScreen::prepInfoScreen(QString imageDir, QString desc, QStringList& attr)
@@ -66,18 +65,12 @@ void ICharacterInformationScreen::startGame()
 
 }
 
-Collection::Collection(Soldier* soldier, QString& soldierName)
+Collection::Collection(Soldier* soldier)
 {
-    mSoldier = soldier;
-    mSoldierName = soldierName;
+    mSoldier = &soldier;
 }
 
-Soldier* Collection::getSoldier()
+Soldier** Collection::getSoldier()
 {
     return mSoldier;
-}
-
-QString Collection::getSoldierName()
-{
-    return mSoldierName;
 }

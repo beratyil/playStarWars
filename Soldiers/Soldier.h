@@ -39,6 +39,8 @@ public:
         Sith_Master
     };
 
+    Soldier();
+
     Soldier(QString charName, qint16 level);
 
     QString getName();

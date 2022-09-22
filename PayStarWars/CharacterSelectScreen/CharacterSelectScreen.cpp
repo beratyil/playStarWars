@@ -1,6 +1,6 @@
 #include "CharacterSelectScreen.h"
 
-CharacterSelection::CharacterSelection(void* collection, QWidget* parent)
+CharacterSelection::CharacterSelection(Collection* collection, QWidget* parent)
     : QMainWindow(parent)
     , mCharInfoScreen(nullptr)
     , mCollection{collection}

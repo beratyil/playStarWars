@@ -37,5 +37,5 @@ void CloneTrooper::setSoldierAttributes()
     Clone::SoldierType type = Clone::SoldierType::Assault;
     CloneWeapon::Weapon weapon = CloneWeapon::Weapon::DC_15A_CARBINE;
 
-    mSoldier = new Clone(mSoldierName, lifeForm, type, 1, weapon);
+    *mSoldier = new Clone(mSoldierName, lifeForm, type, 1, weapon);
 }

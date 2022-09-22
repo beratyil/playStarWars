@@ -28,8 +28,7 @@ PlayStarWars::PlayStarWars(QWidget *parent)
     QPixmap pixmapLogo(":\\PlayStarWars\\Resources\\Menu\\StarWars.png");
     ui.backGround->setPixmap(pixmapLogo);
 
-    QString defaultSoldierName = "Default";
-    mCollection = new Collection(mSoldier, defaultSoldierName);
+    mCollection = new Collection(mSoldier);
 }
 
 PlayStarWars::~PlayStarWars()

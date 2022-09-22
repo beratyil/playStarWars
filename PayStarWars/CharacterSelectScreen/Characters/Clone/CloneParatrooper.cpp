@@ -1,6 +1,6 @@
 #include "CloneParatrooper.h"
 
-CloneParatrooper::CloneParatrooper(void* collection, QWidget* parent)
+CloneParatrooper::CloneParatrooper(Collection* collection, QWidget* parent)
     : ICharacterInformationScreen(collection, parent)
 {
     QString imageDir = ":\PlayStarWars\\Resources\\Soldiers\\Clones\\CloneParatrooper.png";
@@ -10,6 +10,8 @@ CloneParatrooper::CloneParatrooper(void* collection, QWidget* parent)
     QStringList list;
 
     prepInfoScreen(imageDir, description, list);
+
+    mSoldier = collection->getSoldier();
 
     setSoldierAttributes();
 }
@@ -24,7 +26,7 @@ void CloneParatrooper::setSoldierAttributes()
     Clone::SoldierType type = Clone::SoldierType::Assault;
     CloneWeapon::Weapon weapon = CloneWeapon::Weapon::DC_15A_RIFLE;
 
-    mSoldier = new Clone(mSoldierName, lifeForm, type, 1, weapon);
+    *mSoldier = new Clone(mSoldierName, lifeForm, type, 1, weapon);
 }
 
 void CloneParatrooper::prepAttributes(QStringList& attr)

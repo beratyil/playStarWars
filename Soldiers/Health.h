@@ -23,7 +23,7 @@ class Health {
 		qint16 getMaxHealth() const;
 
 		void setMaxArmor(qint16 newArmor);
-		qint16 getMaxAmor() const;
+		qint16 getMaxArmor() const;
 
 	private:
 		/*

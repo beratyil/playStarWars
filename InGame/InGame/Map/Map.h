@@ -17,7 +17,7 @@ class Map : public QMainWindow
 	Q_OBJECT
 
 public:
-	Map(void* collection, QWidget* parent = nullptr);
+	Map(Collection* collection, QWidget* parent = nullptr);
 	~Map();
 
 

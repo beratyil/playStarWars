@@ -3,6 +3,11 @@
 typedef Soldier::SoldierType SoldierType;
 typedef Soldier::Type Type;
 
+Soldier::Soldier()
+{
+    
+}
+
 Soldier::Soldier(QString charName, qint16 level)
     : mLifeForm{}
     , mSoldierType{}

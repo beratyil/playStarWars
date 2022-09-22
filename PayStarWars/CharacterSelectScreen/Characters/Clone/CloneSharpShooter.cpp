@@ -21,7 +21,7 @@ void CloneSharpShooter::setSoldierAttributes()
     Clone::SoldierType type = Clone::SoldierType::Sniper;
     CloneWeapon::Weapon weapon = CloneWeapon::Weapon::DC_15X_SNIPER;
 
-    mSoldier = new Clone(mSoldierName, lifeForm, type, 1, weapon);
+    *mSoldier = new Clone(mSoldierName, lifeForm, type, 1, weapon);
 }
 
 void CloneSharpShooter::prepAttributes(QStringList& attr)

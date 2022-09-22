@@ -32,8 +32,10 @@ public slots:
 
 protected:
     Ui::CharacterSelectionCharacter ui;
-    Soldier* mSoldier;
-    QString mSoldierName;
+    Soldier** mSoldier;
+
+    // TODO: delete Soldier Name, add character name selection screen
+    QString mSoldierName = "Default";
 
 private:
     virtual void setSoldierAttributes() = 0;
@@ -46,13 +48,11 @@ class Collection
 {
 public:
 
-    Collection(Soldier* soldier, QString& soldierName);
+    Collection(Soldier* soldier);
 
-    Soldier* getSoldier();
-    QString getSoldierName();
+    Soldier** getSoldier();
 
 private:
-    Soldier* mSoldier;
-    QString mSoldierName;
+    Soldier** mSoldier;
 
 };

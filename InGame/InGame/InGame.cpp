@@ -28,7 +28,7 @@ InGame::InGame(void* collection, EnemyDatabase currentEnemy, QWidget *parent)
     exampleInGameScreen();
 
     mCollection = static_cast<Collection*>(collection);
-    mSoldier = mCollection->getSoldier();
+    mSoldier = *(mCollection->getSoldier());
 }
 
 void InGame::exampleInGameScreen()

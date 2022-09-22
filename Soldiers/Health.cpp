@@ -60,7 +60,7 @@ void Health::setMaxArmor(qint16 newArmor)
 	mMaxArmor = newArmor;
 }
 
-qint16 Health::getMaxAmor() const
+qint16 Health::getMaxArmor() const
 {
 	return mMaxArmor;
 }

@@ -22,7 +22,7 @@ void CloneHeavyGunner::setSoldierAttributes()
     Clone::SoldierType type = Clone::SoldierType::Heavy_Assault;
     CloneWeapon::Weapon weapon = CloneWeapon::Weapon::Z_6_ROTARY_CANON;
 
-    mSoldier = new Clone(mSoldierName, lifeForm, type, 1, weapon);
+    *mSoldier = new Clone(mSoldierName, lifeForm, type, 1, weapon);
 }
 
 void CloneHeavyGunner::prepAttributes(QStringList& attr)
