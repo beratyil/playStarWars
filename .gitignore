@@ -12,3 +12,9 @@ Test/TestSoldier/x64
 Test/TestSoldier/TestSoldier.vcxproj.user
 InGame/InGame/x64
 *.user
+
+Database/Soldiers.accdb
+
+Database/heroProgress.txt
+
+PayStarWars/PayStarWars/Class Diagram.drawio

@@ -67,7 +67,7 @@ void CharacterSelection::openCharacterInformationScreen()
     if (mCharInfoScreen != nullptr) {
 
         connect(mCharInfoScreen, &ICharacterInformationScreen::goBack, this, &CharacterSelection::closeCharacterInformationScreen);
-        connect(mCharInfoScreen, &ICharacterInformationScreen::openMapSender, this, &CharacterSelection::openMapSender);
+        connect(mCharInfoScreen, &ICharacterInformationScreen::enterCharacterNameScreen, this, &CharacterSelection::openCharacterNameScreen);
         
         mCharInfoScreen->show();
     }
@@ -79,4 +79,26 @@ void CharacterSelection::closeCharacterInformationScreen()
 
     delete mCharInfoScreen;
     mCharInfoScreen = nullptr;
+}
+
+void CharacterSelection::openCharacterNameScreen()
+{
+    mCharNameScreen = new CharacterName(mCollection);
+
+    mCharNameScreen->show();
+
+    connect(mCharNameScreen, &CharacterName::returnSelection, this, &CharacterSelection::closeCharacterNameScreen);
+    connect(mCharNameScreen, &CharacterName::createSoldier, mCharInfoScreen, &ICharacterInformationScreen::setSoldierAttributes);
+
+
+    connect(mCharInfoScreen, &ICharacterInformationScreen::continueMap, this, &CharacterSelection::openMapSender);
+}
+
+void CharacterSelection::closeCharacterNameScreen()
+{
+    mCharNameScreen->close();
+    
+    delete mCharNameScreen;
+    
+    mCharNameScreen = nullptr;
 }

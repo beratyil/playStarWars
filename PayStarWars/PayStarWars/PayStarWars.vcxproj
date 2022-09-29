@@ -94,11 +94,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\CharacterSelectScreen\CharacterNameScreen.cpp" />
     <ClCompile Include="..\CharacterSelectScreen\Characters\Clone\CloneHeavyGunner.cpp" />
     <ClCompile Include="..\CharacterSelectScreen\Characters\Clone\CloneSharpShooter.cpp" />
     <ClCompile Include="..\CharacterSelectScreen\Characters\Clone\CloneTrooper.cpp" />
     <ClCompile Include="Utilities.cpp" />
     <QtRcc Include="PayStarWars.qrc" />
+    <QtUic Include="..\CharacterSelectScreen\CharacterNameScreen.ui" />
     <QtUic Include="..\CharacterSelectScreen\CharacterSelectScreen.ui" />
     <QtUic Include="..\CharacterSelectScreen\Characters\CharacterSelectionCloneSoldierSelection.ui" />
     <QtUic Include="PlayStarWars.ui" />
@@ -121,6 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneTrooper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="..\CharacterSelectScreen\CharacterNameScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

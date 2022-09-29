@@ -9,15 +9,15 @@ class CloneHeavyGunner : public ICharacterInformationScreen
     Q_OBJECT
 
 public:
-    CloneHeavyGunner(void* collection, QWidget* parent = nullptr);
+    CloneHeavyGunner(Collection* collection, QWidget* parent = nullptr);
     ~CloneHeavyGunner();
 
 signals:
 
 public slots:
+    void setSoldierAttributes() override;
 
 private:
     void prepAttributes(QStringList& attr) override;
-    void setSoldierAttributes() override;
 
 };

@@ -4,13 +4,31 @@
 #include "ui_CharacterSelectionCloneSoldierSelection.h"
 #include "Soldier.h"
 
+/*
+* Hide elements going through classes
+*/
+class Collection
+{
+public:
+    Collection(Soldier* soldier);
+
+    Soldier** getSoldier();
+
+    void setName(QString name);
+    QString* getName();
+
+private:
+    Soldier** mSoldier;
+    QString* mCharName;
+
+};
+
 class ICharacterInformationScreen : public QMainWindow
 {
     Q_OBJECT
 
-
 public:
-    ICharacterInformationScreen(void* collection, QWidget* parent = nullptr);
+    ICharacterInformationScreen(Collection* collection, QWidget* parent = nullptr);
     ICharacterInformationScreen() = default;
     virtual ~ICharacterInformationScreen(){};
 
@@ -26,33 +44,19 @@ protected:
 signals:
     void goBack();
     void openMapSender();
+    void enterCharacterNameScreen();
+    void continueMap();
     
 public slots:
-    void startGame();
+    virtual void setSoldierAttributes() = 0;
 
 protected:
     Ui::CharacterSelectionCharacter ui;
     Soldier** mSoldier;
+    Collection* mCollection;
 
-    // TODO: delete Soldier Name, add character name selection screen
-    QString mSoldierName = "Default";
-
-private:
-    virtual void setSoldierAttributes() = 0;
-};
-
-/*
-* Hide elements going through classes
-*/
-class Collection
-{
-public:
-
-    Collection(Soldier* soldier);
-
-    Soldier** getSoldier();
 
 private:
-    Soldier** mSoldier;
-
 };
+
+

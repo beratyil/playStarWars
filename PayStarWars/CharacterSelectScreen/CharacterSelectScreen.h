@@ -7,6 +7,8 @@
 #include "Characters/Clone/CloneHeavyGunner.h"
 #include "Characters/Clone/CloneSharpShooter.h"
 #include "Characters/Clone/CloneTrooper.h"
+#include "CharacterNameScreen.h"
+
 
 class CharacterSelection : public QMainWindow
 {
@@ -25,9 +27,12 @@ signals:
 public slots:
     void openCharacterInformationScreen();
     void closeCharacterInformationScreen();
+    void openCharacterNameScreen();
+    void closeCharacterNameScreen();
 
 private:
     Ui::CharacterSelection ui;
     ICharacterInformationScreen* mCharInfoScreen;
     Collection* mCollection;
+    CharacterName* mCharNameScreen;
 };

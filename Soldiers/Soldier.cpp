@@ -22,6 +22,13 @@ Soldier::Soldier(QString charName, qint16 level)
     }
 }
 
+void Soldier::setName(QString name)
+{
+    if (mCharName.isEmpty()) {
+        mCharName = name;
+    }
+}
+
 QString Soldier::getName()
 {
     return mCharName;

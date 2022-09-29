@@ -1,7 +1,8 @@
 #include "Utilities.h"
 
-ICharacterInformationScreen::ICharacterInformationScreen(void* collection, QWidget* parent)
+ICharacterInformationScreen::ICharacterInformationScreen(Collection* collection, QWidget* parent)
     : QMainWindow(parent)
+    , mCollection{collection}
 {
     ui.setupUi(this);
 
@@ -10,7 +11,7 @@ ICharacterInformationScreen::ICharacterInformationScreen(void* collection, QWidg
 
     /* Open Map, Kill Character Selection and Character Information Screen */
     //connect(ui.select, &QPushButton::clicked, this, &ICharacterInformationScreen::openMapSender);
-    connect(ui.select, &QPushButton::clicked, this, &ICharacterInformationScreen::startGame);
+    connect(ui.select, &QPushButton::clicked, this, &ICharacterInformationScreen::enterCharacterNameScreen);
 
     /*Collection* collect = static_cast<Collection*>(collection);
 
@@ -59,12 +60,6 @@ void ICharacterInformationScreen::setAttributes(QStringList& attributes)
     }
 }
 
-void ICharacterInformationScreen::startGame()
-{
-    emit openMapSender();
-
-}
-
 Collection::Collection(Soldier* soldier)
 {
     mSoldier = &soldier;
@@ -73,4 +68,14 @@ Collection::Collection(Soldier* soldier)
 Soldier** Collection::getSoldier()
 {
     return mSoldier;
+}
+
+void Collection::setName(QString name)
+{
+    mCharName = new QString(name);
+}
+
+QString* Collection::getName()
+{
+    return mCharName;
 }

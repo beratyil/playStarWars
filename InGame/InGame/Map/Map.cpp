@@ -30,6 +30,12 @@ Map::Map(Collection* collection, QWidget* parent)
 
 	mCollection = static_cast<Collection*>(collection);
 	mSoldier = *(mCollection->getSoldier());
+	
+	QString* charName = mCollection->getName();
+	mSoldier->setName(*charName);
+	
+	delete charName;
+	charName = nullptr;
 
 	saveProgress();
 }
@@ -56,6 +62,11 @@ void Map::enterFight()
 void Map::saveProgress()
 {
 	/*@note: get Character Information and save it the file */
+
+	QFile fileTest("C:\\Users\\aby_6\\Documents\\Programming\\QT\\StarWarsApp\\InGame\\InGame\\Map\\test.txt");
+
+	fileTest.open(QIODevice::WriteOnly | QIODevice::Text);
+
 	QString name = mSoldier->getName();
 
 	QString type = mSoldier->getSoldierTypeStr();
@@ -64,28 +75,25 @@ void Map::saveProgress()
 	
 	qint16 level = health->getLevel();
 
-	QDir dir("..\\..\\..\\Database\\heroProgress.txt");
+	QDir dir("..\\..\\Database\\heroProgress.txt");
+	//QString currerntPath = QDir::currentPath();
 
 	QString absolutePath = dir.absolutePath();
+	
+	absolutePath = absolutePath.replace("/", "\\\\");
 
 	QFile file(absolutePath);
 
-	if (!file.exists()) {
-		file.open(QIODevice::WriteOnly);
-	}
-	else {
-		file.open(QIODevice::ReadWrite | QIODevice::Text);
-	}
-
-	if (file.isOpen()) {
+	// TODO: file is not created
+	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
 
 		QString nameLine = "Name: " + name + "\n";
-		QString typeLine = "Name: " + type + "\n";
+		QString typeLine = "Type: " + type + "\n";
 		QString currentHealthLine = "Current_health: " + QString::number(health->getCurrentHealth()) + "\n";
-		QString maxHealthLine = "Max_health: " + QString::number(health->getCurrentHealth()) + "\n";
+		QString maxHealthLine = "Max_health: " + QString::number(health->getMaxHealth()) + "\n";
 		QString currentArmorLine = "Current_armor: " + QString::number(health->getCurrentArmor()) + "\n";
 		QString maxArmorLine = "Max_armor: " + QString::number(health->getMaxArmor()) + "\n";
-		QString levelLine = "Name: " + QString::number(level) + "\n";
+		QString levelLine = "Level: " + QString::number(level) + "\n";
 
 
 		file.write(nameLine.toLatin1());

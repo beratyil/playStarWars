@@ -4,7 +4,6 @@ PlayStarWars::PlayStarWars(QWidget *parent)
     : QMainWindow(parent)
     , mCharacterSelectScreen(nullptr)
     , mMap(nullptr)
-    , mSoldier{nullptr}
     , mCollection{nullptr}
 {
     ui.setupUi(this);
@@ -87,6 +86,12 @@ void PlayStarWars::closeMap()
 
     delete mMap;
     mMap = nullptr;
+
+    mSoldier = *mCollection->getSoldier();
+    if (mSoldier != nullptr) {
+        delete mSoldier;
+        mSoldier = nullptr;
+    }
 
     setVisible(true);
 }

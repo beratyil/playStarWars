@@ -12,8 +12,6 @@ CloneParatrooper::CloneParatrooper(Collection* collection, QWidget* parent)
     prepInfoScreen(imageDir, description, list);
 
     mSoldier = collection->getSoldier();
-
-    setSoldierAttributes();
 }
 
 CloneParatrooper::~CloneParatrooper()
@@ -22,11 +20,14 @@ CloneParatrooper::~CloneParatrooper()
 
 void CloneParatrooper::setSoldierAttributes()
 {
+    QString name = "";
     QString lifeForm = "Human";
     Clone::SoldierType type = Clone::SoldierType::Assault;
     CloneWeapon::Weapon weapon = CloneWeapon::Weapon::DC_15A_RIFLE;
+    
+    *mSoldier = new Clone(name, lifeForm, type, 1, weapon);
 
-    *mSoldier = new Clone(mSoldierName, lifeForm, type, 1, weapon);
+    emit continueMap();
 }
 
 void CloneParatrooper::prepAttributes(QStringList& attr)

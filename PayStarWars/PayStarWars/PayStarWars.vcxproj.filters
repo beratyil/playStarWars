@@ -67,12 +67,18 @@
     <ClCompile Include="..\CharacterSelectScreen\Characters\Clone\CloneTrooper.cpp">
       <Filter>CharacterInformation\Clone</Filter>
     </ClCompile>
+    <ClCompile Include="..\CharacterSelectScreen\CharacterNameScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="..\CharacterSelectScreen\CharacterSelectScreen.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="..\CharacterSelectScreen\Characters\CharacterSelectionCloneSoldierSelection.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="..\CharacterSelectScreen\CharacterNameScreen.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -86,14 +92,17 @@
     <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneHeavyGunner.h">
       <Filter>CharacterInformation\Clone</Filter>
     </QtMoc>
-    <QtMoc Include="Utilities.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneSharpShooter.h">
       <Filter>CharacterInformation\Clone</Filter>
     </QtMoc>
     <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneTrooper.h">
       <Filter>CharacterInformation\Clone</Filter>
+    </QtMoc>
+    <QtMoc Include="..\CharacterSelectScreen\CharacterNameScreen.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Utilities.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

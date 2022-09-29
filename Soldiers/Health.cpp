@@ -6,6 +6,9 @@ Health::Health(qint16 level, SoldierType soldierType)
 	mSoldierType = soldierType;
 
 	updateMaxDefense();
+
+	fillHealth();
+	fillArmor();
 }
 
 void Health::incrementLevel()
@@ -86,6 +89,15 @@ void Health::updateMaxDefense()
 
 	mMaxHealth = ((mLevel / healthLevelCoeff) * healthModifier) / 4 + 2;
 	mMaxArmor = ((mLevel / armorLevelCoeff) * armorModifier) / 4 + 2;
+}
 
+void Health::fillHealth()
+{
+	mCurrentHealth = mMaxHealth;
+}
+
+void Health::fillArmor()
+{
+	mCurrentArmor = mMaxArmor;
 }
 

@@ -43,6 +43,8 @@ public:
 
     Soldier(QString charName, qint16 level);
 
+    void setName(QString name);
+
     QString getName();
 
     Type getType() const;

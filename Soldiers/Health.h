@@ -25,6 +25,9 @@ class Health {
 		void setMaxArmor(qint16 newArmor);
 		qint16 getMaxArmor() const;
 
+		void fillHealth();
+		void fillArmor();
+
 	private:
 		/*
 		* Adjusts character balances

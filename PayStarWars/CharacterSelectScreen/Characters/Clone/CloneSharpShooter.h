@@ -9,15 +9,15 @@ class CloneSharpShooter : public ICharacterInformationScreen
     Q_OBJECT
 
 public:
-    CloneSharpShooter(void* collection, QWidget* parent = nullptr);
+    CloneSharpShooter(Collection* collection, QWidget* parent = nullptr);
     ~CloneSharpShooter();
 
 signals:
 
 public slots:
+    void setSoldierAttributes() override;
 
 private:
     void prepAttributes(QStringList& attr) override;
-    void setSoldierAttributes() override;
 
 };

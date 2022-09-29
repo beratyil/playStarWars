@@ -9,15 +9,15 @@ class CloneTrooper : public ICharacterInformationScreen
     Q_OBJECT
 
 public:
-    CloneTrooper(void* collection, QWidget* parent = nullptr);
+    CloneTrooper(Collection* collection, QWidget* parent = nullptr);
     ~CloneTrooper();
 
 signals:
 
 public slots:
+    void setSoldierAttributes() override;
 
 private:
     void prepAttributes(QStringList& attr) override;
-    void setSoldierAttributes() override;
 
 };

@@ -19,6 +19,6 @@ public slots:
 private slots:
 
 private:
-    void prepAttributes(QStringList& attr) override;
     void setSoldierAttributes() override;
+    void prepAttributes(QStringList& attr) override;
 };
