@@ -7,6 +7,7 @@
 //Soldier Abstract Class
 //Used as pointer for every type of Soldier Classes,
 //e.x Clone, Droid, Jedi or Sith
+
 class SOLDIER_EXPORT Soldier
 {
 public:
@@ -48,6 +49,16 @@ public:
     QString getName();
 
     Type getType() const;
+
+    QString getTypeStr() const;
+
+    static qint16 getTypeIndex(Type type);
+
+    static Type getTypeFromIndex(qint16 index);
+
+    static qint16 getSoldierTypeIndex(SoldierType type);
+
+    static SoldierType getSoldierTypeFromIndex(qint16 index);
 
     qint16 getLevel2() const;
 

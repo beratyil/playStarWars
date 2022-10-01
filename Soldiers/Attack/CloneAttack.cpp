@@ -39,6 +39,11 @@ CloneWeapon CloneAttack::getWeapon()
     return mCurrentWeapon;
 }
 
+QString CloneAttack::getWeaponStr()
+{
+    return mCurrentWeapon.getWeaponStr();
+}
+
 QVector<CloneCommonSkill::CommonSkill> CloneAttack::getCommonSkills()
 {
     return mCurrentCommonSkills.getCurrentSkills();

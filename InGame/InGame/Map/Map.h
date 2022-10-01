@@ -26,8 +26,27 @@ signals:
 	
 public slots:
 	void moveForward();
+	
 	void enterFight();
+
+	/*
+	* Saves game information in a format like
+	Name:
+	LifeForm
+	Type
+	Soldier Type
+	Level
+	Weapon
+	CommonSkills
+	SpecialSkills
+	Current Health
+	Max Health
+	Current Armor
+	Max Armor
+	*/
 	void saveProgress();
+	
+	void loadGame();
 
 private:
 	/*

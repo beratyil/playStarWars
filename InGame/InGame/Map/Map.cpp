@@ -36,8 +36,6 @@ Map::Map(Collection* collection, QWidget* parent)
 	
 	delete charName;
 	charName = nullptr;
-
-	saveProgress();
 }
 
 Map::~Map()
@@ -61,20 +59,6 @@ void Map::enterFight()
 
 void Map::saveProgress()
 {
-	/*@note: get Character Information and save it the file */
-
-	QFile fileTest("C:\\Users\\aby_6\\Documents\\Programming\\QT\\StarWarsApp\\InGame\\InGame\\Map\\test.txt");
-
-	fileTest.open(QIODevice::WriteOnly | QIODevice::Text);
-
-	QString name = mSoldier->getName();
-
-	QString type = mSoldier->getSoldierTypeStr();
-	
-	Health* health = dynamic_cast<Health*>(mSoldier);
-	
-	qint16 level = health->getLevel();
-
 	QDir dir("..\\..\\Database\\heroProgress.txt");
 	//QString currerntPath = QDir::currentPath();
 
@@ -84,35 +68,159 @@ void Map::saveProgress()
 
 	QFile file(absolutePath);
 
-	// TODO: file is not created
-	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
-		QString nameLine = "Name: " + name + "\n";
-		QString typeLine = "Type: " + type + "\n";
-		QString currentHealthLine = "Current_health: " + QString::number(health->getCurrentHealth()) + "\n";
-		QString maxHealthLine = "Max_health: " + QString::number(health->getMaxHealth()) + "\n";
-		QString currentArmorLine = "Current_armor: " + QString::number(health->getCurrentArmor()) + "\n";
-		QString maxArmorLine = "Max_armor: " + QString::number(health->getMaxArmor()) + "\n";
-		QString levelLine = "Level: " + QString::number(level) + "\n";
+		Health* health = dynamic_cast<Health*>(mSoldier);
+		
+		qint16 type = Soldier::getTypeIndex(mSoldier->getType());
+
+		QString weaponStr = "";
+
+		QStringList commonSkillStrList;
+
+		QStringList specialSkillStrList;
+
+		switch (type) {
+			case 0:
+			{
+				DroidAttack* soldierAttack = dynamic_cast<DroidAttack*>(mSoldier);
+
+				weaponStr = soldierAttack->getWeaponStr();
+
+				QVector < DroidCommonSkill::CommonSkill > commonSkills = soldierAttack->getCommonSkills();
+
+				for (auto it = commonSkills.begin(); it != commonSkills.end(); it++) {
+					
+					qint16 index = DroidCommonSkill::getCommonSkillIndex(*it);
+
+					commonSkillStrList.append(QString::number(index));
+				}
+				
+				QVector<DroidSpecialSkill::Equipment> specialSkills = soldierAttack->getSpecialSkills();
+
+				for (auto it = specialSkills.begin(); it != specialSkills.end(); it++) {
+
+					qint16 index = DroidSpecialSkill::getSpecialSkillIndex(*it);
+
+					specialSkillStrList.append(QString::number(index));
+				}
+			}
+			case 1:
+			{
+				CloneAttack* soldierAttack = dynamic_cast<CloneAttack*>(mSoldier);
+
+				weaponStr = soldierAttack->getWeaponStr();
+
+				commonSkillStrList = soldierAttack->getCommonSkillsString();
+
+				specialSkillStrList = soldierAttack->getSpecialSkillsString();
+			}
+			case 2:
+			{
+				// TODO: Create JediWeapon
+				//JediWeapon* weapon;
+			}
+			case 3:
+			{
+				//DroidWeapon* weapon;
+			}
+			default:
+				CloneAttack* soldierAttack = dynamic_cast<CloneAttack*>(mSoldier);
+				typedef DroidAttack attackType;
+		}
+
+		//soldierAttack = dynamic_cast<attackType*>(mSoldier);
+
+		QString nameLine = mSoldier->getName() + "\n";
+
+		QString lifeFormLine = mSoldier->getLifeForm() + "\n";
+
+		QString typeLine = QString::number(type) + "\n";
+
+		QString soldierTypeLine = QString::number( Soldier::getSoldierTypeIndex( mSoldier->getSoldierType() ) ) + "\n";
+
+		QString levelLine = QString::number(health->getLevel()) + "\n";
+
+		QString weaponLine = weaponStr + "\n";
+		
+		QString commonSkillLine = commonSkillStrList.join(",") + "\n";
+		
+		QString specialSkillLine = specialSkillStrList.join(",") + "\n";
+
+		QString currentHealthLine = QString::number(health->getCurrentHealth()) + "\n";
+
+		QString maxHealthLine = QString::number(health->getMaxHealth()) + "\n";
+
+		QString currentArmorLine = QString::number(health->getCurrentArmor()) + "\n";
+		
+		QString maxArmorLine = QString::number(health->getMaxArmor()) + "\n";
 
 
 		file.write(nameLine.toLatin1());
+		file.write(lifeFormLine.toLatin1());
 		file.write(typeLine.toLatin1());
+		file.write(soldierTypeLine.toLatin1());
+		file.write(levelLine.toLatin1());
+		file.write(weaponLine.toLatin1());
+		file.write(commonSkillLine.toLatin1());
+		file.write(specialSkillLine.toLatin1());
 		file.write(currentHealthLine.toLatin1());
 		file.write(maxHealthLine.toLatin1());
 		file.write(currentArmorLine.toLatin1());
 		file.write(maxArmorLine.toLatin1());
-		file.write(levelLine.toLatin1());
 
 		file.close();
+		
 	}
 	else {
 		qDebug("Error at saving game!");
 	}
+}
 
-	
+void Map::loadGame()
+{
+	QDir dir("..\\..\\Database\\heroProgress.txt");
 
+	QString absolutePath = dir.absolutePath();
 
+	absolutePath = absolutePath.replace("/", "\\\\");
+
+	QFile file(absolutePath);
+
+	// TODO: file is not created
+	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+
+		QString nameLine = file.readLine();
+		QString typeLine = file.readLine();
+		QString soldierTypeLine = file.readLine();
+		QString levelLine = file.readLine();
+		QString weaponLine = file.readLine();
+		QString commonSkillLine = file.readLine();
+		QString specialSkillLine = file.readLine();
+		QString currentHealthLine = file.readLine();
+		QString maxHealthLine = file.readLine();
+		QString currentArmorLine = file.readLine();
+		QString maxArmorLine = file.readLine();
+
+		file.close();
+
+		quint16 typeIndex = typeLine.toShort();
+
+		Soldier* newSoldier = nullptr;
+
+		// TODO: create Soldier Objects here
+		switch (typeIndex)
+		{
+		default:
+			break;
+		case 1:
+			//newSoldier = new Droid(nameLine, lifeForm, );
+			break;
+		}
+	}
+	else {
+
+	}
 }
 
 void Map::setCurrentPlanet(qint16 planet)

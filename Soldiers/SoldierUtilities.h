@@ -36,7 +36,7 @@ namespace SoldierSpace
 
 		~AbstractWeapon();
 
-		virtual QString WeaponString() = 0;
+		virtual QString getWeaponStr() = 0;
 
 		virtual qint16 getWeaponDamage() = 0;
 
@@ -69,7 +69,7 @@ namespace SoldierSpace
 		void setWeapon(Weapon newWeapon);
 		Weapon getWeapon();
 
-		QString WeaponString() override;
+		QString getWeaponStr() override;
 		qint16 getWeaponDamage() override;
 
 	private:
@@ -105,7 +105,7 @@ namespace SoldierSpace
 		void setWeapon(Weapon newWeapon);
 		Weapon getWeapon();
 
-		QString WeaponString() override;
+		QString getWeaponStr() override;
 		qint16 getWeaponDamage() override;
 
 	private:
@@ -132,6 +132,7 @@ namespace SoldierSpace
 			HeadShot,
 			FasterReload, //LesserReloadTime,
 			StrongSwing, //Melee weapon
+			Uninitialized
 		};
 
 		AbstractCommonSkill() = default;
@@ -159,6 +160,10 @@ namespace SoldierSpace
 		void addSkill(AbstractCommonSkill::CommonSkill newSkillName);
 
 		QStringList skillsString();
+
+		static qint16 getCommonSkillIndex(CommonSkill skill);
+		
+		static CommonSkill getCommonSkillFromIndex(qint16 skill);
 
 	protected:
 		qint16 mCurrentCharacterLevel;
@@ -236,6 +241,8 @@ namespace SoldierSpace
 	class ISpecialSkill
 	{
 	public:
+		friend class DroidSpecialSkill;
+		friend class CloneSpecialSkill;
 
 		ISpecialSkill() = default;
 
@@ -258,6 +265,7 @@ namespace SoldierSpace
 
 		virtual QStringList skillsString() = 0;
 
+		//virtual qint16 getSpecialSkillIndex(CloneSpecialSkill skill) {};
 
 	private:
 
@@ -288,6 +296,7 @@ namespace SoldierSpace
 			RocketLauncher_Level1,
 			RocketLauncher_Level2,
 			RocketLauncher_Level3,
+			Unitialized
 		};
 
 		CloneSpecialSkill() = default;
@@ -319,6 +328,9 @@ namespace SoldierSpace
 
 		QStringList skillsString() override;
 
+		static qint16 getSpecialSkillIndex(CloneSpecialSkill::Equipment skill);
+
+		static Equipment getSpecialSkillFromIndex(qint16 index);
 
 	private:
 
@@ -381,6 +393,7 @@ namespace SoldierSpace
 			RocketLauncher_Level1,
 			RocketLauncher_Level2,
 			RocketLauncher_Level3,
+			Unitialized
 		};
 
 		DroidSpecialSkill() = default;
@@ -412,6 +425,9 @@ namespace SoldierSpace
 
 		QStringList skillsString() override;
 
+		static qint16 getSpecialSkillIndex(DroidSpecialSkill::Equipment skill);
+		
+		static Equipment getSpecialSkillFromIndex(qint16 index);
 
 	private:
 		
@@ -448,8 +464,5 @@ namespace SoldierSpace
 		};
 
 	};
-
-	
-
 
 };

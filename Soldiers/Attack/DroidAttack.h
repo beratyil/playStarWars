@@ -31,6 +31,8 @@ public:
 
     DroidWeapon getWeapon();
 
+    QString getWeaponStr();
+
     QVector<DroidCommonSkill::CommonSkill> getCommonSkills();
 
     QVector<DroidSpecialSkill::Equipment> getSpecialSkills();

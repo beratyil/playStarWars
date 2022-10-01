@@ -37,6 +37,8 @@ public:
 
     CloneWeapon getWeapon();
 
+    QString getWeaponStr();
+
     QVector<CloneCommonSkill::CommonSkill> getCommonSkills();
 
     QVector<CloneSpecialSkill::Equipment> getSpecialSkills();

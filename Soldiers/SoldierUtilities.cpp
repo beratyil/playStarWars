@@ -91,7 +91,7 @@ qint16 CloneWeapon::getWeaponDamage()
 	return damage;
 }
 
-QString CloneWeapon::WeaponString()
+QString CloneWeapon::getWeaponStr()
 {
 	Weapon currentWeapon = static_cast<CloneWeapon::Weapon>(getWeapon());
 
@@ -159,6 +159,22 @@ QStringList SoldierSpace::AbstractCommonSkill::skillsString()
 	}
 
 	return skillList;
+}
+
+qint16 SoldierSpace::AbstractCommonSkill::getCommonSkillIndex(CommonSkill skill)
+{
+	qint16 index = static_cast<qint16>(skill);
+	
+	return index;
+}
+
+AbstractCommonSkill::CommonSkill SoldierSpace::AbstractCommonSkill::getCommonSkillFromIndex(qint16 index)
+{
+	CommonSkill skill = CommonSkill::Uninitialized;
+	
+	skill = static_cast<CommonSkill>(index);
+
+	return skill;
 }
 
 /* CloneCommonSkill Definitions */
@@ -354,6 +370,24 @@ QStringList CloneSpecialSkill::skillsString()
 	return skillList;
 }
 
+qint16 SoldierSpace::CloneSpecialSkill::getSpecialSkillIndex(CloneSpecialSkill::Equipment skill)
+{
+	qint16 index = 0;
+
+	index = static_cast<qint16>(skill);
+
+	return index;
+}
+
+CloneSpecialSkill::Equipment SoldierSpace::CloneSpecialSkill::getSpecialSkillFromIndex(qint16 index)
+{
+	Equipment equipment = Equipment::Unitialized;
+
+	equipment = static_cast<Equipment>(index);
+
+	return equipment;
+}
+
 qint16 CloneSpecialSkill::equipmentAttack(qint16 equipment)
 {
 	Equipment equip = static_cast<Equipment>(equipment);
@@ -445,6 +479,24 @@ QStringList DroidSpecialSkill::skillsString()
 	return skillList;
 }
 
+qint16 SoldierSpace::DroidSpecialSkill::getSpecialSkillIndex(DroidSpecialSkill::Equipment skill)
+{
+	qint16 index = 0;
+
+	index = static_cast<qint16>(skill);
+
+	return index;
+}
+
+DroidSpecialSkill::Equipment SoldierSpace::DroidSpecialSkill::getSpecialSkillFromIndex(qint16 index)
+{
+	Equipment equipment = Equipment::Unitialized;
+
+	equipment = static_cast<Equipment>(index);
+	
+	return equipment;
+}
+
 qint16 DroidSpecialSkill::equipmentAttack(qint16 equipment)
 {
 	Equipment equip = static_cast<Equipment>(equipment);
@@ -518,7 +570,7 @@ DroidWeapon::Weapon DroidWeapon::getWeapon()
 	return mWeapon;
 }
 
-QString DroidWeapon::WeaponString()
+QString DroidWeapon::getWeaponStr()
 {
 	Weapon currentWeapon = getWeapon();
 

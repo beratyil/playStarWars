@@ -39,6 +39,11 @@ DroidWeapon DroidAttack::getWeapon()
     return mCurrentWeapon;
 }
 
+QString DroidAttack::getWeaponStr()
+{
+    return mCurrentWeapon.getWeaponStr();
+}
+
 QVector<DroidCommonSkill::CommonSkill> DroidAttack::getCommonSkills()
 {
     return mCurrentCommonSkills.getCurrentSkills();

@@ -44,6 +44,69 @@ Soldier::Type Soldier::getType() const
     return mType;
 }
 
+QString Soldier::getTypeStr() const
+{
+    QString returnTypeStr = "";
+    switch (mType)
+    {
+    case Soldier::Type::Uninitalized:
+        break;
+    case Soldier::Type::Droid:
+        returnTypeStr = "Droid";
+        break;
+    case Soldier::Type::Clone:
+        returnTypeStr = "Clone";
+        break;
+    case Soldier::Type::Jedi:
+        returnTypeStr = "Jedi";
+        break;
+    case Soldier::Type::Sith:
+        returnTypeStr = "Sith";
+        break;
+    default:
+        break;
+    }
+
+    return returnTypeStr;
+}
+
+qint16 Soldier::getTypeIndex(Type type)
+{
+    qint16 index = 0;
+
+    index = static_cast<qint16>(type);
+
+    return index;
+}
+
+Type Soldier::getTypeFromIndex(qint16 index)
+{
+    Type type = Type::Uninitalized;
+
+    type = static_cast<Type>(index);
+    
+    return type;
+}
+
+qint16 Soldier::getSoldierTypeIndex(SoldierType type)
+{
+    qint16 index = 0;
+
+    index = static_cast<qint16>(type);
+
+    return index;
+}
+
+SoldierType Soldier::getSoldierTypeFromIndex(qint16 index)
+{
+    SoldierType type = SoldierType::Uninitalized;
+
+    type = static_cast<SoldierType>(index);
+
+    return type;
+}
+
+
 QString Soldier::getLifeForm() const {
     return mLifeForm;
 }
@@ -177,5 +240,3 @@ qint16 Soldier::getLevel2() const
 {
     return mLevel;
 }
-
-
