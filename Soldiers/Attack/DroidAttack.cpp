@@ -93,3 +93,9 @@ bool DroidAttack::addSkill(skillType skillType, qint16 skill)
     return isAdded;
 }
 
+DroidWeapon::Range DroidAttack::getWeaponRange()
+{
+    bool isLong = mCurrentWeapon.isLongRange();
+
+    return (isLong == true) ? DroidWeapon::Range::LONG : DroidWeapon::Range::SHORT;
+}

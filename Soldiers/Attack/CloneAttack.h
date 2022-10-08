@@ -49,6 +49,8 @@ public:
 
     bool addSkill(skillType skillType, qint16 skill);
 
+    CloneWeapon::Range getWeaponRange();
+
 protected:
     qint16 attack(CloneCommonSkill::CommonSkill commonSkill);
 

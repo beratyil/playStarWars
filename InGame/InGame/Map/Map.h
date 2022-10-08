@@ -36,7 +36,7 @@ public slots:
 	Type
 	Soldier Type
 	Level
-	Weapon
+	Weapon,Range
 	CommonSkills
 	SpecialSkills
 	Current Health

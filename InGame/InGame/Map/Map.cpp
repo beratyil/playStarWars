@@ -36,6 +36,8 @@ Map::Map(Collection* collection, QWidget* parent)
 	
 	delete charName;
 	charName = nullptr;
+
+	saveProgress();
 }
 
 Map::~Map()
@@ -60,7 +62,7 @@ void Map::enterFight()
 void Map::saveProgress()
 {
 	QDir dir("..\\..\\Database\\heroProgress.txt");
-	//QString currerntPath = QDir::currentPath();
+	QString currerntPath = QDir::currentPath();
 
 	QString absolutePath = dir.absolutePath();
 	
@@ -74,18 +76,22 @@ void Map::saveProgress()
 		
 		qint16 type = Soldier::getTypeIndex(mSoldier->getType());
 
-		QString weaponStr = "";
+		qint16 weaponIndex = DroidWeapon::getWeaponIndex( DroidWeapon::Weapon::UNINITIALIZED );
 
-		QStringList commonSkillStrList;
+		qint16 rangeIndex = DroidWeapon::getRangeIndex(DroidWeapon::Range::UNINITIALIZED);
 
-		QStringList specialSkillStrList;
+		QStringList commonSkillList;
+
+		QStringList specialSkillList;
 
 		switch (type) {
 			case 0:
 			{
 				DroidAttack* soldierAttack = dynamic_cast<DroidAttack*>(mSoldier);
 
-				weaponStr = soldierAttack->getWeaponStr();
+				weaponIndex = DroidWeapon::getWeaponIndex( soldierAttack->getWeapon().getWeapon() );
+
+				rangeIndex = DroidWeapon::getRangeIndex(soldierAttack->getWeapon().getRange() );
 
 				QVector < DroidCommonSkill::CommonSkill > commonSkills = soldierAttack->getCommonSkills();
 
@@ -93,7 +99,7 @@ void Map::saveProgress()
 					
 					qint16 index = DroidCommonSkill::getCommonSkillIndex(*it);
 
-					commonSkillStrList.append(QString::number(index));
+					commonSkillList.append(QString::number(index));
 				}
 				
 				QVector<DroidSpecialSkill::Equipment> specialSkills = soldierAttack->getSpecialSkills();
@@ -102,18 +108,34 @@ void Map::saveProgress()
 
 					qint16 index = DroidSpecialSkill::getSpecialSkillIndex(*it);
 
-					specialSkillStrList.append(QString::number(index));
+					specialSkillList.append(QString::number(index));
 				}
 			}
 			case 1:
 			{
 				CloneAttack* soldierAttack = dynamic_cast<CloneAttack*>(mSoldier);
 
-				weaponStr = soldierAttack->getWeaponStr();
+				weaponIndex = CloneWeapon::getWeaponIndex( soldierAttack->getWeapon().getWeapon() );
+				
+				rangeIndex = CloneWeapon::getRangeIndex(soldierAttack->getWeapon().getRange());
 
-				commonSkillStrList = soldierAttack->getCommonSkillsString();
+				QVector < CloneCommonSkill::CommonSkill > commonSkills = soldierAttack->getCommonSkills();
 
-				specialSkillStrList = soldierAttack->getSpecialSkillsString();
+				for (auto it = commonSkills.begin(); it != commonSkills.end(); it++) {
+
+					qint16 index = DroidCommonSkill::getCommonSkillIndex(*it);
+
+					commonSkillList.append(QString::number(index));
+				}
+
+				QVector<CloneSpecialSkill::Equipment> specialSkills = soldierAttack->getSpecialSkills();
+
+				for (auto it = specialSkills.begin(); it != specialSkills.end(); it++) {
+
+					qint16 index = CloneSpecialSkill::getSpecialSkillIndex(*it);
+
+					specialSkillList.append(QString::number(index));
+				}
 			}
 			case 2:
 			{
@@ -129,8 +151,6 @@ void Map::saveProgress()
 				typedef DroidAttack attackType;
 		}
 
-		//soldierAttack = dynamic_cast<attackType*>(mSoldier);
-
 		QString nameLine = mSoldier->getName() + "\n";
 
 		QString lifeFormLine = mSoldier->getLifeForm() + "\n";
@@ -141,11 +161,11 @@ void Map::saveProgress()
 
 		QString levelLine = QString::number(health->getLevel()) + "\n";
 
-		QString weaponLine = weaponStr + "\n";
+		QString weaponLine = QString::number(weaponIndex) + "," + QString::number(rangeIndex) + "\n";
 		
-		QString commonSkillLine = commonSkillStrList.join(",") + "\n";
+		QString commonSkillLine = commonSkillList.join(",") + "\n";
 		
-		QString specialSkillLine = specialSkillStrList.join(",") + "\n";
+		QString specialSkillLine = specialSkillList.join(",") + "\n";
 
 		QString currentHealthLine = QString::number(health->getCurrentHealth()) + "\n";
 
@@ -191,10 +211,12 @@ void Map::loadGame()
 	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
 
 		QString nameLine = file.readLine();
+		QString lifeFormLine = file.readLine();
 		QString typeLine = file.readLine();
 		QString soldierTypeLine = file.readLine();
 		QString levelLine = file.readLine();
 		QString weaponLine = file.readLine();
+		QString rangeLine = file.readLine();
 		QString commonSkillLine = file.readLine();
 		QString specialSkillLine = file.readLine();
 		QString currentHealthLine = file.readLine();
@@ -204,18 +226,46 @@ void Map::loadGame()
 
 		file.close();
 
-		quint16 typeIndex = typeLine.toShort();
+		qint16 typeIndex = typeLine.toShort();
+		qint16 soldierTypeIndex = soldierTypeLine.toShort();
+		qint16 levelIndex = levelLine.toShort();
+
+		qint16 weaponIndex = weaponLine.split(",")[0].toShort();
+		qint16 rangeIndex = weaponLine.split(",")[1].toShort();
 
 		Soldier* newSoldier = nullptr;
 
-		// TODO: create Soldier Objects here
+		Soldier::SoldierType soldierType = Soldier::getSoldierTypeFromIndex(typeIndex);
+
+		// TODO: create Clone and Jedi Objects Here
 		switch (typeIndex)
 		{
-		default:
-			break;
-		case 1:
-			//newSoldier = new Droid(nameLine, lifeForm, );
-			break;
+			default:
+				break;
+			case 1: {
+
+				DroidWeapon::Weapon weapon = DroidWeapon::getWeaponFromIndex(weaponIndex);
+				DroidWeapon::Range range = DroidWeapon::getRangeFromIndex(rangeIndex);
+
+				newSoldier = new Droid(nameLine, lifeFormLine, soldierType, levelIndex, weapon, range);
+				break;
+			}
+			case 2:
+			{
+				DroidWeapon::Weapon weapon = DroidWeapon::getWeaponFromIndex(weaponIndex);
+				DroidWeapon::Range range = DroidWeapon::getRangeFromIndex(rangeIndex);
+
+				newSoldier = new Droid(nameLine, lifeFormLine, soldierType, levelIndex, weapon, range);
+				break;
+			}
+			case 3:
+			{
+				break;
+			}
+			case 4:
+			{
+				break;
+			}
 		}
 	}
 	else {

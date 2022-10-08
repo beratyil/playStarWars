@@ -23,12 +23,14 @@ namespace SoldierSpace
 		qint16 mCurrentDamage;
 	};
 
+	//TODO: COMBINE1 CloneWeapon Class and DroidWeapon Classes
 	class AbstractWeapon
 	{
 	public:
 		enum class Range {
 			LONG,
-			SHORT
+			SHORT,
+			UNINITIALIZED
 		};
 
 		AbstractWeapon() = default;
@@ -42,7 +44,12 @@ namespace SoldierSpace
 
 		bool isLongRange();
 
+		Range getRange();
+
 		void setRange(Range range);
+
+		static qint16 getRangeIndex(Range range);
+		static Range getRangeFromIndex(qint16 index);
 
 	protected:
 		Range mRange;
@@ -59,6 +66,7 @@ namespace SoldierSpace
 			Z_6_ROTARY_CANON,
 			DC_15X_SNIPER,
 			DC_17M_BLASTER,
+			UNINITIALIZED
 		};
 
 		CloneWeapon() = default;
@@ -71,6 +79,9 @@ namespace SoldierSpace
 
 		QString getWeaponStr() override;
 		qint16 getWeaponDamage() override;
+
+		static qint16 getWeaponIndex(Weapon weapon);
+		static Weapon getWeaponFromIndex(qint16 index);
 
 	private:
 		Weapon mWeapon;
@@ -95,6 +106,7 @@ namespace SoldierSpace
 			RADIATION_CANNON,
 			VIBROSTAFF,
 			ELECTROSTAFF,
+			UNINITIALIZED
 		};
 
 		DroidWeapon() = default;
@@ -108,6 +120,9 @@ namespace SoldierSpace
 		QString getWeaponStr() override;
 		qint16 getWeaponDamage() override;
 
+		static qint16 getWeaponIndex(Weapon weapon);
+		static Weapon getWeaponFromIndex(qint16 index);
+
 	private:
 		Weapon mWeapon;
 
@@ -119,7 +134,7 @@ namespace SoldierSpace
 			{Weapon::VIBROSTAFF, 6},
 			{Weapon::ELECTROSTAFF, 7},
 		};
-
+		
 	};
 
 	class AbstractCommonSkill
@@ -132,7 +147,7 @@ namespace SoldierSpace
 			HeadShot,
 			FasterReload, //LesserReloadTime,
 			StrongSwing, //Melee weapon
-			Uninitialized
+			UNINITIALIZED
 		};
 
 		AbstractCommonSkill() = default;
@@ -296,7 +311,7 @@ namespace SoldierSpace
 			RocketLauncher_Level1,
 			RocketLauncher_Level2,
 			RocketLauncher_Level3,
-			Unitialized
+			UNINITIALIZED
 		};
 
 		CloneSpecialSkill() = default;
@@ -393,7 +408,7 @@ namespace SoldierSpace
 			RocketLauncher_Level1,
 			RocketLauncher_Level2,
 			RocketLauncher_Level3,
-			Unitialized
+			UNINITIALIZED
 		};
 
 		DroidSpecialSkill() = default;

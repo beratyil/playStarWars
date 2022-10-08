@@ -93,3 +93,9 @@ bool CloneAttack::addSkill(skillType skillType, qint16 skill)
     return isAdded;
 }
 
+CloneWeapon::Range CloneAttack::getWeaponRange()
+{
+    bool isLong = mCurrentWeapon.isLongRange();
+
+    return (isLong == true) ? CloneWeapon::Range::LONG : CloneWeapon::Range::SHORT;
+}

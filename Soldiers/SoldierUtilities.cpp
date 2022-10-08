@@ -53,9 +53,32 @@ bool AbstractWeapon::isLongRange()
 	return (mRange == Range::LONG) ? true : false;
 }
 
+AbstractWeapon::Range SoldierSpace::AbstractWeapon::getRange()
+{
+	return mRange;
+}
+
 void AbstractWeapon::setRange(Range range)
 {
 	mRange = range;
+}
+
+qint16 SoldierSpace::AbstractWeapon::getRangeIndex(Range range)
+{
+	qint16 index = 0;
+
+	index = static_cast<qint16>(range);
+
+	return index;
+}
+
+AbstractWeapon::Range SoldierSpace::AbstractWeapon::getRangeFromIndex(qint16 index)
+{
+	Range range = Range::UNINITIALIZED;
+
+	range = static_cast<Range>(index);
+
+	return range;
 }
 
 CloneWeapon::CloneWeapon(Weapon newWeapon, Range range)
@@ -89,6 +112,24 @@ qint16 CloneWeapon::getWeaponDamage()
 	qint16 damage = mWeaponDamage.damage();
 
 	return damage;
+}
+
+qint16 SoldierSpace::CloneWeapon::getWeaponIndex(Weapon weapon)
+{
+	qint16 index = 0;
+
+	index = static_cast<qint16>(weapon);
+
+	return index;
+}
+
+CloneWeapon::Weapon SoldierSpace::CloneWeapon::getWeaponFromIndex(qint16 index)
+{
+	Weapon weapon = Weapon::UNINITIALIZED;
+
+	weapon = static_cast<Weapon>(index);
+
+	return weapon;
 }
 
 QString CloneWeapon::getWeaponStr()
@@ -170,7 +211,7 @@ qint16 SoldierSpace::AbstractCommonSkill::getCommonSkillIndex(CommonSkill skill)
 
 AbstractCommonSkill::CommonSkill SoldierSpace::AbstractCommonSkill::getCommonSkillFromIndex(qint16 index)
 {
-	CommonSkill skill = CommonSkill::Uninitialized;
+	CommonSkill skill = CommonSkill::UNINITIALIZED;
 	
 	skill = static_cast<CommonSkill>(index);
 
@@ -381,7 +422,7 @@ qint16 SoldierSpace::CloneSpecialSkill::getSpecialSkillIndex(CloneSpecialSkill::
 
 CloneSpecialSkill::Equipment SoldierSpace::CloneSpecialSkill::getSpecialSkillFromIndex(qint16 index)
 {
-	Equipment equipment = Equipment::Unitialized;
+	Equipment equipment = Equipment::UNINITIALIZED;
 
 	equipment = static_cast<Equipment>(index);
 
@@ -490,7 +531,7 @@ qint16 SoldierSpace::DroidSpecialSkill::getSpecialSkillIndex(DroidSpecialSkill::
 
 DroidSpecialSkill::Equipment SoldierSpace::DroidSpecialSkill::getSpecialSkillFromIndex(qint16 index)
 {
-	Equipment equipment = Equipment::Unitialized;
+	Equipment equipment = Equipment::UNINITIALIZED;
 
 	equipment = static_cast<Equipment>(index);
 	
@@ -607,5 +648,23 @@ qint16 DroidWeapon::getWeaponDamage()
 	qint16 damage = mWeaponDamage.damage();
 
 	return damage;
+}
+
+qint16 SoldierSpace::DroidWeapon::getWeaponIndex(Weapon weapon)
+{
+	qint16 index = 0;
+
+	index = static_cast<qint16>(weapon);
+
+	return index;
+}
+
+DroidWeapon::Weapon SoldierSpace::DroidWeapon::getWeaponFromIndex(qint16 index)
+{
+	Weapon weapon = Weapon::UNINITIALIZED;
+
+	weapon = static_cast<Weapon>(index);
+
+	return weapon;
 }
 

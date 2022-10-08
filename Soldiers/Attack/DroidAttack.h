@@ -43,11 +43,14 @@ public:
 
     bool addSkill(skillType skillType, qint16 skill);
 
+    DroidWeapon::Range getWeaponRange();
+
 protected:
     qint16 attack(DroidCommonSkill::CommonSkill commonSkill);
 
     qint16 attack(DroidSpecialSkill::Equipment specialSkill);
 
+    //TODO: Type of mCurrentWeapon may needed to be replaced with DroidWeapon::Weapon
     DroidWeapon mCurrentWeapon;
     DroidCommonSkill mCurrentCommonSkills;
     DroidSpecialSkill mCurrentSpecialSkills;
