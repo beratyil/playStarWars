@@ -1,6 +1,6 @@
 #include "InGameUtilities.h"
 
-EnemyDatabase::EnemyDatabase(quint16 index, QString image, QString soldierType, qint16 level, bool isMirrored)
+EnemyDatabase::EnemyDatabase(qint16 index, QString image, QString soldierType, qint16 level, bool isMirrored)
 {
 	mIndex = index;
 	mImageLocation = image;
@@ -9,7 +9,7 @@ EnemyDatabase::EnemyDatabase(quint16 index, QString image, QString soldierType, 
 	mLevel = level;
 }
 
-quint16 EnemyDatabase::getIndex()
+qint16 EnemyDatabase::getIndex()
 {
 	return mIndex;
 }

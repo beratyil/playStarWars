@@ -13,8 +13,8 @@ class SOLDIER_EXPORT Soldier
 public:
 
     enum class Type {
-        UNINITIALIZED,
-        Droid,
+        UNINITIALIZED = -1,
+        Droid = 1,
         Clone,
         Jedi,
         Sith

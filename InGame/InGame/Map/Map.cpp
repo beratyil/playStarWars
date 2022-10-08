@@ -83,9 +83,9 @@ void Map::saveProgress()
 		
 		qint16 type = Soldier::getTypeIndex(mSoldier->getType());
 
-		qint16 weaponIndex = DroidWeapon::getWeaponIndex( DroidWeapon::Weapon::UNINITIALIZED );
+		qint16 weaponIndex =  -1 ;
 
-		qint16 rangeIndex = DroidWeapon::getRangeIndex(DroidWeapon::Range::UNINITIALIZED);
+		qint16 rangeIndex = -1;
 
 		QStringList commonSkillList;
 
@@ -247,7 +247,7 @@ void Map::loadGame()
 
 		Soldier* newSoldier = nullptr;
 
-		Soldier::SoldierType soldierType = Soldier::getSoldierTypeFromIndex(typeIndex);
+		Soldier::SoldierType soldierType = Soldier::getSoldierTypeFromIndex(soldierTypeIndex);
 
 		// TODO: create Clone and Jedi Objects Here
 		switch (typeIndex)

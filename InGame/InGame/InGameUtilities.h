@@ -4,16 +4,16 @@
 class EnemyDatabase
 {
 public:
-	EnemyDatabase(quint16, QString, QString, qint16, bool);
+	EnemyDatabase(qint16, QString, QString, qint16, bool);
 
-	quint16 getIndex();
+	qint16 getIndex();
 	QString getImageLocation();
 	QString getSoldierType();
 	bool isMirrored();
 	qint16 getLevel();
 
 private:
-	quint16 mIndex;
+	qint16 mIndex;
 	QString mImageLocation;
 	QString mSoldierTypeStr;
 	qint16 mLevel;

@@ -28,9 +28,9 @@ namespace SoldierSpace
 	{
 	public:
 		enum class Range {
+			UNINITIALIZED = -1,
 			LONG,
 			SHORT,
-			UNINITIALIZED
 		};
 
 		AbstractWeapon() = default;
@@ -61,12 +61,12 @@ namespace SoldierSpace
 	public:
 
 		enum class Weapon {
+			UNINITIALIZED = -1,
 			DC_15A_CARBINE,
 			DC_15A_RIFLE,
 			Z_6_ROTARY_CANON,
 			DC_15X_SNIPER,
 			DC_17M_BLASTER,
-			UNINITIALIZED
 		};
 
 		CloneWeapon() = default;
@@ -100,13 +100,13 @@ namespace SoldierSpace
 	public:
 
 		enum class Weapon {
+			UNINITIALIZED = -1,
 			E_5_BLASTER_RIFLE,
 			DUAL_WRIST_BLASTER,
 			BLASTER_CANNON,
 			RADIATION_CANNON,
 			VIBROSTAFF,
 			ELECTROSTAFF,
-			UNINITIALIZED
 		};
 
 		DroidWeapon() = default;
@@ -143,11 +143,11 @@ namespace SoldierSpace
 	public:
 
 		enum class CommonSkill {
+			UNINITIALIZED = -1,
 			WeaponStrike,
 			HeadShot,
 			FasterReload, //LesserReloadTime,
 			StrongSwing, //Melee weapon
-			UNINITIALIZED
 		};
 
 		AbstractCommonSkill() = default;
@@ -299,6 +299,7 @@ namespace SoldierSpace
 		* Every equipment has three levels. Each level will have specific identifier
 		*/
 		enum class Equipment {
+			UNINITIALIZED = -1,
 			HandGrenade_Level1,
 			HandGrenade_Level2,
 			HandGrenade_Level3,
@@ -311,7 +312,6 @@ namespace SoldierSpace
 			RocketLauncher_Level1,
 			RocketLauncher_Level2,
 			RocketLauncher_Level3,
-			UNINITIALIZED
 		};
 
 		CloneSpecialSkill() = default;
@@ -396,6 +396,7 @@ namespace SoldierSpace
 		* Every equipment has three levels. Each level will have specific identifier
 		*/
 		enum class Equipment {
+			UNINITIALIZED = -1,
 			HandGrenade_Level1,
 			HandGrenade_Level2,
 			HandGrenade_Level3,
@@ -408,7 +409,6 @@ namespace SoldierSpace
 			RocketLauncher_Level1,
 			RocketLauncher_Level2,
 			RocketLauncher_Level3,
-			UNINITIALIZED
 		};
 
 		DroidSpecialSkill() = default;
