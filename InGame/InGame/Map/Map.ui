@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>547</width>
-    <height>540</height>
+    <height>583</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,10 +32,17 @@
      <x>-10</x>
      <y>460</y>
      <width>561</width>
-     <height>81</height>
+     <height>83</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QPushButton" name="saveGameButton">
+      <property name="text">
+       <string>Save Game</string>
+      </property>
+     </widget>
+    </item>
     <item>
      <widget class="QPushButton" name="mainMenuButton">
       <property name="text">

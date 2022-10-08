@@ -13,6 +13,8 @@ PlayStarWars::PlayStarWars(QWidget *parent)
 
     connect(ui.newGameButton, SIGNAL(clicked()), this, SLOT(openNewGame()));
     
+    connect(ui.loadGameButton, SIGNAL(clicked()), this, SLOT(openLoadGame()));
+    
     connect(ui.loadGameButton, SIGNAL(clicked()), this, SLOT(startGame()));
 
     QIcon iconNewGame(":\\PlayStarWars\\Resources\\Menu\\playButton.png");
@@ -55,6 +57,13 @@ void PlayStarWars::openNewGame()
     /* @note: Destroy temp pointer */
     newCharacterSelectScreen = nullptr;
     delete newCharacterSelectScreen;
+}
+
+void PlayStarWars::openLoadGame()
+{
+    startGame();
+
+    mMap->loadGame();
 }
 
 void PlayStarWars::returnMainMenu()

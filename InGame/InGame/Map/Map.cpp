@@ -26,18 +26,13 @@ Map::Map(Collection* collection, QWidget* parent)
 	connect(ui.pushButton_8, &QPushButton::clicked, this, &Map::enterFight);
 	connect(ui.pushButton_9, &QPushButton::clicked, this, &Map::enterFight);
 
+	connect(ui.saveGameButton, &QPushButton::clicked, this, &Map::saveProgress);
+
 	createEnemyDatabase();
 
 	mCollection = static_cast<Collection*>(collection);
 	mSoldier = *(mCollection->getSoldier());
-	
-	QString* charName = mCollection->getName();
-	mSoldier->setName(*charName);
-	
-	delete charName;
-	charName = nullptr;
 
-	saveProgress();
 }
 
 Map::~Map()
@@ -61,8 +56,15 @@ void Map::enterFight()
 
 void Map::saveProgress()
 {
+	//TODO: fix updating soldier name every single time after clicking Save button
+	QString* charName = mCollection->getName();
+	mSoldier->setName(*charName);
+
+	delete charName;
+	charName = nullptr;
+
 	QDir dir("..\\..\\Database\\heroProgress.txt");
-	QString currerntPath = QDir::currentPath();
+	QString currentPath = QDir::currentPath();
 
 	QString absolutePath = dir.absolutePath();
 	
@@ -70,7 +72,7 @@ void Map::saveProgress()
 
 	QFile file(absolutePath);
 
-	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	if ( file.open(QIODevice::WriteOnly | QIODevice::Text) ) {
 
 		Health* health = dynamic_cast<Health*>(mSoldier);
 		
@@ -175,7 +177,7 @@ void Map::saveProgress()
 		
 		QString maxArmorLine = QString::number(health->getMaxArmor()) + "\n";
 
-
+		//TODO: Fix empty lines in the save file
 		file.write(nameLine.toLatin1());
 		file.write(lifeFormLine.toLatin1());
 		file.write(typeLine.toLatin1());
@@ -194,12 +196,17 @@ void Map::saveProgress()
 	}
 	else {
 		qDebug("Error at saving game!");
+
+		QFileDevice::FileError error = file.error();
+
+		int a = 5;
 	}
 }
 
 void Map::loadGame()
 {
 	QDir dir("..\\..\\Database\\heroProgress.txt");
+	QString currentPath = QDir::currentPath();
 
 	QString absolutePath = dir.absolutePath();
 
@@ -207,8 +214,7 @@ void Map::loadGame()
 
 	QFile file(absolutePath);
 
-	// TODO: file is not created
-	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
 		QString nameLine = file.readLine();
 		QString lifeFormLine = file.readLine();
@@ -252,10 +258,10 @@ void Map::loadGame()
 			}
 			case 2:
 			{
-				DroidWeapon::Weapon weapon = DroidWeapon::getWeaponFromIndex(weaponIndex);
-				DroidWeapon::Range range = DroidWeapon::getRangeFromIndex(rangeIndex);
+				CloneWeapon::Weapon weapon = CloneWeapon::getWeaponFromIndex(weaponIndex);
+				CloneWeapon::Range range = CloneWeapon::getRangeFromIndex(rangeIndex);
 
-				newSoldier = new Droid(nameLine, lifeFormLine, soldierType, levelIndex, weapon, range);
+				newSoldier = new Clone(nameLine, lifeFormLine, soldierType, levelIndex, weapon, range);
 				break;
 			}
 			case 3:

@@ -20,6 +20,7 @@ signals:
 public slots:
     void exit();
     void openNewGame();
+    void openLoadGame();
     void returnMainMenu();
     
     /*
