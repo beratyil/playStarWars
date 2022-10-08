@@ -10,6 +10,8 @@ CloneTrooper::CloneTrooper(Collection* collection, QWidget* parent)
     QStringList list;
 
     prepInfoScreen(imageDir, description, list);
+
+    mSoldier = collection->getSoldier();
 }
 
 CloneTrooper::~CloneTrooper()
