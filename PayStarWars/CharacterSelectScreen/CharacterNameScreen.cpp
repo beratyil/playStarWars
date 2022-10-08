@@ -17,6 +17,9 @@ CharacterName::CharacterName(Collection* collection, QWidget* parent)
     connect(ui.returnSelection, SIGNAL(clicked()), this, SIGNAL(returnSelection()));
     connect(ui.continueGame, SIGNAL(clicked()), this, SLOT(setName()));
 
+    connect(ui.returnSelection, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui.continueGame, SIGNAL(clicked()), this, SLOT(close()));
+
     mCollection = collection;
 }
 
