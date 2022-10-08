@@ -52,7 +52,7 @@
     <ClCompile Include="..\CharacterSelectScreen\CharacterSelectScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\CharacterSelectScreen\Characters\Clone\CloneParatrooper.cpp">
+    <ClCompile Include="..\CharacterSelectScreen\Characters\Clone\CloneOfficer.cpp">
       <Filter>CharacterInformation\Clone</Filter>
     </ClCompile>
     <ClCompile Include="Utilities.cpp">
@@ -86,7 +86,7 @@
     <QtMoc Include="..\CharacterSelectScreen\CharacterSelectScreen.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneParatrooper.h">
+    <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneOfficer.h">
       <Filter>CharacterInformation\Clone</Filter>
     </QtMoc>
     <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneHeavyGunner.h">

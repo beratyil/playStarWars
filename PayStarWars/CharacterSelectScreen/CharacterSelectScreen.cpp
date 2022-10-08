@@ -44,7 +44,7 @@ void CharacterSelection::openCharacterInformationScreen()
     ICharacterInformationScreen* infoScreen = nullptr;
 
     if (objectName == "paratrooper") {
-        infoScreen = new CloneParatrooper(mCollection);
+        infoScreen = new CloneOfficer(mCollection);
     }
     else if (objectName == "heavyGunner") {
         infoScreen = new CloneHeavyGunner(mCollection);

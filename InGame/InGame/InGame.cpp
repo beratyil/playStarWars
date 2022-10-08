@@ -50,7 +50,7 @@ void InGame::exampleInGameScreen()
 
     ui->hero->setPixmap(enemyImagePixmap.scaled(w, h, Qt::KeepAspectRatio));
 
-    Soldier* hero = new Clone("Rex", "Human", Soldier::SoldierType::Commander, 10, CloneWeapon::Weapon::DC_15A_CARBINE);
+    Soldier* hero = new Clone("Rex", "Human", Soldier::SoldierType::Officer, 10, CloneWeapon::Weapon::DC_15A_CARBINE);
 
     CloneAttack* attackInterface = dynamic_cast<CloneAttack*>(hero);
     attackInterface->addSkill(CloneAttack::skillType::commonSkill, 0);

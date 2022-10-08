@@ -49,7 +49,7 @@ QString Soldier::getTypeStr() const
     QString returnTypeStr = "";
     switch (mType)
     {
-    case Soldier::Type::Uninitalized:
+    case Soldier::Type::UNINITIALIZED:
         break;
     case Soldier::Type::Droid:
         returnTypeStr = "Droid";
@@ -81,7 +81,7 @@ qint16 Soldier::getTypeIndex(Type type)
 
 Type Soldier::getTypeFromIndex(qint16 index)
 {
-    Type type = Type::Uninitalized;
+    Type type = Type::UNINITIALIZED;
 
     type = static_cast<Type>(index);
     
@@ -99,7 +99,7 @@ qint16 Soldier::getSoldierTypeIndex(SoldierType type)
 
 SoldierType Soldier::getSoldierTypeFromIndex(qint16 index)
 {
-    SoldierType type = SoldierType::Uninitalized;
+    SoldierType type = SoldierType::UNINITIALIZED;
 
     type = static_cast<SoldierType>(index);
 
@@ -204,8 +204,8 @@ QString Soldier::getSoldierTypeStr() const
             soldierTypeStr = "Sniper";
             break;
         }
-        case(SoldierType::Commander): {
-            soldierTypeStr = "Commander";
+        case(SoldierType::Officer): {
+            soldierTypeStr = "Officer";
             break;
         }
         case(SoldierType::Jedi_Padawan): {

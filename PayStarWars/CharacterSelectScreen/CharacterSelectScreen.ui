@@ -18,7 +18,7 @@
     <rect>
      <x>220</x>
      <y>180</y>
-     <width>91</width>
+     <width>95</width>
      <height>51</height>
     </rect>
    </property>
@@ -26,7 +26,7 @@
     <item>
      <widget class="QPushButton" name="paratrooper">
       <property name="text">
-       <string>Paratrooper</string>
+       <string>Officer</string>
       </property>
      </widget>
     </item>
@@ -37,7 +37,7 @@
     <rect>
      <x>360</x>
      <y>180</y>
-     <width>91</width>
+     <width>95</width>
      <height>51</height>
     </rect>
    </property>
@@ -56,7 +56,7 @@
     <rect>
      <x>490</x>
      <y>180</y>
-     <width>91</width>
+     <width>95</width>
      <height>51</height>
     </rect>
    </property>
@@ -75,7 +75,7 @@
     <rect>
      <x>90</x>
      <y>180</y>
-     <width>91</width>
+     <width>95</width>
      <height>51</height>
     </rect>
    </property>

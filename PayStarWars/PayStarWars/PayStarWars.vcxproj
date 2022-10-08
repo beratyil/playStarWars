@@ -106,7 +106,7 @@
     <QtUic Include="PlayStarWars.ui" />
     <QtMoc Include="PlayStarWars.h" />
     <ClCompile Include="..\CharacterSelectScreen\CharacterSelectScreen.cpp" />
-    <ClCompile Include="..\CharacterSelectScreen\Characters\Clone\CloneParatrooper.cpp" />
+    <ClCompile Include="..\CharacterSelectScreen\Characters\Clone\CloneOfficer.cpp" />
     <ClCompile Include="PlayStarWars.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -114,7 +114,7 @@
     <QtMoc Include="..\CharacterSelectScreen\CharacterSelectScreen.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneParatrooper.h" />
+    <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneOfficer.h" />
     <QtMoc Include="..\CharacterSelectScreen\Characters\Clone\CloneHeavyGunner.h" />
     <QtMoc Include="Utilities.h" />
   </ItemGroup>

@@ -4,13 +4,13 @@
 #include <Utilities.h>
 #include "Soldier\CloneSoldier.h"
 
-class CloneParatrooper : public ICharacterInformationScreen
+class CloneOfficer : public ICharacterInformationScreen
 {
     Q_OBJECT
 
 public:
-    CloneParatrooper(Collection* collection, QWidget* parent = nullptr);
-    ~CloneParatrooper();
+    CloneOfficer(Collection* collection, QWidget* parent = nullptr);
+    ~CloneOfficer();
 
 signals:
 

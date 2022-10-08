@@ -62,7 +62,7 @@ class Health {
 			{SoldierType::Assault, { {2,2}, {3,2} } },
 			{SoldierType::Heavy_Assault, { {2,2}, {3,2} } },
 			{SoldierType::Sniper, { {2,2}, {3,2} } },
-			{SoldierType::Commander, { {2,2}, {3,2} } },
+			{SoldierType::Officer, { {2,2}, {3,2} } },
 			{SoldierType::Jedi_Padawan, { {2,4}, {2,4} } },
 			{SoldierType::Jedi_Knight, { {2,5}, {2,6} } },
 			{SoldierType::Jedi_Master, { {2,6}, {2,5} } },

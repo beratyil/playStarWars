@@ -2,6 +2,7 @@
 
 Map::Map(Collection* collection, QWidget* parent)
 	: QMainWindow(parent)
+	, isGameSavedOnce{ false }
 {
 	ui.setupUi(this);
 
@@ -56,12 +57,16 @@ void Map::enterFight()
 
 void Map::saveProgress()
 {
-	//TODO: fix updating soldier name every single time after clicking Save button
-	QString* charName = mCollection->getName();
-	mSoldier->setName(*charName);
+	if (isGameSavedOnce == false) {
 
-	delete charName;
-	charName = nullptr;
+		QString* charName = mCollection->getName();
+		mSoldier->setName(*charName);
+
+		delete charName;
+		charName = nullptr;
+
+		isGameSavedOnce = true;
+	}
 
 	QDir dir("..\\..\\Database\\heroProgress.txt");
 	QString currentPath = QDir::currentPath();
@@ -198,8 +203,6 @@ void Map::saveProgress()
 		qDebug("Error at saving game!");
 
 		QFileDevice::FileError error = file.error();
-
-		int a = 5;
 	}
 }
 
@@ -221,8 +224,11 @@ void Map::loadGame()
 		QString typeLine = file.readLine();
 		QString soldierTypeLine = file.readLine();
 		QString levelLine = file.readLine();
-		QString weaponLine = file.readLine();
-		QString rangeLine = file.readLine();
+		
+		QString weaponInfoLine = file.readLine();
+		QString weaponLine = weaponInfoLine.split(",")[0];
+		QString rangeLine = weaponInfoLine.split(",")[1];
+		
 		QString commonSkillLine = file.readLine();
 		QString specialSkillLine = file.readLine();
 		QString currentHealthLine = file.readLine();
@@ -236,8 +242,8 @@ void Map::loadGame()
 		qint16 soldierTypeIndex = soldierTypeLine.toShort();
 		qint16 levelIndex = levelLine.toShort();
 
-		qint16 weaponIndex = weaponLine.split(",")[0].toShort();
-		qint16 rangeIndex = weaponLine.split(",")[1].toShort();
+		qint16 weaponIndex = weaponLine.toShort();
+		qint16 rangeIndex = rangeLine.toShort();
 
 		Soldier* newSoldier = nullptr;
 

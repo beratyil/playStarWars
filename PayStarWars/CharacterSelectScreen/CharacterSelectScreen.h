@@ -3,7 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include <qpainter.h>
 #include "ui_CharacterSelectScreen.h"
-#include "Characters/Clone/CloneParatrooper.h"
+#include "Characters/Clone/CloneOfficer.h"
 #include "Characters/Clone/CloneHeavyGunner.h"
 #include "Characters/Clone/CloneSharpShooter.h"
 #include "Characters/Clone/CloneTrooper.h"

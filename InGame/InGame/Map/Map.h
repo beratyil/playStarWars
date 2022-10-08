@@ -66,5 +66,6 @@ private:
 	Collection* mCollection;
 	Soldier* mSoldier;
 
+	bool isGameSavedOnce;
 	QString mDroidEnemies = "..\\..\\Database\\DroidEnemies.txt";
 };

@@ -13,7 +13,7 @@ class SOLDIER_EXPORT Soldier
 public:
 
     enum class Type {
-        Uninitalized,
+        UNINITIALIZED,
         Droid,
         Clone,
         Jedi,
@@ -21,7 +21,7 @@ public:
     };
 
     enum class SoldierType {
-        Uninitalized = -1,
+        UNINITIALIZED = -1,
         Admiral = 100,
         BattleDroid,
         B2,
@@ -32,7 +32,7 @@ public:
         Assault = 200,
         Heavy_Assault,
         Sniper,
-        Commander,
+        Officer,
         Jedi_Padawan = 300,
         Jedi_Knight,
         Jedi_Master,
